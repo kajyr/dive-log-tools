@@ -4,7 +4,7 @@ const omap = (object, fn) =>
     return acc;
   }, {});
 
-const cleanArray = (value) => {
+const cleanArray = value => {
   if (Array.isArray(value)) {
     if (value.length === 1) {
       return cleanValue(value[0]);
@@ -24,12 +24,9 @@ function cleanBool(value) {
   return value;
 }
 
-const cleanFloat = (value) => {
+const cleanFloat = value => {
   // Skip dates
-  if (
-    typeof value === 'string' &&
-    (value.indexOf(':') > -1 || value.indexOf('-') > -1)
-  ) {
+  if (typeof value === 'string' && (value.indexOf(':') > -1 || value.indexOf('-') > -1)) {
     return value;
   }
   const flo = parseFloat(value);
@@ -39,17 +36,12 @@ const cleanFloat = (value) => {
   return flo;
 };
 
-const clean = (value) =>
-  typeof value === 'object' && !Array.isArray(value)
-    ? omap(value, cleanValue)
-    : value;
+const clean = value => (typeof value === 'object' && !Array.isArray(value) ? omap(value, cleanValue) : value);
 
-const cleanStr = (value) =>
-  typeof value === 'string' ? value.trim() : value;
+const cleanStr = value => (typeof value === 'string' ? value.trim() : value);
 
 const cleaners = [cleanArray, clean, cleanBool, cleanFloat, cleanStr];
 
-const cleanValue = (value) =>
-  cleaners.reduce((val, cleaner) => cleaner(val), value);
+const cleanValue = value => cleaners.reduce((val, cleaner) => cleaner(val), value);
 
-  module.exports = {clean}
+module.exports = { clean };
