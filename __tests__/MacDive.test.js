@@ -2,7 +2,7 @@ const { importer } = require('../src/macdive');
 const { read } = require('../src/xml');
 const path = require('path');
 
-const MOCK_FILE = path.join(__dirname, 'MacDive.xml')
+const MOCK_FILE = path.join(__dirname, '__mocks__', 'MacDive.xml');
 
 describe('MacDive importer', () => {
   test('Basic', async () => {

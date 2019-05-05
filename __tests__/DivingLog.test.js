@@ -2,7 +2,7 @@ const { importer } = require('../src/divelog');
 const { read } = require('../src/xml');
 const path = require('path');
 
-const MOCK_FILE = path.join(__dirname, 'DivingLog.xml')
+const MOCK_FILE = path.join(__dirname, '__mocks__', 'DivingLog.xml');
 
 describe('MacDive importer', () => {
   test('Basic', async () => {
