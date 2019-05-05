@@ -7,7 +7,7 @@ const importers = {
   macdive,
 };
 
-export function listImporters() {
+function listImporters() {
   return Object.keys(importer);
 }
 
@@ -24,4 +24,4 @@ function importer(file) {
   });
 }
 
-module.exports = importer 
+module.exports = { importer, listImporters };
