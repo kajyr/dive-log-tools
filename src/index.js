@@ -8,7 +8,7 @@ const importers = {
 };
 
 function listImporters() {
-  return Object.keys(importer);
+  return Object.keys(importers);
 }
 
 function importer(file) {
