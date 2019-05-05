@@ -11,7 +11,7 @@ export function listImporters() {
   return Object.keys(importer);
 }
 
-export function importer(file) {
+function importer(file) {
   return read(file).then(xml => {
     let logbook;
     if (importers.divinglog.canImport(xml)) {
@@ -23,3 +23,5 @@ export function importer(file) {
     return logbook;
   });
 }
+
+module.exports = importer 
