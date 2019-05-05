@@ -6,7 +6,7 @@
   "author": "Carlo Panzi <carlo.panzi@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "test": "jest",
+    "test": "jest --verbose",
     "postversion": "git push origin && git push origin --tags",
     "changelog": "changelog",
     "postchangelog": "git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' ",
