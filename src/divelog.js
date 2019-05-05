@@ -1,7 +1,6 @@
 const addMinutes = require('date-fns/add_minutes');
 const format = require('date-fns/format');
 const { clean } = require('./json');
-const { IDive, ILogbook } = require('./logbook');
 
 const {
   bottom_time,
