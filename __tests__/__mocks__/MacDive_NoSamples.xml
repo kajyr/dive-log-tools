@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dives SYSTEM "http://www.mac-dive.com/macdive_logbook.dtd">
+
+<dives>
+    <units>Metric</units>
+    <schema>2.2.0</schema>
+    <dive>
+        <date>1998-11-01 16:55:00</date>
+        <identifier>201311116550-</identifier>
+        <diveNumber>1</diveNumber>
+        <rating>0</rating>
+        <repetitiveDive>1</repetitiveDive>
+        <diver>Carlo Panzi</diver>
+        <computer>Aladin Pro</computer>
+        <serial></serial>
+        <maxDepth>50.30</maxDepth>
+        <averageDepth>50.30</averageDepth>
+        <cns>0.00</cns>
+        <decoModel></decoModel>
+        <duration>14</duration>
+        <gasModel>RealAir</gasModel>
+        <surfaceInterval>0</surfaceInterval>
+        <sampleInterval>14</sampleInterval>
+        <tempAir>0.00</tempAir>
+        <tempHigh>24.50</tempHigh>
+        <tempLow>24.50</tempLow>
+        <visibility></visibility>
+        <weight></weight>
+        <notes><![CDATA[]]></notes>
+        <diveMaster></diveMaster>
+        <diveOperator></diveOperator>
+        <skipper></skipper>
+        <boat></boat>
+        <weather></weather>
+        <current></current>
+        <surfaceConditions></surfaceConditions>
+        <entryType></entryType>
+        <site>
+            <country>France</country>
+            <location>Roquebrune-Cap-Martin</location>
+            <name>Cap Martin</name>
+            <bodyOfWater></bodyOfWater>
+            <waterType>salt water</waterType>
+            <difficulty></difficulty>
+            <altitude>0</altitude>
+            <lat>0.00000</lat>
+            <lon>0.00000</lon>
+        </site>
+        <tags></tags>
+        <types></types>
+        <buddies></buddies>
+        <gear>
+            <item>
+                <type>Computer</type>
+                <manufacturer>Uwatech</manufacturer>
+                <name>Aladin Pro</name>
+                <serial></serial>
+            </item>
+            <item>
+                <type>Octopus</type>
+                <manufacturer>Cressi</manufacturer>
+                <name>AC10</name>
+                <serial></serial>
+            </item>
+            <item>
+                <type>Fins</type>
+                <manufacturer>Technisub</manufacturer>
+                <name>Stratos (per calzare)</name>
+                <serial></serial>
+            </item>
+        </gear>
+        <gases>
+            <gas>
+                <pressureStart>0.00</pressureStart>
+                <pressureEnd>0.00</pressureEnd>
+                <oxygen>21</oxygen>
+                <helium>0</helium>
+                <double>0</double>
+                <tankSize>15</tankSize>
+                <workingPressure>200</workingPressure>
+                <supplyType>Open Circuit</supplyType>
+                <duration>14</duration>
+                <tankName>15L</tankName>
+            </gas>
+        </gases>
+        <samples>
+            <sample>
+                <time>0.00</time>
+                <depth>50.30</depth>
+                <pressure>0.00</pressure>
+                <temperature>24.50</temperature>
+                <ppo2>0.00</ppo2>
+                <ndt>0</ndt>
+            </sample>
+        </samples>
+        <events></events>
+    </dive>
+</dives>

@@ -12,4 +12,14 @@ describe('MacDive importer', () => {
     const logbook = importer(mock);
     expect(logbook).toMatchSnapshot();
   });
+
+  test('Failing for missing samples', async () => {
+    const MOCK_FILE = path.join(__dirname, '__mocks__', 'MacDive_NoSamples.xml');
+    const MOCK_DATA = fs.readFileSync(MOCK_FILE, 'utf8');
+
+    const mock = await parse(MOCK_DATA);
+    expect(() => {
+      const logbook = importer(mock);
+    }).not.toThrow();
+  });
 });

@@ -25,8 +25,23 @@ const {
   weather_is_rain,
 } = require('./dive');
 
+/**
+ * In case there are no samples MacDIve will put there just one,
+ * so the cleaner might thing that samples is an object.
+ *
+ * In this case we just discard the data and set an empty object
+ * @param {*} dive
+ */
+function fixSamplesIfMissing(dive) {
+  if (Array.isArray(dive.samples.sample)) {
+    return dive;
+  }
+  return { ...dive, samples: {} };
+}
+
 function normalizeDive(dive) {
-  const cleanDive = clean(dive);
+  const cleanDive = fixSamplesIfMissing(clean(dive));
+
   const diveTime = Math.floor(cleanDive.duration / 60);
 
   let computer = cleanDive.gear.item.find(i => i.type === 'Computer');
