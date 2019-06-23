@@ -22,4 +22,22 @@ describe('MacDive importer', () => {
       const logbook = importer(mock);
     }).not.toThrow();
   });
+
+  test('Schema is valid', async () => {
+    const mock = await parse(MOCK_DATA);
+    const logbook = importer(mock);
+    const [dive] = logbook.dives;
+
+    const Ajv = require('ajv');
+    const ajv = new Ajv();
+    const validate = ajv.compile(require('../dive-schema.json'));
+    const valid = validate(dive);
+
+    console.log(dive);
+
+    if (!valid) {
+      console.log('@@@', validate.errors);
+    }
+    expect(valid).toBe(true);
+  });
 });
