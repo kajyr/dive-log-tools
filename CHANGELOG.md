@@ -1,3 +1,9 @@
+## 2.0.0 (2019-06-23)
+
+##### Other Changes
+
+*  Removed dependencies from fs to be used also in a browser context (888fc47a)
+
 #### 1.0.4 (2019-05-05)
 
 ##### Build System / Dependencies
