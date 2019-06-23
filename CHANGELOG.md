@@ -1,3 +1,9 @@
+#### 2.0.1 (2019-06-23)
+
+##### Bug Fixes
+
+*  Moved prod dependencies out of dev (3195a367)
+
 ## 2.0.0 (2019-06-23)
 
 ##### Other Changes
