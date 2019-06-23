@@ -1,3 +1,9 @@
+#### 2.0.3 (2019-06-23)
+
+##### Bug Fixes
+
+*  MacDive: Wrong json cleanup if there is only one sample in the dive (14df27b7)
+
 #### 2.0.2 (2019-06-23)
 
 ##### Bug Fixes
