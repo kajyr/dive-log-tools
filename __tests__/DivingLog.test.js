@@ -1,12 +1,14 @@
 const { importer } = require('../src/divelog');
-const { read } = require('../src/xml');
+const { parse } = require('../src/xml');
 const path = require('path');
+const fs = require('fs');
 
 const MOCK_FILE = path.join(__dirname, '__mocks__', 'DivingLog.xml');
+const MOCK_DATA = fs.readFileSync(MOCK_FILE, 'utf8');
 
 describe('MacDive importer', () => {
   test('Basic', async () => {
-    const mock = await read(MOCK_FILE, 'utf8');
+    const mock = await parse(MOCK_DATA);
 
     const logbook = importer(mock);
     expect(logbook).toMatchSnapshot();

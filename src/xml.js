@@ -1,9 +1,6 @@
-const fs = require('fs-extra');
 const { parseString } = require('xml2js');
 
-const read = file => fs.readFile(file, 'utf8').then(parseXml);
-
-function parseXml(xml) {
+function parse(xml) {
   return new Promise((resolve, reject) =>
     parseString(xml, (err, data) => {
       if (err) {
@@ -15,5 +12,5 @@ function parseXml(xml) {
 }
 
 module.exports = {
-  read,
+  parse,
 };

@@ -1,4 +1,4 @@
-const { read } = require('./xml');
+const { parse } = require('./xml');
 const divinglog = require('./divelog');
 const macdive = require('./macdive');
 
@@ -11,8 +11,8 @@ function listImporters() {
   return Object.keys(importers);
 }
 
-function importer(file) {
-  return read(file).then(xml => {
+function importer(xml) {
+  return parse(file).then(xml => {
     let logbook;
     if (importers.divinglog.canImport(xml)) {
       logbook = importers.divinglog.importer(xml);
