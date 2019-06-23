@@ -12,12 +12,12 @@ function listImporters() {
 }
 
 function importer(xml) {
-  return parse(file).then(xml => {
+  return parse(xml).then(raw => {
     let logbook;
-    if (importers.divinglog.canImport(xml)) {
-      logbook = importers.divinglog.importer(xml);
+    if (importers.divinglog.canImport(raw)) {
+      logbook = importers.divinglog.importer(raw);
     } else {
-      logbook = importers.macdive.importer(xml);
+      logbook = importers.macdive.importer(raw);
     }
 
     return logbook;

@@ -101,14 +101,14 @@ const normalize = DirtyLogbook => {
   return { dives: Dive.map(normalizeDive) };
 };
 
-function importer(xml) {
-  const { Divinglog } = xml;
+function importer(raw) {
+  const { Divinglog } = raw;
   const { Logbook } = Divinglog;
   return normalize(Logbook);
 }
 
-function canImport(xml) {
-  return 'Divinglog' in xml;
+function canImport(raw) {
+  return 'Divinglog' in raw;
 }
 
 module.exports = {
