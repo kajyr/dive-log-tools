@@ -62,7 +62,15 @@ function normalizeDive(dive) {
   const isAir = gas.oxygen === 21;
 
   const lat = site.lat > 0 ? site.lat.toFixed(4) : '';
-  const long = site.lon > 0 ? site.lon.toFixed(4) : '';
+  const lng = site.lon > 0 ? site.lon.toFixed(4) : '';
+
+  const location = {
+    lat,
+    lng,
+    place: cleanDive.site.location,
+    country: cleanDive.site.country,
+    site: cleanDive.site.name,
+  };
 
   const data = {
     air_used: (gas.pressureStart - gas.pressureEnd) * gas.tankSize,
@@ -71,9 +79,7 @@ function normalizeDive(dive) {
       typeof cleanDive.buddies === 'string' ? cleanDive.buddies : cleanDive.buddies.buddy,
       cleanDive.diveMaster,
     ),
-    city: cleanDive.site.location,
     computer,
-    country: cleanDive.site.country,
     current: cleanDive.current || '',
     current_is_calm: current_is_calm(cleanDive.current),
     current_is_strong: current_is_strong(cleanDive.current),
@@ -91,14 +97,12 @@ function normalizeDive(dive) {
     half_depth_break: half_depth_break(cleanDive.maxDepth),
     half_depth_break_time: half_depth_break_time(cleanDive.maxDepth),
     isAir,
-    lat,
-    long,
+    location,
     max_depth: cleanDive.maxDepth,
     number: cleanDive.diveNumber,
     pressure_end: gas.pressureEnd,
     pressure_start: gas.pressureStart,
     repetitive,
-    site: cleanDive.site.name,
     samples: sample,
     surface: cleanDive.surfaceConditions,
     surfaceInterval: surfaceInterval(repetitive, cleanDive.surfaceInterval),

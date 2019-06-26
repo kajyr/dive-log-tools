@@ -40,13 +40,19 @@ function normalizeDive(dive) {
 
   const isAir = true;
 
+  const location = {
+    lat: cleanDive.Place.Lat.toFixed(4),
+    lng: cleanDive.Place.Lon.toFixed(4),
+    place: cleanDive.City ? cleanDive.City.$.Name : '',
+    country: cleanDive.Country ? cleanDive.Country.$.Name : '',
+    site: cleanDive.Place.$.Name,
+  };
+
   const data = {
     air_used: (cleanDive.PresS - cleanDive.PresE) * cleanDive.Tanksize,
     bottom_time: bottom_time(cleanDive.Divetime, cleanDive.Depth),
     buddies: buddies(cleanDive.Buddy ? cleanDive.Buddy.$.Names : '', cleanDive.Divemaster),
-    city: cleanDive.City ? cleanDive.City.$.Name : '',
     computer: cleanDive.Computer,
-    country: cleanDive.Country ? cleanDive.Country.$.Name : '',
     current: cleanDive.UWCurrent || '',
     current_is_calm: current_is_calm(cleanDive.UWCurrent),
     current_is_strong: current_is_strong(cleanDive.UWCurrent),
@@ -64,15 +70,13 @@ function normalizeDive(dive) {
     half_depth_break: half_depth_break(cleanDive.Depth),
     half_depth_break_time: half_depth_break_time(cleanDive.Depth),
     isAir,
-    lat: cleanDive.Place.Lat.toFixed(4),
-    long: cleanDive.Place.Lon.toFixed(4),
+    location,
     max_depth: cleanDive.Depth,
     number: cleanDive.Number,
     pressure_end: cleanDive.PresE,
     pressure_start: cleanDive.PresS,
     repetitive,
     samples: profile,
-    site: cleanDive.Place.$.Name,
     surface: cleanDive.Surface,
     surfaceInterval,
     surface_is_calm: surface_is_calm(cleanDive.Surface),
