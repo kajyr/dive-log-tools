@@ -31,7 +31,7 @@
         },
         "date": {
           "type": "string",
-          "format": "date"
+          "format": "date-time"
         },
         "deco_stops": {
           "type": "string"
@@ -52,7 +52,8 @@
           "type": "string"
         },
         "entry_time": {
-          "type": "string"
+          "type": "string",
+          "format": "time"
         },
         "exit_time": {
           "type": "string"
@@ -190,7 +191,7 @@
           "type": "integer"
         }
       },
-      "required": ["gear", "samples"],
+      "required": ["date", "entry_time",  "gear", "samples"],
       "title": "Dive"
     },
     "Gear": {

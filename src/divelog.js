@@ -1,5 +1,6 @@
 const addMinutes = require('date-fns/add_minutes');
 const format = require('date-fns/format');
+const { datetime, time } = require('./formats');
 const { clean } = require('./json');
 
 const {
@@ -26,8 +27,8 @@ const {
 
 function normalizeDive(dive) {
   const cleanDive = clean(dive);
-  const entrydate = new Date(`${cleanDive.Divedate} ${cleanDive.Entrytime}`);
-  const exitdate = addMinutes(entrydate, cleanDive.Divetime);
+  const entryDate = new Date(`${cleanDive.Divedate}T${cleanDive.Entrytime}`);
+  const exitdate = addMinutes(entryDate, cleanDive.Divetime);
   const profile = cleanDive.Profile ? cleanDive.Profile.P : [];
   const repetitive = cleanDive.Rep;
   let surfaceInterval = '-';
@@ -57,15 +58,15 @@ function normalizeDive(dive) {
     current_is_calm: current_is_calm(cleanDive.UWCurrent),
     current_is_strong: current_is_strong(cleanDive.UWCurrent),
     current_is_weak: current_is_weak(cleanDive.UWCurrent),
-    date: cleanDive.Divedate,
+    date: datetime(entryDate),
     deco_stops: cleanDive.Deco ? cleanDive.Decostops : '-',
     diveSuit: cleanDive.Divesuit,
     diveTime: cleanDive.Divetime,
     dive_master: cleanDive.Divemaster,
     emersion_time: emersion_time(cleanDive.Depth),
     entry: entry(cleanDive.Entry),
-    entry_time: cleanDive.Entrytime,
-    exit_time: format(exitdate, 'HH:mm'),
+    entry_time: time(entryDate),
+    exit_time: time(exitdate),
     gear,
     half_depth_break: half_depth_break(cleanDive.Depth),
     half_depth_break_time: half_depth_break_time(cleanDive.Depth),

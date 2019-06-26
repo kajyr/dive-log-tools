@@ -1,5 +1,5 @@
 const addMinutes = require('date-fns/add_minutes');
-const format = require('date-fns/format');
+const { datetime, time } = require('./formats');
 const { clean } = require('./json');
 
 const {
@@ -84,15 +84,15 @@ function normalizeDive(dive) {
     current_is_calm: current_is_calm(cleanDive.current),
     current_is_strong: current_is_strong(cleanDive.current),
     current_is_weak: current_is_weak(cleanDive.current),
-    date: format(entryDate, 'YYYY-MM-DD'),
+    date: datetime(entryDate),
     deco_stops: '-',
     diveSuit,
     diveTime,
     dive_master: cleanDive.diveMaster,
     emersion_time: emersion_time(cleanDive.maxDepth),
     entry: entry(cleanDive.entryType),
-    entry_time: format(entryDate, 'HH:mm'),
-    exit_time: format(exitDate, 'HH:mm'),
+    entry_time: time(entryDate),
+    exit_time: time(exitDate),
     gear: gear.item,
     half_depth_break: half_depth_break(cleanDive.maxDepth),
     half_depth_break_time: half_depth_break_time(cleanDive.maxDepth),
