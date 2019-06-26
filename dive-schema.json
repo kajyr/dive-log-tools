@@ -69,6 +69,12 @@
                 "exit_time": {
                     "type": "string"
                 },
+                "gear":{
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/Gear"
+                    }
+                },
                 "half_depth_break": {
                     "type": "string"
                 },
@@ -171,6 +177,24 @@
             },
             "required": [],
             "title": "Dive"
+        },
+        "Gear": {
+            "type": "object",
+            "title": "Gear",
+            "properties": {
+                "type": {
+                    "type": "string"
+                },
+                "manufacturer": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "serial": {
+                    "type": ["integer", "string"]
+                }
+            }
         }
     }
 }

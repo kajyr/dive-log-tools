@@ -33,8 +33,6 @@ describe('MacDive importer', () => {
     const validate = ajv.compile(require('../dive-schema.json'));
     const valid = validate(dive);
 
-    console.log(dive);
-
     if (!valid) {
       console.log('@@@', validate.errors);
     }

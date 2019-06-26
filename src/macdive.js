@@ -56,6 +56,7 @@ function normalizeDive(dive) {
     gases: { gas },
     samples: { sample = [] },
     site,
+    gear,
   } = cleanDive;
   const repetitive = cleanDive.repetitiveDive > 1;
   const isAir = gas.oxygen === 21;
@@ -87,6 +88,7 @@ function normalizeDive(dive) {
     entry: entry(cleanDive.entryType),
     entry_time: format(entryDate, 'HH:mm'),
     exit_time: format(exitDate, 'HH:mm'),
+    gear: gear.item,
     half_depth_break: half_depth_break(cleanDive.maxDepth),
     half_depth_break_time: half_depth_break_time(cleanDive.maxDepth),
     isAir,
