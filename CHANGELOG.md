@@ -1,3 +1,17 @@
+## 3.0.0 (2019-06-26)
+
+##### Chores
+
+*  gear and samples are required (b79b931b)
+*  DivingLog tests for schema (f5fa25d5)
+
+##### New Features
+
+*  location object to group location properties (3eb3e8cd)
+*  full sample node from MacDive (f4ed9124)
+*  Gears into MacDive export (be4cb962)
+*  dive schema validator (06b20ca8)
+
 #### 2.0.3 (2019-06-23)
 
 ##### Bug Fixes
