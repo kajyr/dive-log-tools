@@ -42,12 +42,6 @@
                 "deco_stops": {
                     "type": "string"
                 },
-                "depths": {
-                    "type": "array",
-                    "items": {
-                        "type": "number"
-                    }
-                },
                 "diveSuit": {
                     "type": "string"
                 },
@@ -105,6 +99,31 @@
                 "repetitive": {
                     "type": "boolean"
                 },
+                "samples": {
+                    "type": "array",
+                    "items": {
+                        "properties": {
+                            "time": {
+                                "type": "number"
+                            },
+                            "depth": {
+                                "type": "number"
+                            },
+                            "pressure": {
+                                "type": "number"
+                            },
+                            "temperature": {
+                                "type": "number"
+                            },
+                            "ppo2": {
+                                "type": "number"
+                            },
+                            "ndt": {
+                                "type": "number"
+                            }
+                        }
+                    }
+                },
                 "site": {
                     "type": "string"
                 },
@@ -122,18 +141,6 @@
                 },
                 "surface_is_rough": {
                     "type": "boolean"
-                },
-                "temps": {
-                    "type": "array",
-                    "items": {
-                        "type": "number"
-                    }
-                },
-                "times": {
-                    "type": "array",
-                    "items": {
-                        "type": "integer"
-                    }
                 },
                 "type": {
                     "type": "string"
