@@ -36,8 +36,9 @@ function normalizeDive(dive) {
     surfaceInterval = `${parseInt(hours, 10)}:${parseInt(minutes, 10)}`;
   }
 
-  /*   console.log('Warning: air model not implement');
-   */ const isAir = true; // gas.oxygen === 21;
+  const gear = []; // TODO
+
+  const isAir = true;
 
   const data = {
     air_used: (cleanDive.PresS - cleanDive.PresE) * cleanDive.Tanksize,
@@ -52,7 +53,6 @@ function normalizeDive(dive) {
     current_is_weak: current_is_weak(cleanDive.UWCurrent),
     date: cleanDive.Divedate,
     deco_stops: cleanDive.Deco ? cleanDive.Decostops : '-',
-    depths: profile.map(p => p.Depth),
     diveSuit: cleanDive.Divesuit,
     diveTime: cleanDive.Divetime,
     dive_master: cleanDive.Divemaster,
@@ -60,6 +60,7 @@ function normalizeDive(dive) {
     entry: entry(cleanDive.Entry),
     entry_time: cleanDive.Entrytime,
     exit_time: format(exitdate, 'HH:mm'),
+    gear,
     half_depth_break: half_depth_break(cleanDive.Depth),
     half_depth_break_time: half_depth_break_time(cleanDive.Depth),
     isAir,
@@ -70,14 +71,13 @@ function normalizeDive(dive) {
     pressure_end: cleanDive.PresE,
     pressure_start: cleanDive.PresS,
     repetitive,
+    samples: profile,
     site: cleanDive.Place.$.Name,
     surface: cleanDive.Surface,
     surfaceInterval,
     surface_is_calm: surface_is_calm(cleanDive.Surface),
     surface_is_mid: surface_is_mid(cleanDive.Surface),
     surface_is_rough: surface_is_rough(cleanDive.Surface),
-    temps: profile.map(p => p.Temp),
-    times: profile.map(p => p.$.Time),
     type: cleanDive.Divetype.toLowerCase(),
     visibility: cleanDive.UWCurrent,
     visibility_is_enough: visibility_is_enough(cleanDive.UWCurrent),

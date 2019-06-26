@@ -3,7 +3,7 @@
     "definitions": {
         "Dive": {
             "type": "object",
-            "additionalProperties": true,
+            "additionalProperties": false,
             "properties": {
                 "air_used": {
                     "type": "number"
@@ -182,7 +182,7 @@
                     "type": "integer"
                 }
             },
-            "required": [],
+            "required": ["gear", "samples"],
             "title": "Dive"
         },
         "Gear": {
