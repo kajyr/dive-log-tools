@@ -42,10 +42,10 @@ function fixSamplesIfMissing(dive) {
 function normalizeDive(dive) {
   const cleanDive = fixSamplesIfMissing(clean(dive));
 
-  const diveTime = Math.floor(cleanDive.duration / 60);
+  const dive_time = Math.floor(cleanDive.duration / 60);
 
   const entryDate = new Date(cleanDive.date);
-  const exitDate = addMinutes(entryDate, diveTime);
+  const exitDate = addMinutes(entryDate, dive_time);
 
   const {
     gases: { gas },
@@ -54,7 +54,6 @@ function normalizeDive(dive) {
     gear,
   } = cleanDive;
   const repetitive = cleanDive.repetitiveDive > 1;
-  const isAir = gas.oxygen === 21;
 
   const lat = site.lat > 0 ? site.lat.toFixed(4) : '';
   const lng = site.lon > 0 ? site.lon.toFixed(4) : '';
@@ -69,7 +68,7 @@ function normalizeDive(dive) {
 
   const data = {
     air_used: (gas.pressureStart - gas.pressureEnd) * gas.tankSize,
-    bottom_time: bottom_time(diveTime, cleanDive.maxDepth),
+    bottom_time: bottom_time(dive_time, cleanDive.maxDepth),
     buddies: buddies(
       typeof cleanDive.buddies === 'string' ? cleanDive.buddies : cleanDive.buddies.buddy,
       cleanDive.diveMaster,
@@ -80,7 +79,7 @@ function normalizeDive(dive) {
     current_is_weak: current_is_weak(cleanDive.current),
     date: datetime(entryDate),
     deco_stops: '-',
-    diveTime,
+    dive_time,
     dive_master: cleanDive.diveMaster,
     emersion_time: emersion_time(cleanDive.maxDepth),
     entry: entry(cleanDive.entryType),
@@ -89,7 +88,6 @@ function normalizeDive(dive) {
     gear: gear.item,
     half_depth_break: half_depth_break(cleanDive.maxDepth),
     half_depth_break_time: half_depth_break_time(cleanDive.maxDepth),
-    isAir,
     location,
     max_depth: cleanDive.maxDepth,
     notes: cleanDive.notes,

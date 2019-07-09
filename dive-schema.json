@@ -33,7 +33,7 @@
         "deco_stops": {
           "type": "string"
         },
-        "diveTime": {
+        "dive_time": {
           "type": "number"
         },
         "dive_master": {
@@ -63,9 +63,6 @@
         },
         "half_depth_break_time": {
           "type": "string"
-        },
-        "isAir": {
-          "type": "boolean"
         },
         "location": {
           "type": "object",
@@ -188,7 +185,7 @@
           "type": "integer"
         }
       },
-      "required": ["date", "entry_time",  "gear", "samples", "notes"],
+      "required": ["date", "entry_time", "dive_time", "gear", "samples", "notes"],
       "title": "Dive"
     },
     "Gear": {

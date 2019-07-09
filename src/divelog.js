@@ -39,8 +39,6 @@ function normalizeDive(dive) {
 
   const gear = cleanDive.UsedEquip.split(',').map(name => ({ name, type: '', manufacturer: '', serial: '' }));
 
-  const isAir = true;
-
   const location = {
     lat: cleanDive.Place.Lat.toFixed(4),
     lng: cleanDive.Place.Lon.toFixed(4),
@@ -59,7 +57,7 @@ function normalizeDive(dive) {
     current_is_weak: current_is_weak(cleanDive.UWCurrent),
     date: datetime(entryDate),
     deco_stops: cleanDive.Deco ? cleanDive.Decostops : '-',
-    diveTime: cleanDive.Divetime,
+    dive_time: cleanDive.Divetime,
     dive_master: cleanDive.Divemaster,
     emersion_time: emersion_time(cleanDive.Depth),
     entry: entry(cleanDive.Entry),
@@ -68,7 +66,6 @@ function normalizeDive(dive) {
     gear,
     half_depth_break: half_depth_break(cleanDive.Depth),
     half_depth_break_time: half_depth_break_time(cleanDive.Depth),
-    isAir,
     location,
     max_depth: cleanDive.Depth,
     notes: cleanDive.Comments,
