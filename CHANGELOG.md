@@ -1,3 +1,19 @@
+### 3.1.0 (2019-07-09)
+
+##### Chores
+
+*  Cleanup of half-backed properties (faa9c172)
+
+##### New Features
+
+*  Removed diveSuit and computer since they are already part of the gear (3b390da2)
+*  Notes are imported from the xml (085c111e)
+*  Date time consistency (4d5b6e3a)
+
+##### Bug Fixes
+
+*  Dive log gear importer is working a bit better (0cdbf838)
+
 ## 3.0.0 (2019-06-26)
 
 ##### Chores
