@@ -99,6 +99,9 @@
         "number": {
           "type": "integer"
         },
+        "notes": {
+          "type": "string"
+        },
         "pressure_end": {
           "type": "number"
         },
@@ -191,7 +194,7 @@
           "type": "integer"
         }
       },
-      "required": ["date", "entry_time",  "gear", "samples"],
+      "required": ["date", "entry_time",  "gear", "samples", "notes"],
       "title": "Dive"
     },
     "Gear": {

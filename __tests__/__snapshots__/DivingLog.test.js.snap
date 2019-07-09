@@ -33,6 +33,7 @@ Object {
         "site": "Scoglio del Corallo",
       },
       "max_depth": 27.4,
+      "notes": "",
       "number": 1,
       "pressure_end": 70,
       "pressure_start": 210,

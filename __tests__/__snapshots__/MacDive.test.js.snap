@@ -118,6 +118,12 @@ Object {
         "site": "Isola",
       },
       "max_depth": 33.5,
+      "notes": "Ero molto in ansia per:
++ La maschera Favola si è rotta subito e la Beuchat continuava a appannarsi
++ compensazione di Chiara,
++ la nuotata medio lunga prima di arrivare
+
+e per questo ho consumato veramente tanto.",
       "number": 60,
       "pressure_end": 33.51,
       "pressure_start": 194.16,
@@ -2258,6 +2264,7 @@ Object {
         "site": "Scoglio della Nave",
       },
       "max_depth": 20.7,
+      "notes": "",
       "number": 59,
       "pressure_end": 54.33,
       "pressure_start": 190.3,
@@ -4598,6 +4605,7 @@ Object {
         "site": "Punta del nasuto",
       },
       "max_depth": 21.6,
+      "notes": "Ero in coda al gruppo, no compagni",
       "number": 58,
       "pressure_end": 103.7,
       "pressure_start": 206.84,

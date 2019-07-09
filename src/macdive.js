@@ -99,6 +99,7 @@ function normalizeDive(dive) {
     isAir,
     location,
     max_depth: cleanDive.maxDepth,
+    notes: cleanDive.notes,
     number: cleanDive.diveNumber,
     pressure_end: gas.pressureEnd,
     pressure_start: gas.pressureStart,

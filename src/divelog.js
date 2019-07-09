@@ -73,6 +73,7 @@ function normalizeDive(dive) {
     isAir,
     location,
     max_depth: cleanDive.Depth,
+    notes: cleanDive.Comments,
     number: cleanDive.Number,
     pressure_end: cleanDive.PresE,
     pressure_start: cleanDive.PresS,
