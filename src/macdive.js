@@ -44,11 +44,6 @@ function normalizeDive(dive) {
 
   const diveTime = Math.floor(cleanDive.duration / 60);
 
-  let computer = cleanDive.gear.item.find(i => i.type === 'Computer');
-  computer = computer ? computer.name : '';
-  let diveSuit = cleanDive.gear.item.find(i => i.type === 'Wetsuit');
-  diveSuit = diveSuit ? diveSuit.name : '';
-
   const entryDate = new Date(cleanDive.date);
   const exitDate = addMinutes(entryDate, diveTime);
 
@@ -79,14 +74,12 @@ function normalizeDive(dive) {
       typeof cleanDive.buddies === 'string' ? cleanDive.buddies : cleanDive.buddies.buddy,
       cleanDive.diveMaster,
     ),
-    computer,
     current: cleanDive.current || '',
     current_is_calm: current_is_calm(cleanDive.current),
     current_is_strong: current_is_strong(cleanDive.current),
     current_is_weak: current_is_weak(cleanDive.current),
     date: datetime(entryDate),
     deco_stops: '-',
-    diveSuit,
     diveTime,
     dive_master: cleanDive.diveMaster,
     emersion_time: emersion_time(cleanDive.maxDepth),

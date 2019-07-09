@@ -14,9 +14,6 @@
         "buddies": {
           "type": "string"
         },
-        "computer": {
-          "type": "string"
-        },
         "current": {
           "type": "string"
         },
@@ -34,9 +31,6 @@
           "format": "date-time"
         },
         "deco_stops": {
-          "type": "string"
-        },
-        "diveSuit": {
           "type": "string"
         },
         "diveTime": {
