@@ -37,7 +37,7 @@ function normalizeDive(dive) {
     surfaceInterval = `${parseInt(hours, 10)}:${parseInt(minutes, 10)}`;
   }
 
-  const gear = []; // TODO
+  const gear = cleanDive.UsedEquip.split(',').map(name => ({ name, type: '', manufacturer: '', serial: '' }));
 
   const isAir = true;
 
