@@ -1,3 +1,10 @@
+#### 3.1.1 (2019-07-10)
+
+##### Bug Fixes
+
+*  visibility check for Ottima (f344ea59)
+*  MacDive Importer does not break for missing gases (2bb30c34)
+
 ### 3.1.0 (2019-07-09)
 
 ##### Chores
