@@ -33,37 +33,37 @@ function emersion_time(maxDepth) {
   return Math.ceil((maxDepth - 6) / 9);
 }
 
- function visibility_is_enough(visibility) {
+function visibility_is_enough(visibility) {
   return ['media'].includes(visibility.toLowerCase());
 }
- function visibility_is_good(visibility) {
-  return ['', 'buona'].includes(visibility.toLowerCase());
+function visibility_is_good(visibility) {
+  return ['', 'buona', 'ottima'].includes(visibility.toLowerCase());
 }
- function visibility_is_poor(visibility) {
+function visibility_is_poor(visibility) {
   return ['scarsa'].includes(visibility.toLowerCase());
 }
 
- function weather_is_clear(weather) {
+function weather_is_clear(weather) {
   return ['sereno', 'sole'].includes(weather.toLowerCase());
 }
- function weather_is_cloud(weather) {
+function weather_is_cloud(weather) {
   return ['foschia', 'nuvoloso'].includes(weather.toLowerCase());
 }
- function weather_is_rain(weather) {
+function weather_is_rain(weather) {
   return ['pioggia', 'burrasca', 'neve'].includes(weather.toLowerCase());
 }
 
- function current_is_calm(current) {
+function current_is_calm(current) {
   return ['', 'nessuna'].includes(current.toLowerCase());
 }
- function current_is_strong(current) {
+function current_is_strong(current) {
   return ['TODO: find this'].includes(current.toLowerCase());
 }
- function current_is_weak(current) {
+function current_is_weak(current) {
   return ['media'].includes(current.toLowerCase());
 }
 
- function entry(value) {
+function entry(value) {
   switch (value.toLowerCase()) {
     case 'barca':
     case 'boat':
@@ -79,7 +79,7 @@ function emersion_time(maxDepth) {
   }
 }
 
- function water(value) {
+function water(value) {
   switch (value.toLowerCase()) {
     case 'pool':
     case 'piscina':
