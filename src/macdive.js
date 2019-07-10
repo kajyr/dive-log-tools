@@ -67,7 +67,7 @@ function normalizeDive(dive) {
   };
 
   const data = {
-    air_used: (gas.pressureStart - gas.pressureEnd) * gas.tankSize,
+    air_used: gas ? (gas.pressureStart - gas.pressureEnd) * gas.tankSize : null,
     bottom_time: bottom_time(dive_time, cleanDive.maxDepth),
     buddies: buddies(
       typeof cleanDive.buddies === 'string' ? cleanDive.buddies : cleanDive.buddies.buddy,
@@ -92,8 +92,8 @@ function normalizeDive(dive) {
     max_depth: cleanDive.maxDepth,
     notes: cleanDive.notes,
     number: cleanDive.diveNumber,
-    pressure_end: gas.pressureEnd,
-    pressure_start: gas.pressureStart,
+    pressure_end: gas ? gas.pressureEnd : null,
+    pressure_start: gas ? gas.pressureStart : null,
     repetitive,
     samples: sample,
     surface: cleanDive.surfaceConditions,
@@ -106,8 +106,8 @@ function normalizeDive(dive) {
     visibility_is_enough: visibility_is_enough(cleanDive.visibility),
     visibility_is_good: visibility_is_good(cleanDive.visibility),
     visibility_is_poor: visibility_is_poor(cleanDive.visibility),
-    volume_start: gas.pressureStart * gas.tankSize,
-    volume_tank: gas.tankSize,
+    volume_start: gas ? gas.pressureStart * gas.tankSize : null,
+    volume_tank: gas ? gas.tankSize : null,
     water: water(cleanDive.site.waterType),
     weather: cleanDive.weather,
     weather_is_clear: weather_is_clear(cleanDive.weather),

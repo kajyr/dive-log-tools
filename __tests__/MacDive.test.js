@@ -13,8 +13,8 @@ describe('MacDive importer', () => {
     expect(logbook).toMatchSnapshot();
   });
 
-  test('Failing for missing samples', async () => {
-    const MOCK_FILE = path.join(__dirname, '__mocks__', 'MacDive_NoSamples.xml');
+  test('Failing for missing props', async () => {
+    const MOCK_FILE = path.join(__dirname, '__mocks__', 'MacDive_MissingProps.xml');
     const MOCK_DATA = fs.readFileSync(MOCK_FILE, 'utf8');
 
     const mock = await parse(MOCK_DATA);
