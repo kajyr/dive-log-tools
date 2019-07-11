@@ -1,3 +1,4 @@
+const { timeFromValues } = require('./formats');
 const unique = list => Array.from(new Set(list));
 
 function buddies(buddy, divemaster) {
@@ -95,25 +96,18 @@ function water(value = '') {
   }
 }
 
-function lpad(str, pad, length) {
-  while (str.length < length) {
-    str = pad + str;
-  }
-  return str;
-}
-
 function surfaceInterval(isRepetitive, surfIntervalInMinutes) {
   if (!isRepetitive) {
-    return '-';
+    return;
   }
-  const hours = Math.floor(surfIntervalInMinutes / 60);
-  const minutes = surfIntervalInMinutes % 60;
-  return `${hours}:${lpad(minutes.toString(), '0', 2)}`;
+  const normalized = Math.floor(surfIntervalInMinutes);
+  const hours = Math.floor(normalized / 60);
+  const minutes = normalized % 60;
+  return timeFromValues([hours, minutes, 0]);
 }
 
 module.exports = {
   surfaceInterval,
-  lpad,
   buddies,
   half_depth_break,
   half_depth_break_time,
