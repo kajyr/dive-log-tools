@@ -24,7 +24,7 @@ function surface_is_calm(surface) {
   return ['', 'nessuno', 'normale', 'calmo'].includes(surface.toLowerCase());
 }
 function surface_is_mid(surface) {
-  return ['poco mosso', 'leggero'].includes(surface.toLowerCase());
+  return ['medio mosso', 'poco mosso', 'leggero'].includes(surface.toLowerCase());
 }
 function surface_is_rough(surface) {
   return ['mosso'].includes(surface.toLowerCase());
@@ -48,7 +48,7 @@ function weather_is_clear(weather) {
   return ['sereno', 'sole'].includes(weather.toLowerCase());
 }
 function weather_is_cloud(weather) {
-  return ['foschia', 'nuvoloso', 'ventoso'].includes(weather.toLowerCase());
+  return ['grigio', 'foschia', 'nuvoloso', 'ventoso'].includes(weather.toLowerCase());
 }
 function weather_is_rain(weather) {
   return ['pioggia', 'burrasca', 'neve'].includes(weather.toLowerCase());
