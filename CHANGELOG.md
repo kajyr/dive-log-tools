@@ -1,3 +1,9 @@
+#### 3.1.2 (2019-07-11)
+
+##### Bug Fixes
+
+*  Fixed values for missing properties (7489fe0d)
+
 #### 3.1.1 (2019-07-10)
 
 ##### Bug Fixes
