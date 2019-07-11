@@ -18,7 +18,7 @@
     "release:patch": "yarn changelog -p && yarn version:patch"
   },
   "dependencies": {
-    "ajv": "^6.10.0",
+    "ajv": "^6.10.1",
     "date-fns": "^1.30.1",
     "xml2js": "^0.4.19"
   },

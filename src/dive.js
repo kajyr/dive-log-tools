@@ -47,7 +47,7 @@ function weather_is_clear(weather) {
   return ['sereno', 'sole'].includes(weather.toLowerCase());
 }
 function weather_is_cloud(weather) {
-  return ['foschia', 'nuvoloso'].includes(weather.toLowerCase());
+  return ['foschia', 'nuvoloso', 'ventoso'].includes(weather.toLowerCase());
 }
 function weather_is_rain(weather) {
   return ['pioggia', 'burrasca', 'neve'].includes(weather.toLowerCase());
@@ -57,20 +57,20 @@ function current_is_calm(current) {
   return ['', 'nessuna'].includes(current.toLowerCase());
 }
 function current_is_strong(current) {
-  return ['TODO: find this'].includes(current.toLowerCase());
+  return ['mosso'].includes(current.toLowerCase());
 }
 function current_is_weak(current) {
-  return ['media'].includes(current.toLowerCase());
+  return ['media', 'medio mosso'].includes(current.toLowerCase());
 }
 
-function entry(value) {
+function entry(value = '') {
   switch (value.toLowerCase()) {
     case 'barca':
     case 'boat':
     case '':
       return 'da barca';
     case 'riva':
-      return 'da riva';
+      return 'da terra';
     case 'pool':
     case 'piscina':
       return 'piscina';
@@ -79,7 +79,7 @@ function entry(value) {
   }
 }
 
-function water(value) {
+function water(value = '') {
   switch (value.toLowerCase()) {
     case 'pool':
     case 'piscina':
