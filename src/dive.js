@@ -20,48 +20,85 @@ function bottom_time(diveTime, maxDepth) {
   return diveTime - 5 - Math.ceil((maxDepth - 6) / 9) - (maxDepth > 18 ? 2.5 : 0);
 }
 
-function surface_is_calm(surface) {
-  return ['', 'nessuno', 'normale', 'calmo'].includes(surface.toLowerCase());
-}
-function surface_is_mid(surface) {
-  return ['medio mosso', 'poco mosso', 'leggero'].includes(surface.toLowerCase());
-}
-function surface_is_rough(surface) {
-  return ['mosso'].includes(surface.toLowerCase());
-}
-
 function emersion_time(maxDepth) {
   return Math.ceil((maxDepth - 6) / 9);
 }
 
-function visibility_is_enough(visibility) {
-  return ['media'].includes(visibility.toLowerCase());
-}
-function visibility_is_good(visibility) {
-  return ['', 'buona', 'ottima'].includes(visibility.toLowerCase());
-}
-function visibility_is_poor(visibility) {
-  return ['scarsa'].includes(visibility.toLowerCase());
+const VISIBILITY_POOR = 'POOR';
+const VISIBILITY_MEDIUM = 'MEDIUM';
+const VISIBILITY_GOOD = 'GOOD';
+
+const WEATHER_POOR = 'RAIN';
+const WEATHER_MEDIUM = 'CLOUD';
+const WEATHER_GOOD = 'CLEAR';
+
+const SURFACE_ROUGH = 'ROUGH';
+const SURFACE_WEAK = 'WEAK ';
+const SURFACE_FLAT = 'FLAT';
+
+const CURRENT_STRONG = 'STRONG';
+const CURRENT_WEAK = 'WEAK ';
+const CURRENT_NONE = 'NONE';
+
+function normalizeVisibility(value) {
+  switch (value.toLowerCase()) {
+    case 'scarsa':
+      return VISIBILITY_POOR;
+    case 'media':
+      return VISIBILITY_MEDIUM;
+    case '':
+    case 'buona':
+    case 'ottima':
+      return VISIBILITY_GOOD;
+  }
 }
 
-function weather_is_clear(weather) {
-  return ['sereno', 'sole'].includes(weather.toLowerCase());
+function normalizeWeather(value) {
+  switch (value.toLowerCase()) {
+    case 'pioggia':
+    case 'burrasca':
+    case 'neve':
+      return WEATHER_POOR;
+    case 'grigio':
+    case 'foschia':
+    case 'nuvoloso':
+    case 'ventoso':
+      return WEATHER_MEDIUM;
+    case '':
+    case 'sereno':
+    case 'sole':
+      return WEATHER_GOOD;
+  }
 }
-function weather_is_cloud(weather) {
-  return ['grigio', 'foschia', 'nuvoloso', 'ventoso'].includes(weather.toLowerCase());
-}
-function weather_is_rain(weather) {
-  return ['pioggia', 'burrasca', 'neve'].includes(weather.toLowerCase());
+function normalizeSurface(value) {
+  switch (value.toLowerCase()) {
+    case 'molto mosso':
+    case 'tempesta':
+      return SURFACE_ROUGH;
+    case 'leggero':
+    case 'medio':
+    case 'poco mosso':
+    case 'mosso':
+      return SURFACE_WEAK;
+    case '':
+    case 'nessuno':
+    case 'normale':
+    case 'calmo':
+      return SURFACE_FLAT;
+  }
 }
 
-function current_is_calm(current) {
-  return ['', 'nessuna'].includes(current.toLowerCase());
-}
-function current_is_strong(current) {
-  return ['mosso'].includes(current.toLowerCase());
-}
-function current_is_weak(current) {
-  return ['media', 'medio mosso'].includes(current.toLowerCase());
+function normalizeCurrent(value) {
+  switch (value.toLowerCase()) {
+    case 'forte':
+      return CURRENT_STRONG;
+    case 'media':
+    case 'mosso':
+      return CURRENT_WEAK;
+    case '':
+    case 'nessuna':
+      return CURRENT_NONE;
+  }
 }
 
 function entry(value = '') {
@@ -107,24 +144,16 @@ function surfaceInterval(isRepetitive, surfIntervalInMinutes) {
 }
 
 module.exports = {
-  surfaceInterval,
-  buddies,
-  half_depth_break,
-  half_depth_break_time,
   bottom_time,
-  surface_is_calm,
-  surface_is_mid,
-  surface_is_rough,
+  buddies,
   emersion_time,
-  visibility_is_enough,
-  visibility_is_good,
-  visibility_is_poor,
-  weather_is_clear,
-  weather_is_cloud,
-  weather_is_rain,
-  current_is_calm,
-  current_is_strong,
-  current_is_weak,
   entry,
+  half_depth_break_time,
+  half_depth_break,
+  normalizeCurrent,
+  normalizeSurface,
+  normalizeVisibility,
+  normalizeWeather,
+  surfaceInterval,
   water,
 };

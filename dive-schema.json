@@ -17,14 +17,9 @@
         "current": {
           "type": "string"
         },
-        "current_is_calm": {
-          "type": "boolean"
-        },
-        "current_is_strong": {
-          "type": "boolean"
-        },
-        "current_is_weak": {
-          "type": "boolean"
+        "current_normalized": {
+          "type": "string",
+          "enum": ["NONE", "WEAK", "STRONG"]
         },
         "date": {
           "type": "string",
@@ -136,14 +131,9 @@
         "surfaceInterval": {
           "type": "string"
         },
-        "surface_is_calm": {
-          "type": "boolean"
-        },
-        "surface_is_mid": {
-          "type": "boolean"
-        },
-        "surface_is_rough": {
-          "type": "boolean"
+        "surface_normalized": {
+          "type": "string",
+          "enum": ["FLAT", "WEAK", "ROUGH"]
         },
         "type": {
           "type": "string"
@@ -151,14 +141,9 @@
         "visibility": {
           "type": "string"
         },
-        "visibility_is_enough": {
-          "type": "boolean"
-        },
-        "visibility_is_good": {
-          "type": "boolean"
-        },
-        "visibility_is_poor": {
-          "type": "boolean"
+        "visibility_normalized": {
+          "type": "string",
+          "enum": ["GOOD", "MEDIUM", "POOR"]
         },
         "volume_start": {
           "type": "number"
@@ -172,14 +157,9 @@
         "weather": {
           "type": "string"
         },
-        "weather_is_clear": {
-          "type": "boolean"
-        },
-        "weather_is_cloud": {
-          "type": "boolean"
-        },
-        "weather_is_rain": {
-          "type": "boolean"
+        "weather_normalized": {
+          "type": "string",
+          "enum": ["CLEAR", "CLOUD", "RAIN"]
         },
         "weights": {
           "type": "integer"
