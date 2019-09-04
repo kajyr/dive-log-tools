@@ -165,7 +165,18 @@
           "type": "integer"
         }
       },
-      "required": ["date", "entry_time", "dive_time", "gear", "samples", "notes"],
+      "required": [
+        "current_normalized",
+        "date",
+        "dive_time",
+        "entry_time",
+        "gear",
+        "notes",
+        "samples",
+        "surface_normalized",
+        "visibility_normalized",
+        "weather_normalized"
+      ],
       "title": "Dive"
     },
     "Gear": {

@@ -33,7 +33,7 @@ const WEATHER_MEDIUM = 'CLOUD';
 const WEATHER_GOOD = 'CLEAR';
 
 const SURFACE_ROUGH = 'ROUGH';
-const SURFACE_WEAK = 'WEAK ';
+const SURFACE_WEAK = 'WEAK';
 const SURFACE_FLAT = 'FLAT';
 
 const CURRENT_STRONG = 'STRONG';
@@ -49,6 +49,9 @@ function normalizeVisibility(value) {
     case '':
     case 'buona':
     case 'ottima':
+      return VISIBILITY_GOOD;
+    default:
+      console.log('Visibility not recognized', value);
       return VISIBILITY_GOOD;
   }
 }
@@ -68,6 +71,9 @@ function normalizeWeather(value) {
     case 'sereno':
     case 'sole':
       return WEATHER_GOOD;
+    default:
+      console.log('Weather not recognized', value);
+      return WEATHER_GOOD;
   }
 }
 function normalizeSurface(value) {
@@ -78,12 +84,16 @@ function normalizeSurface(value) {
     case 'leggero':
     case 'medio':
     case 'poco mosso':
+    case 'medio mosso':
     case 'mosso':
       return SURFACE_WEAK;
     case '':
     case 'nessuno':
     case 'normale':
     case 'calmo':
+      return SURFACE_FLAT;
+    default:
+      console.log('Surface not recognized', value);
       return SURFACE_FLAT;
   }
 }
@@ -93,10 +103,14 @@ function normalizeCurrent(value) {
     case 'forte':
       return CURRENT_STRONG;
     case 'media':
-    case 'mosso':
+    case 'scarsa':
+    case 'moderata':
       return CURRENT_WEAK;
     case '':
     case 'nessuna':
+      return CURRENT_NONE;
+    default:
+      console.log('Current not recognized', value);
       return CURRENT_NONE;
   }
 }
