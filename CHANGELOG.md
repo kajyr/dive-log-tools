@@ -1,3 +1,14 @@
+## 4.0.0 (2019-09-04)
+
+##### New Features
+
+*  Normalized levels for current, surface, visibility and weather (7d39be7b)
+
+##### Bug Fixes
+
+*  Terms (b69834fa)
+*  surfaceInterval with float values (4fa4a389)
+
 #### 3.1.2 (2019-07-11)
 
 ##### Bug Fixes
