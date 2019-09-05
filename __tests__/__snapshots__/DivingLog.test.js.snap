@@ -17,6 +17,14 @@ Object {
       "entry": "da barca",
       "entry_time": "10:01:00",
       "exit_time": "10:43:00",
+      "gases": Array [
+        Object {
+          "pressureEnd": 210,
+          "pressureStart": 70,
+          "tankSize": 15,
+          "volumeStart": 3150,
+        },
+      ],
       "gear": Array [
         Object {
           "manufacturer": "",
@@ -61,8 +69,6 @@ Object {
       "max_depth": 27.4,
       "notes": "",
       "number": 1,
-      "pressure_end": 70,
-      "pressure_start": 210,
       "repetitive": true,
       "samples": Array [],
       "surface": "Normale",
@@ -71,8 +77,6 @@ Object {
       "type": "addestramento",
       "visibility": "",
       "visibility_normalized": "GOOD",
-      "volume_start": 3150,
-      "volume_tank": 15,
       "water": "mare",
       "weather": "Sereno",
       "weather_normalized": "CLEAR",

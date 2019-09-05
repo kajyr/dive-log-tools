@@ -47,6 +47,12 @@
         "exit_time": {
           "type": "string"
         },
+        "gases": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Gas"
+          }
+        },
         "gear": {
           "type": "array",
           "items": {
@@ -87,12 +93,6 @@
         },
         "notes": {
           "type": "string"
-        },
-        "pressure_end": {
-          "type": "number"
-        },
-        "pressure_start": {
-          "type": "number"
         },
         "repetitive": {
           "type": "boolean"
@@ -145,12 +145,6 @@
           "type": "string",
           "enum": ["GOOD", "MEDIUM", "POOR"]
         },
-        "volume_start": {
-          "type": "number"
-        },
-        "volume_tank": {
-          "type": "integer"
-        },
         "water": {
           "type": "string"
         },
@@ -175,7 +169,8 @@
         "samples",
         "surface_normalized",
         "visibility_normalized",
-        "weather_normalized"
+        "weather_normalized",
+        "gases"
       ],
       "title": "Dive"
     },
@@ -195,6 +190,19 @@
         "serial": {
           "type": ["integer", "string"]
         }
+      }
+    },
+    "Gas": {
+      "type": "object",
+      "title": "Gas",
+      "properties": {
+        "pressureStart": { "type": "number" },
+        "pressureEnd": { "type": "number" },
+        "oxygen": { "type": "number" },
+        "helium": { "type": "number" },
+        "double": { "type": "boolean" },
+        "tankSize": { "type": "number" },
+        "volumeStart": { "type": "number" }
       }
     }
   }

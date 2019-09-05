@@ -40,15 +40,30 @@ function normalizeDive(dive) {
   const exitDate = addMinutes(entryDate, dive_time);
 
   const {
-    gases: { gas },
+    gases,
     samples: { sample = [] },
     site,
     gear,
   } = cleanDive;
+
+  const { gas } = gases;
   const repetitive = cleanDive.repetitiveDive > 1;
 
   const lat = site.lat > 0 ? site.lat.toFixed(4) : '';
   const lng = site.lon > 0 ? site.lon.toFixed(4) : '';
+
+  const clearedGases = [];
+  if (gas) {
+    clearedGases.push({
+      pressureStart: gas.pressureStart,
+      pressureEnd: gas.pressureEnd,
+      oxygen: gas.oxygen,
+      helium: gas.helium,
+      double: gas.double !== 0,
+      tankSize: gas.tankSize,
+      volumeStart: gas.pressureStart * gas.tankSize,
+    });
+  }
 
   const location = {
     lat,
@@ -75,6 +90,7 @@ function normalizeDive(dive) {
     entry: entry(cleanDive.entryType),
     entry_time: time(entryDate),
     exit_time: time(exitDate),
+    gases: clearedGases,
     gear: gear.item,
     half_depth_break: half_depth_break(cleanDive.maxDepth),
     half_depth_break_time: half_depth_break_time(cleanDive.maxDepth),
@@ -82,8 +98,6 @@ function normalizeDive(dive) {
     max_depth: cleanDive.maxDepth,
     notes: cleanDive.notes,
     number: cleanDive.diveNumber,
-    pressure_end: gas ? gas.pressureEnd : undefined,
-    pressure_start: gas ? gas.pressureStart : undefined,
     repetitive,
     samples: sample,
     surface: cleanDive.surfaceConditions,
@@ -92,8 +106,6 @@ function normalizeDive(dive) {
     type: (cleanDive.types.type || '').toLowerCase(),
     visibility: cleanDive.visibility,
     visibility_normalized: normalizeVisibility(cleanDive.visibility),
-    volume_start: gas ? gas.pressureStart * gas.tankSize : undefined,
-    volume_tank: gas ? gas.tankSize : undefined,
     water: water(cleanDive.site.waterType),
     weather: cleanDive.weather,
     weather_normalized: normalizeWeather(cleanDive.weather),

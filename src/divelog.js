@@ -38,7 +38,14 @@ function normalizeDive(dive) {
     country: cleanDive.Country ? cleanDive.Country.$.Name : '',
     site: cleanDive.Place.$.Name,
   };
-
+  const gases = [
+    {
+      pressureStart: cleanDive.PresE,
+      pressureEnd: cleanDive.PresS,
+      tankSize: cleanDive.Tanksize,
+      volumeStart: cleanDive.PresS * cleanDive.Tanksize,
+    },
+  ];
   const data = {
     air_used: (cleanDive.PresS - cleanDive.PresE) * cleanDive.Tanksize,
     bottom_time: bottom_time(cleanDive.Divetime, cleanDive.Depth),
@@ -53,6 +60,7 @@ function normalizeDive(dive) {
     entry: entry(cleanDive.Entry),
     entry_time: time(entryDate),
     exit_time: time(exitdate),
+    gases,
     gear,
     half_depth_break: half_depth_break(cleanDive.Depth),
     half_depth_break_time: half_depth_break_time(cleanDive.Depth),
@@ -60,8 +68,6 @@ function normalizeDive(dive) {
     max_depth: cleanDive.Depth,
     notes: cleanDive.Comments,
     number: cleanDive.Number,
-    pressure_end: cleanDive.PresE,
-    pressure_start: cleanDive.PresS,
     repetitive,
     samples: profile,
     surface: cleanDive.Surface,
@@ -70,8 +76,6 @@ function normalizeDive(dive) {
     type: cleanDive.Divetype.toLowerCase(),
     visibility: cleanDive.UWCurrent,
     visibility_normalized: normalizeVisibility(cleanDive.UWCurrent),
-    volume_start: cleanDive.PresS * cleanDive.Tanksize,
-    volume_tank: cleanDive.Tanksize,
     water: water(cleanDive.Water),
     weather: cleanDive.Weather,
     weather_normalized: normalizeWeather(cleanDive.Weather),

@@ -17,6 +17,17 @@ Object {
       "entry": "da barca",
       "entry_time": "15:31:29",
       "exit_time": "16:12:29",
+      "gases": Array [
+        Object {
+          "double": false,
+          "helium": 0,
+          "oxygen": 32,
+          "pressureEnd": 33.51,
+          "pressureStart": 194.16,
+          "tankSize": 15,
+          "volumeStart": 2912.4,
+        },
+      ],
       "gear": Array [
         Object {
           "manufacturer": "Aqua Lung",
@@ -120,8 +131,6 @@ Object {
 
 e per questo ho consumato veramente tanto.",
       "number": 60,
-      "pressure_end": 33.51,
-      "pressure_start": 194.16,
       "repetitive": false,
       "samples": Array [
         Object {
@@ -2131,8 +2140,6 @@ e per questo ho consumato veramente tanto.",
       "type": "",
       "visibility": "Buona",
       "visibility_normalized": "GOOD",
-      "volume_start": 2912.4,
-      "volume_tank": 15,
       "water": "mare",
       "weather": "Grigio",
       "weather_normalized": "CLOUD",
@@ -2152,6 +2159,17 @@ e per questo ho consumato veramente tanto.",
       "entry": "Da Barca",
       "entry_time": "14:21:56",
       "exit_time": "15:06:56",
+      "gases": Array [
+        Object {
+          "double": false,
+          "helium": 0,
+          "oxygen": 21,
+          "pressureEnd": 54.33,
+          "pressureStart": 190.3,
+          "tankSize": 15,
+          "volumeStart": 2854.5,
+        },
+      ],
       "gear": Array [
         Object {
           "manufacturer": "Aqua Lung",
@@ -2250,8 +2268,6 @@ e per questo ho consumato veramente tanto.",
       "max_depth": 20.7,
       "notes": "",
       "number": 59,
-      "pressure_end": 54.33,
-      "pressure_start": 190.3,
       "repetitive": true,
       "samples": Array [
         Object {
@@ -4461,8 +4477,6 @@ e per questo ho consumato veramente tanto.",
       "type": "corso 1° grado",
       "visibility": "Ottima",
       "visibility_normalized": "GOOD",
-      "volume_start": 2854.5,
-      "volume_tank": 15,
       "water": "mare",
       "weather": "Sole",
       "weather_normalized": "CLEAR",
@@ -4482,6 +4496,17 @@ e per questo ho consumato veramente tanto.",
       "entry": "Da Barca",
       "entry_time": "10:00:42",
       "exit_time": "10:39:42",
+      "gases": Array [
+        Object {
+          "double": false,
+          "helium": 0,
+          "oxygen": 21,
+          "pressureEnd": 103.7,
+          "pressureStart": 206.84,
+          "tankSize": 15,
+          "volumeStart": 3102.6,
+        },
+      ],
       "gear": Array [
         Object {
           "manufacturer": "Aqua Lung",
@@ -4580,8 +4605,6 @@ e per questo ho consumato veramente tanto.",
       "max_depth": 21.6,
       "notes": "Ero in coda al gruppo, no compagni",
       "number": 58,
-      "pressure_end": 103.7,
-      "pressure_start": 206.84,
       "repetitive": true,
       "samples": Array [
         Object {
@@ -6495,8 +6518,6 @@ e per questo ho consumato veramente tanto.",
       "type": "corso 1° grado",
       "visibility": "Ottima",
       "visibility_normalized": "GOOD",
-      "volume_start": 3102.6,
-      "volume_tank": 15,
       "water": "mare",
       "weather": "Sole",
       "weather_normalized": "CLEAR",
