@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dives SYSTEM "http://www.mac-dive.com/macdive_logbook.dtd">
+
+<dives>
+    <units>Metric</units>
+    <schema>2.2.0</schema>
+    <dive>
+        <date>2019-07-02 20:11:44</date>
+        <identifier>50239012-5986-4D36-A542-DC19EE67F478</identifier>
+        <diveNumber>151</diveNumber>
+        <rating>0</rating>
+        <repetitiveDive>7</repetitiveDive>
+        <diver>Carlo Panzi</diver>
+        <computer>No Computer</computer>
+        <serial></serial>
+        <maxDepth>0.00</maxDepth>
+        <averageDepth>0.00</averageDepth>
+        <cns>0.00</cns>
+        <decoModel></decoModel>
+        <duration>2061</duration>
+        <gasModel>Unknown</gasModel>
+        <surfaceInterval>249.0333333333333</surfaceInterval>
+        <sampleInterval>0</sampleInterval>
+        <tempAir>0.00</tempAir>
+        <tempHigh>0.00</tempHigh>
+        <tempLow>0.00</tempLow>
+        <visibility>Media</visibility>
+        <weight>8</weight>
+        <notes><![CDATA[]]></notes>
+        <diveMaster>Carlo Panzi</diveMaster>
+        <diveOperator>Unisub.es</diveOperator>
+        <skipper></skipper>
+        <boat>Triton 1</boat>
+        <weather>Sole</weather>
+        <current>Nessuna</current>
+        <surfaceConditions>Calmo</surfaceConditions>
+        <entryType>Da Barca</entryType>
+        <site>
+            <country>Spain</country>
+            <location>Isole Medas</location>
+            <name>Guix</name>
+            <bodyOfWater></bodyOfWater>
+            <waterType>Salt Water</waterType>
+            <difficulty></difficulty>
+            <altitude>0</altitude>
+            <lat>0.00000</lat>
+            <lon>0.00000</lon>
+        </site>
+        <tags>
+            <tag>notturna</tag>
+        </tags>
+        <types></types>
+        <buddies>
+            <buddy>Chiara Dabusti</buddy>
+        </buddies>
+        <gear></gear>
+        <gases></gases>
+        <samples></samples>
+        <events></events>
+    </dive>
+</dives>
