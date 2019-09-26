@@ -51,7 +51,10 @@ function normalizeDive(dive) {
     samples: { sample = [] },
     site,
     gear,
+    weight,
   } = cleanDive;
+
+  const weights = typeof weight === 'number' ? weight : undefined;
 
   const { gas } = gases;
   const repetitive = cleanDive.repetitiveDive > 1;
@@ -116,7 +119,7 @@ function normalizeDive(dive) {
     water: water(cleanDive.site.waterType),
     weather: cleanDive.weather,
     weather_normalized: normalizeWeather(cleanDive.weather),
-    weights: cleanDive.weight,
+    weights,
   };
   return data;
 }
