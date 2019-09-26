@@ -3,7 +3,7 @@ const { parse } = require('../src/xml');
 const path = require('path');
 const fs = require('fs');
 
-const MOCK_FILE = path.join(__dirname, '__mocks__', 'MacDive.xml');
+const MOCK_FILE = path.join(__dirname, '__mocks__', 'macdive', 'MacDive.xml');
 const MOCK_DATA = fs.readFileSync(MOCK_FILE, 'utf8');
 
 describe('MacDive importer', () => {
@@ -14,28 +14,12 @@ describe('MacDive importer', () => {
   });
 
   test('Failing for missing props', async () => {
-    const MOCK_FILE = path.join(__dirname, '__mocks__', 'MacDive_MissingProps.xml');
+    const MOCK_FILE = path.join(__dirname, '__mocks__', 'macdive', 'MissingProps.xml');
     const MOCK_DATA = fs.readFileSync(MOCK_FILE, 'utf8');
 
     const mock = await parse(MOCK_DATA);
     expect(() => {
       const logbook = importer(mock);
     }).not.toThrow();
-  });
-
-  test('Schema is valid', async () => {
-    const mock = await parse(MOCK_DATA);
-    const logbook = importer(mock);
-    const [dive] = logbook.dives;
-
-    const Ajv = require('ajv');
-    const ajv = new Ajv();
-    const validate = ajv.compile(require('../dive-schema.json'));
-    const valid = validate(dive);
-
-    if (!valid) {
-      console.log('@@@', validate.errors);
-    }
-    expect(valid).toBe(true);
   });
 });
