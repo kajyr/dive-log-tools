@@ -49,7 +49,10 @@
         <tags>
             <tag>notturna</tag>
         </tags>
-        <types></types>
+        <types>
+            <type>tipo</type>
+            <type>topo</type>
+        </types>
         <buddies>
             <buddy>Chiara Dabusti</buddy>
         </buddies>

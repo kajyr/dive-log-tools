@@ -38,11 +38,11 @@ function fixGearIfMissing(dive) {
   return { ...dive, gear: [] };
 }
 
-function parseTags(raw) {
+function parseArray(raw, key) {
   if (typeof raw === 'string') {
     return [];
   }
-  return [].concat(raw.tag);
+  return [].concat(raw[key]);
 }
 
 function normalizeDive(dive) {
@@ -61,7 +61,8 @@ function normalizeDive(dive) {
     weight,
   } = cleanDive;
 
-  const tags = parseTags(cleanDive.tags);
+  const tags = parseArray(cleanDive.tags, 'tag');
+  const types = parseArray(cleanDive.types, 'type');
 
   const weights = typeof weight === 'number' ? weight : undefined;
 
@@ -123,7 +124,7 @@ function normalizeDive(dive) {
     surface: cleanDive.surfaceConditions,
     surfaceInterval: surfaceInterval(repetitive, cleanDive.surfaceInterval),
     tags,
-    type: (cleanDive.types.type || '').toLowerCase(),
+    types,
     visibility_normalized: normalizeVisibility(cleanDive.visibility),
     visibility: cleanDive.visibility,
     water: water(cleanDive.site.waterType),

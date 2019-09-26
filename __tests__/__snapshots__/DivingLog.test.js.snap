@@ -75,7 +75,9 @@ Object {
       "surfaceInterval": "3:12",
       "surface_normalized": "FLAT",
       "tags": Array [],
-      "type": "addestramento",
+      "types": Array [
+        "addestramento",
+      ],
       "visibility": "",
       "visibility_normalized": "GOOD",
       "water": "mare",
