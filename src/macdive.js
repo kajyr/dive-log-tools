@@ -31,8 +31,15 @@ function fixSamplesIfMissing(dive) {
   return { ...dive, samples: {} };
 }
 
+function fixGearIfMissing(dive) {
+  if (typeof dive.gear !== 'string') {
+    return { ...dive, gear: dive.gear.item };
+  }
+  return { ...dive, gear: [] };
+}
+
 function normalizeDive(dive) {
-  const cleanDive = fixSamplesIfMissing(clean(dive));
+  const cleanDive = fixGearIfMissing(fixSamplesIfMissing(clean(dive)));
 
   const dive_time = Math.floor(cleanDive.duration / 60);
 
@@ -91,7 +98,7 @@ function normalizeDive(dive) {
     entry_time: time(entryDate),
     exit_time: time(exitDate),
     gases: clearedGases,
-    gear: gear.item,
+    gear,
     half_depth_break: half_depth_break(cleanDive.maxDepth),
     half_depth_break_time: half_depth_break_time(cleanDive.maxDepth),
     location,
