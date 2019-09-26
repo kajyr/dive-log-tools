@@ -73,6 +73,7 @@ function normalizeDive(dive) {
     surface: cleanDive.Surface,
     surface_normalized: normalizeSurface(cleanDive.Surface),
     surfaceInterval,
+    tags: [],
     type: cleanDive.Divetype.toLowerCase(),
     visibility: cleanDive.UWCurrent,
     visibility_normalized: normalizeVisibility(cleanDive.UWCurrent),

@@ -74,6 +74,7 @@ Object {
       "surface": "Normale",
       "surfaceInterval": "3:12",
       "surface_normalized": "FLAT",
+      "tags": Array [],
       "type": "addestramento",
       "visibility": "",
       "visibility_normalized": "GOOD",

@@ -38,6 +38,13 @@ function fixGearIfMissing(dive) {
   return { ...dive, gear: [] };
 }
 
+function parseTags(raw) {
+  if (typeof raw === 'string') {
+    return [];
+  }
+  return [].concat(raw.tag);
+}
+
 function normalizeDive(dive) {
   const cleanDive = fixGearIfMissing(fixSamplesIfMissing(clean(dive)));
 
@@ -53,6 +60,8 @@ function normalizeDive(dive) {
     gear,
     weight,
   } = cleanDive;
+
+  const tags = parseTags(cleanDive.tags);
 
   const weights = typeof weight === 'number' ? weight : undefined;
 
@@ -90,35 +99,36 @@ function normalizeDive(dive) {
       typeof cleanDive.buddies === 'string' ? cleanDive.buddies : cleanDive.buddies.buddy,
       cleanDive.diveMaster,
     ),
-    current: cleanDive.current || '',
     current_normalized: normalizeCurrent(cleanDive.current),
+    current: cleanDive.current || '',
     date: datetime(entryDate),
     deco_stops: '-',
-    dive_time,
     dive_master: cleanDive.diveMaster,
+    dive_time,
     emersion_time: emersion_time(cleanDive.maxDepth),
-    entry: entry(cleanDive.entryType),
     entry_time: time(entryDate),
+    entry: entry(cleanDive.entryType),
     exit_time: time(exitDate),
     gases: clearedGases,
     gear,
-    half_depth_break: half_depth_break(cleanDive.maxDepth),
     half_depth_break_time: half_depth_break_time(cleanDive.maxDepth),
+    half_depth_break: half_depth_break(cleanDive.maxDepth),
     location,
     max_depth: cleanDive.maxDepth,
     notes: cleanDive.notes,
     number: cleanDive.diveNumber,
     repetitive,
     samples: sample,
-    surface: cleanDive.surfaceConditions,
     surface_normalized: normalizeSurface(cleanDive.surfaceConditions),
+    surface: cleanDive.surfaceConditions,
     surfaceInterval: surfaceInterval(repetitive, cleanDive.surfaceInterval),
+    tags,
     type: (cleanDive.types.type || '').toLowerCase(),
-    visibility: cleanDive.visibility,
     visibility_normalized: normalizeVisibility(cleanDive.visibility),
+    visibility: cleanDive.visibility,
     water: water(cleanDive.site.waterType),
-    weather: cleanDive.weather,
     weather_normalized: normalizeWeather(cleanDive.weather),
+    weather: cleanDive.weather,
     weights,
   };
   return data;

@@ -135,6 +135,12 @@
           "type": "string",
           "enum": ["FLAT", "WEAK", "ROUGH"]
         },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "type": {
           "type": "string"
         },
@@ -166,6 +172,7 @@
         "entry_time",
         "gear",
         "notes",
+        "tags",
         "samples",
         "surface_normalized",
         "visibility_normalized",
