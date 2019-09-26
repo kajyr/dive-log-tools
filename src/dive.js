@@ -2,8 +2,7 @@ const { timeFromValues } = require('./formats');
 const unique = list => Array.from(new Set(list));
 
 function buddies(buddy, divemaster) {
-  const buddyList = typeof buddy === 'string' ? [buddy] : buddy;
-  return unique(buddyList.concat(divemaster))
+  return unique([].concat(buddy, divemaster))
     .filter(b => !!b && b.trim() !== '')
     .join(', ');
 }

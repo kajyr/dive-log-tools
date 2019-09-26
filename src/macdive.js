@@ -31,13 +31,6 @@ function fixSamplesIfMissing(dive) {
   return { ...dive, samples: {} };
 }
 
-function fixGearIfMissing(dive) {
-  if (typeof dive.gear !== 'string') {
-    return { ...dive, gear: dive.gear.item };
-  }
-  return { ...dive, gear: [] };
-}
-
 function parseArray(raw, key) {
   if (typeof raw === 'string') {
     return [];
@@ -46,7 +39,7 @@ function parseArray(raw, key) {
 }
 
 function normalizeDive(dive) {
-  const cleanDive = fixGearIfMissing(fixSamplesIfMissing(clean(dive)));
+  const cleanDive = fixSamplesIfMissing(clean(dive));
 
   const dive_time = Math.floor(cleanDive.duration / 60);
 
@@ -57,12 +50,12 @@ function normalizeDive(dive) {
     gases,
     samples: { sample = [] },
     site,
-    gear,
     weight,
   } = cleanDive;
 
   const tags = parseArray(cleanDive.tags, 'tag');
   const types = parseArray(cleanDive.types, 'type');
+  const gear = parseArray(cleanDive.gear, 'item');
 
   const weights = typeof weight === 'number' ? weight : undefined;
 
@@ -96,10 +89,7 @@ function normalizeDive(dive) {
   const data = {
     air_used: gas ? (gas.pressureStart - gas.pressureEnd) * gas.tankSize : undefined,
     bottom_time: bottom_time(dive_time, cleanDive.maxDepth),
-    buddies: buddies(
-      typeof cleanDive.buddies === 'string' ? cleanDive.buddies : cleanDive.buddies.buddy,
-      cleanDive.diveMaster,
-    ),
+    buddies: buddies(parseArray(cleanDive.buddies, 'buddy'), cleanDive.diveMaster),
     current_normalized: normalizeCurrent(cleanDive.current),
     current: cleanDive.current || '',
     date: datetime(entryDate),
