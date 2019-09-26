@@ -43,6 +43,9 @@ const CURRENT_NONE = 'NONE';
 function normalizeVisibility(value) {
   switch (value.toLowerCase()) {
     case 'scarsa':
+    case 'bassa':
+    case 'medio bassa':
+    case 'molto scarsa':
       return VISIBILITY_POOR;
     case 'media':
       return VISIBILITY_MEDIUM;
@@ -66,10 +69,13 @@ function normalizeWeather(value) {
     case 'foschia':
     case 'nuvoloso':
     case 'ventoso':
+    case 'variabile':
+    case 'pioggia leggera':
       return WEATHER_MEDIUM;
     case '':
     case 'sereno':
     case 'sole':
+    case 'al coperto':
       return WEATHER_GOOD;
     default:
       console.log('Weather not recognized', value);
@@ -80,17 +86,19 @@ function normalizeSurface(value) {
   switch (value.toLowerCase()) {
     case 'molto mosso':
     case 'tempesta':
+    case 'mosso':
       return SURFACE_ROUGH;
     case 'leggero':
     case 'medio':
     case 'poco mosso':
     case 'medio mosso':
-    case 'mosso':
+    case 'leggermente mosso':
       return SURFACE_WEAK;
     case '':
     case 'nessuno':
     case 'normale':
     case 'calmo':
+    case 'piscina':
       return SURFACE_FLAT;
     default:
       console.log('Surface not recognized', value);
@@ -105,6 +113,7 @@ function normalizeCurrent(value) {
     case 'media':
     case 'scarsa':
     case 'moderata':
+    case 'poca':
       return CURRENT_WEAK;
     case '':
     case 'nessuna':
