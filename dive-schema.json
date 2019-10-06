@@ -9,7 +9,7 @@
           "type": "number"
         },
         "bottom_time": {
-          "type": "number"
+          "type": ["number", "null"]
         },
         "buddies": {
           "type": "string"

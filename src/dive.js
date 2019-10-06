@@ -16,7 +16,11 @@ function half_depth_break_time(maxDepth) {
 }
 
 function bottom_time(diveTime, maxDepth) {
-  return diveTime - 5 - Math.ceil((maxDepth - 6) / 9) - (maxDepth > 18 ? 2.5 : 0);
+  if (diveTime === 0) {
+    return null;
+  }
+  const bottom = diveTime - 5 - Math.ceil((maxDepth - 6) / 9) - (maxDepth > 18 ? 2.5 : 0);
+  return bottom;
 }
 
 function emersion_time(maxDepth) {

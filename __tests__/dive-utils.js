@@ -1,4 +1,4 @@
-const { buddies, surfaceInterval } = require('../src/dive');
+const { buddies, surfaceInterval, bottom_time } = require('../src/dive');
 
 describe('Buddies', () => {
   test('Basic', () => {
@@ -25,5 +25,11 @@ describe('surfaceInterval', () => {
   // Might happen..
   test('With float values', () => {
     expect(surfaceInterval(true, 208.2833333333333)).toBe('03:28:00');
+  });
+});
+
+describe('bottom_time', () => {
+  test('When dive time is zero it returns null', () => {
+    expect(bottom_time(0, 20)).toBe(null);
   });
 });
