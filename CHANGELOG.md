@@ -1,3 +1,31 @@
+### 4.1.0 (2019-10-06)
+
+##### Build System / Dependencies
+
+* **deps:**
+  *  bump mixin-deep from 1.3.1 to 1.3.2 (461e5bd7)
+  *  bump lodash from 4.17.11 to 4.17.15 (ee462f67)
+*  Better validation tests (573d24eb)
+*  test run script to demo the json output (30435ba0)
+
+##### Chores
+
+*  methods optimization (c25afd82)
+*  New matches for weather, surface and visibility (6a3487eb)
+*  set the normalized levels as required (bee7bc48)
+
+##### New Features
+
+*  Types intead of type, is a list (b6c8e17d)
+*  added dive tags (843d0cfd)
+*  Initial support for multiple gases (b3f6d976)
+
+##### Bug Fixes
+
+*  bottom_time is null when dive time is zero (0d7e193b)
+*  Weights is either a int or undefined (1f094a9d)
+*  Gear might be missing from macdive (9d690c58)
+
 ## 4.0.0 (2019-09-04)
 
 ##### New Features
