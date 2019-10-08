@@ -13,7 +13,7 @@ const walkSync = function(dir, filelist = []) {
     const filePath = path.join(dir, file);
     if (fs.statSync(filePath).isDirectory()) {
       filelist = walkSync(filePath, filelist);
-    } else {
+    } else if (filePath.match(/\.xml$/)) {
       filelist.push(filePath);
     }
   });
