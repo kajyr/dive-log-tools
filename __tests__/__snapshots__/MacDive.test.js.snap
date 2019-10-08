@@ -131,7 +131,7 @@ Object {
 
 e per questo ho consumato veramente tanto.",
       "number": 60,
-      "repetitive": false,
+      "repetitive": 1,
       "samples": Array [
         Object {
           "depth": 0.8,
@@ -2269,7 +2269,7 @@ e per questo ho consumato veramente tanto.",
       "max_depth": 20.7,
       "notes": "",
       "number": 59,
-      "repetitive": true,
+      "repetitive": 4,
       "samples": Array [
         Object {
           "depth": 0.3,
@@ -4609,7 +4609,7 @@ e per questo ho consumato veramente tanto.",
       "max_depth": 21.6,
       "notes": "Ero in coda al gruppo, no compagni",
       "number": 58,
-      "repetitive": true,
+      "repetitive": 3,
       "samples": Array [
         Object {
           "depth": 0.7,

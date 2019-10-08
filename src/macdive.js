@@ -60,7 +60,6 @@ function normalizeDive(dive) {
   const weights = typeof weight === 'number' ? weight : undefined;
 
   const { gas } = gases;
-  const repetitive = cleanDive.repetitiveDive > 1;
 
   const lat = site.lat > 0 ? site.lat.toFixed(4) : '';
   const lng = site.lon > 0 ? site.lon.toFixed(4) : '';
@@ -108,11 +107,11 @@ function normalizeDive(dive) {
     max_depth: cleanDive.maxDepth,
     notes: cleanDive.notes,
     number: cleanDive.diveNumber,
-    repetitive,
+    repetitive: cleanDive.repetitiveDive,
     samples: sample,
     surface_normalized: normalizeSurface(cleanDive.surfaceConditions),
     surface: cleanDive.surfaceConditions,
-    surfaceInterval: surfaceInterval(repetitive, cleanDive.surfaceInterval),
+    surfaceInterval: surfaceInterval(cleanDive.repetitiveDive > 1, cleanDive.surfaceInterval),
     tags,
     types,
     visibility_normalized: normalizeVisibility(cleanDive.visibility),

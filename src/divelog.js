@@ -23,6 +23,9 @@ function normalizeDive(dive) {
   const exitdate = addMinutes(entryDate, cleanDive.Divetime);
   const profile = cleanDive.Profile ? cleanDive.Profile.P : [];
   const repetitive = cleanDive.Rep;
+  if (repetitive) {
+    console.warn('Repetitive numbering support not yet availabe ln DiveLog importer');
+  }
   let surfaceInterval = '-';
   if (cleanDive.Rep) {
     const [hours, minutes] = cleanDive.Surfint.split(':');
@@ -68,7 +71,6 @@ function normalizeDive(dive) {
     max_depth: cleanDive.Depth,
     notes: cleanDive.Comments,
     number: cleanDive.Number,
-    repetitive,
     samples: profile,
     surface: cleanDive.Surface,
     surface_normalized: normalizeSurface(cleanDive.Surface),

@@ -95,7 +95,7 @@
           "type": "string"
         },
         "repetitive": {
-          "type": "boolean"
+          "type": "number"
         },
         "samples": {
           "type": "array",
