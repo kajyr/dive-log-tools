@@ -1,3 +1,24 @@
+### 4.2.0 (2020-02-04)
+
+##### Build System / Dependencies
+
+*  Added changelog dependency (222c6d3d)
+*  updated dependencies (066b0c85)
+*  validation test only match xml files (4fba5e0d)
+
+##### Chores
+
+*  Added surfaces and weathers mappings (7938a001)
+
+##### New Features
+
+*  Tank Name available in gas object (ff29c61c)
+*  Repetitive Dive is now a number (5a311987)
+
+##### Bug Fixes
+
+*  float cleaning was cleaning also strings with digits inside (15d877d2)
+
 ### 4.1.0 (2019-10-06)
 
 ##### Build System / Dependencies
