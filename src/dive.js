@@ -79,6 +79,7 @@ function normalizeWeather(value) {
     case 'sereno':
     case 'sole':
     case 'al coperto':
+    case 'poco nuvoloso':
       return WEATHER_GOOD;
     default:
       console.log('Weather not recognized', value);
@@ -102,6 +103,8 @@ function normalizeSurface(value) {
     case 'normale':
     case 'calmo':
     case 'piscina':
+    case 'ghiaccio':
+    case 'piatto':
       return SURFACE_FLAT;
     default:
       console.log('Surface not recognized', value);
