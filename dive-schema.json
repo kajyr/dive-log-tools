@@ -212,6 +212,7 @@
         "helium": { "type": "number" },
         "double": { "type": "boolean" },
         "tankSize": { "type": "number" },
+        "tankName": { "type": "string" },
         "volumeStart": { "type": "number" }
       }
     }

@@ -17,6 +17,8 @@ const {
   normalizeWeather,
 } = require('./dive');
 
+const { tankName } = require('./dive/tank');
+
 function normalizeDive(dive) {
   const cleanDive = clean(dive);
   const entryDate = new Date(`${cleanDive.Divedate}T${cleanDive.Entrytime}`);
@@ -46,6 +48,7 @@ function normalizeDive(dive) {
       pressureStart: cleanDive.PresE,
       pressureEnd: cleanDive.PresS,
       tankSize: cleanDive.Tanksize,
+      tankName: tankName(cleanDive.Tanksize, null, cleanDive.DblTank !== 'False'),
       volumeStart: cleanDive.PresS * cleanDive.Tanksize,
     },
   ];

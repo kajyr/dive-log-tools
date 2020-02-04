@@ -21,6 +21,7 @@ Object {
         Object {
           "pressureEnd": 210,
           "pressureStart": 70,
+          "tankName": "7.5 + 7.5",
           "tankSize": 15,
           "volumeStart": 3150,
         },

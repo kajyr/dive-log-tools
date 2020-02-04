@@ -17,6 +17,8 @@ const {
   water,
 } = require('./dive');
 
+const { tankName } = require('./dive/tank');
+
 /**
  * In case there are no samples MacDIve will put there just one,
  * so the cleaner might thing that samples is an object.
@@ -73,6 +75,7 @@ function normalizeDive(dive) {
       helium: gas.helium,
       double: gas.double !== 0,
       tankSize: gas.tankSize,
+      tankName: tankName(gas.tankSize, gas.tankName, gas.double !== 0),
       volumeStart: gas.pressureStart * gas.tankSize,
     });
   }
