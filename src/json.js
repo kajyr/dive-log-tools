@@ -24,16 +24,25 @@ function cleanBool(value) {
   return value;
 }
 
+const onlyDigits = /^[0-9\.\,]+$/;
+
 const cleanFloat = value => {
-  // Skip dates
-  if (typeof value === 'string' && (value.indexOf(':') > -1 || value.indexOf('-') > -1)) {
+  const type = typeof value;
+  // Shortcut for numbers
+  if (type === 'number') {
     return value;
   }
-  const flo = parseFloat(value);
-  if (isNaN(flo)) {
-    return value;
+
+  if (type === 'string') {
+    if (value.match(onlyDigits)) {
+      const flo = parseFloat(value);
+      if (!isNaN(flo)) {
+        return flo;
+      }
+    }
   }
-  return flo;
+
+  return value;
 };
 
 const clean = value => (typeof value === 'object' && !Array.isArray(value) ? omap(value, cleanValue) : value);
@@ -44,4 +53,4 @@ const cleaners = [cleanArray, clean, cleanBool, cleanFloat, cleanStr];
 
 const cleanValue = value => cleaners.reduce((val, cleaner) => cleaner(val), value);
 
-module.exports = { clean };
+module.exports = { clean, cleanFloat };
