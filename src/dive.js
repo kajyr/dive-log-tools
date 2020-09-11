@@ -40,7 +40,7 @@ const SURFACE_WEAK = 'WEAK';
 const SURFACE_FLAT = 'FLAT';
 
 const CURRENT_STRONG = 'STRONG';
-const CURRENT_WEAK = 'WEAK ';
+const CURRENT_WEAK = 'WEAK';
 const CURRENT_NONE = 'NONE';
 
 function normalizeVisibility(value) {
