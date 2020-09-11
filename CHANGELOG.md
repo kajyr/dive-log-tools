@@ -1,3 +1,9 @@
+#### 4.2.2 (2020-09-11)
+
+##### Bug Fixes
+
+*  you can have negative lat / lng (fc8b7593)
+
 #### 4.2.1 (2020-09-11)
 
 ##### Build System / Dependencies
