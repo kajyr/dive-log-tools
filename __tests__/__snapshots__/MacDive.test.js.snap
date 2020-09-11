@@ -93,19 +93,19 @@ Object {
         Object {
           "manufacturer": "Scubapro",
           "name": "MK25 Evo Main",
-          "serial": 1741811090,
+          "serial": "1741811090",
           "type": "Regulator",
         },
         Object {
           "manufacturer": "Scubapro",
           "name": "MK25 Evo Secondary",
-          "serial": 1840900189,
+          "serial": "1840900189",
           "type": "Regulator",
         },
         Object {
           "manufacturer": "Aqua Lung",
           "name": "Transmitter",
-          "serial": 6491,
+          "serial": "006491",
           "type": "Other",
         },
         Object {
@@ -2237,19 +2237,19 @@ e per questo ho consumato veramente tanto.",
         Object {
           "manufacturer": "Scubapro",
           "name": "MK25 Evo Main",
-          "serial": 1741811090,
+          "serial": "1741811090",
           "type": "Regulator",
         },
         Object {
           "manufacturer": "Scubapro",
           "name": "MK25 Evo Secondary",
-          "serial": 1840900189,
+          "serial": "1840900189",
           "type": "Regulator",
         },
         Object {
           "manufacturer": "Aqua Lung",
           "name": "Transmitter",
-          "serial": 6491,
+          "serial": "006491",
           "type": "Other",
         },
         Object {
@@ -4578,19 +4578,19 @@ e per questo ho consumato veramente tanto.",
         Object {
           "manufacturer": "Scubapro",
           "name": "MK25 Evo Main",
-          "serial": 1741811090,
+          "serial": "1741811090",
           "type": "Regulator",
         },
         Object {
           "manufacturer": "Scubapro",
           "name": "MK25 Evo Secondary",
-          "serial": 1840900189,
+          "serial": "1840900189",
           "type": "Regulator",
         },
         Object {
           "manufacturer": "Aqua Lung",
           "name": "Transmitter",
-          "serial": 6491,
+          "serial": "006491",
           "type": "Other",
         },
         Object {
