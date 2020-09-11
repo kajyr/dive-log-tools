@@ -1,3 +1,15 @@
+#### 4.2.1 (2020-09-11)
+
+##### Build System / Dependencies
+
+*  update dependencies (e5d46196)
+
+##### Bug Fixes
+
+*  Gear serial is a string (428d76a1)
+*  Removed buggy float parser. Used a custom Number formatter only when needed instead. (2b347d87)
+*  current weak value (37fb8beb)
+
 ### 4.2.0 (2020-02-04)
 
 ##### Build System / Dependencies
