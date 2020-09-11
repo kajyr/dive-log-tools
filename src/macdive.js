@@ -64,9 +64,6 @@ function normalizeDive(dive) {
 
   const { gas } = gases;
 
-  const lat = Number(site.lat);
-  const lng = Number(site.lon);
-
   const clearedGases = [];
   const pressureStart = gas ? Number(gas.pressureStart) : undefined;
   const pressureEnd = gas ? Number(gas.pressureEnd) : undefined;
@@ -86,8 +83,8 @@ function normalizeDive(dive) {
   }
 
   const location = {
-    lat: lat > 0 ? lat.toFixed(4) : '',
-    lng: lng > 0 ? lng.toFixed(4) : '',
+    lat: Number(site.lat).toFixed(4),
+    lng: Number(site.lon).toFixed(4),
     place: cleanDive.site.location,
     country: cleanDive.site.country,
     site: cleanDive.site.name,
