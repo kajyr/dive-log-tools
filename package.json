@@ -19,14 +19,14 @@
     "release:patch": "yarn changelog -p && yarn version:patch"
   },
   "dependencies": {
-    "ajv": "^6.11.0",
+    "ajv": "^6.12.4",
     "date-fns": "^1.30.1",
     "xml2js": "^0.4.23",
-    "yargs": "^15.1.0"
+    "yargs": "^16.0.3"
   },
   "devDependencies": {
     "generate-changelog": "^1.8.0",
-    "jest": "^25.1.0",
-    "prettier": "^1.19.1"
+    "jest": "^26.4.2",
+    "prettier": "^2.1.1"
   }
 }
