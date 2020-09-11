@@ -4,7 +4,7 @@ const omap = (object, fn) =>
     return acc;
   }, {});
 
-const cleanArray = value => {
+const cleanArray = (value) => {
   if (Array.isArray(value)) {
     if (value.length === 1) {
       return cleanValue(value[0]);
@@ -26,31 +26,12 @@ function cleanBool(value) {
 
 const onlyDigits = /^[0-9\.\,]+$/;
 
-const cleanFloat = value => {
-  const type = typeof value;
-  // Shortcut for numbers
-  if (type === 'number') {
-    return value;
-  }
+const clean = (value) => (typeof value === 'object' && !Array.isArray(value) ? omap(value, cleanValue) : value);
 
-  if (type === 'string') {
-    if (value.match(onlyDigits)) {
-      const flo = parseFloat(value);
-      if (!isNaN(flo)) {
-        return flo;
-      }
-    }
-  }
+const cleanStr = (value) => (typeof value === 'string' ? value.trim() : value);
 
-  return value;
-};
+const cleaners = [cleanArray, clean, cleanBool, cleanStr];
 
-const clean = value => (typeof value === 'object' && !Array.isArray(value) ? omap(value, cleanValue) : value);
+const cleanValue = (value) => cleaners.reduce((val, cleaner) => cleaner(val), value);
 
-const cleanStr = value => (typeof value === 'string' ? value.trim() : value);
-
-const cleaners = [cleanArray, clean, cleanBool, cleanFloat, cleanStr];
-
-const cleanValue = value => cleaners.reduce((val, cleaner) => cleaner(val), value);
-
-module.exports = { clean, cleanFloat };
+module.exports = { clean };
