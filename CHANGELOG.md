@@ -1,3 +1,9 @@
+#### 4.2.3 (2020-09-28)
+
+##### Build System / Dependencies
+
+*  Updated date-fns dependencies (3c6bb21e)
+
 #### 4.2.2 (2020-09-11)
 
 ##### Bug Fixes
