@@ -1,3 +1,9 @@
+#### 4.2.4 (2020-09-28)
+
+##### Bug Fixes
+
+*  date-fns imports (4e15b61f)
+
 #### 4.2.3 (2020-09-28)
 
 ##### Build System / Dependencies
