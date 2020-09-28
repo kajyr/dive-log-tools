@@ -1,4 +1,4 @@
-const format = require('date-fns/format');
+const { format } = require('date-fns');
 
 function lpad(str, pad, length) {
   while (str.length < length) {

@@ -1,4 +1,4 @@
-const add = require('date-fns/add');
+const { add } = require('date-fns');
 const { datetime, time } = require('./formats');
 const { clean } = require('./json');
 
