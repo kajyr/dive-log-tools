@@ -1,5 +1,4 @@
-const addMinutes = require('date-fns/add_minutes');
-const format = require('date-fns/format');
+const add = require('date-fns/add');
 const { datetime, time } = require('./formats');
 const { clean } = require('./json');
 
@@ -22,7 +21,7 @@ const { tankName } = require('./dive/tank');
 function normalizeDive(dive) {
   const cleanDive = clean(dive);
   const entryDate = new Date(`${cleanDive.Divedate}T${cleanDive.Entrytime}`);
-  const exitdate = addMinutes(entryDate, cleanDive.Divetime);
+  const exitdate = add(entryDate, { minutes: cleanDive.Divetime });
   const profile = cleanDive.Profile ? cleanDive.Profile.P : [];
   const repetitive = cleanDive.Rep;
   if (repetitive) {

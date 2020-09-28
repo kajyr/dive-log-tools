@@ -1,4 +1,4 @@
-const addMinutes = require('date-fns/add_minutes');
+const add = require('date-fns/add');
 const { datetime, time } = require('./formats');
 const { clean } = require('./json');
 
@@ -47,7 +47,7 @@ function normalizeDive(dive) {
   const dive_time = Math.floor(cleanDive.duration / 60);
 
   const entryDate = new Date(cleanDive.date);
-  const exitDate = addMinutes(entryDate, dive_time);
+  const exitDate = add(entryDate, { minutes: dive_time });
 
   const {
     gases,
