@@ -22,8 +22,7 @@
           "enum": ["NONE", "WEAK", "STRONG"]
         },
         "date": {
-          "type": "string",
-          "format": "date-time"
+          "type": "string"
         },
         "deco_stops": {
           "type": "string"
@@ -41,8 +40,7 @@
           "type": "string"
         },
         "entry_time": {
-          "type": "string",
-          "format": "time"
+          "type": "string"
         },
         "exit_time": {
           "type": "string"
