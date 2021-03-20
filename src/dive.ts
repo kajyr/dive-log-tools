@@ -1,21 +1,21 @@
-const { timeFromValues } = require('./formats');
-const unique = list => Array.from(new Set(list));
+import { timeFromValues } from './formats';
+const unique = <T>(list: T[]) => Array.from(new Set(list));
 
-function buddies(buddy, divemaster) {
-  return unique([].concat(buddy, divemaster))
-    .filter(b => !!b && b.trim() !== '')
+export function buddies(buddy: string[], divemaster: string) {
+  return unique(buddy.concat(divemaster))
+    .filter((b) => !!b && b.trim() !== '')
     .join(', ');
 }
 
-function half_depth_break(maxDepth) {
+export function half_depth_break(maxDepth: number) {
   return maxDepth > 18 ? Math.ceil(maxDepth / 2) + 'm' : '___';
 }
 
-function half_depth_break_time(maxDepth) {
+export function half_depth_break_time(maxDepth: number) {
   return maxDepth > 18 ? '2.5' : '-';
 }
 
-function bottom_time(diveTime, maxDepth) {
+export function bottom_time(diveTime: number, maxDepth: number) {
   if (diveTime === 0) {
     return null;
   }
@@ -23,7 +23,7 @@ function bottom_time(diveTime, maxDepth) {
   return bottom;
 }
 
-function emersion_time(maxDepth) {
+export function emersion_time(maxDepth: number) {
   return Math.ceil((maxDepth - 6) / 9);
 }
 
@@ -43,7 +43,7 @@ const CURRENT_STRONG = 'STRONG';
 const CURRENT_WEAK = 'WEAK';
 const CURRENT_NONE = 'NONE';
 
-function normalizeVisibility(value) {
+export function normalizeVisibility(value: string = '') {
   switch (value.toLowerCase()) {
     case 'scarsa':
     case 'bassa':
@@ -62,7 +62,7 @@ function normalizeVisibility(value) {
   }
 }
 
-function normalizeWeather(value) {
+export function normalizeWeather(value: string) {
   switch (value.toLowerCase()) {
     case 'pioggia':
     case 'burrasca':
@@ -86,7 +86,7 @@ function normalizeWeather(value) {
       return WEATHER_GOOD;
   }
 }
-function normalizeSurface(value) {
+export function normalizeSurface(value: string = '') {
   switch (value.toLowerCase()) {
     case 'molto mosso':
     case 'tempesta':
@@ -112,7 +112,7 @@ function normalizeSurface(value) {
   }
 }
 
-function normalizeCurrent(value) {
+export function normalizeCurrent(value: string = '') {
   switch (value.toLowerCase()) {
     case 'forte':
       return CURRENT_STRONG;
@@ -130,7 +130,7 @@ function normalizeCurrent(value) {
   }
 }
 
-function entry(value = '') {
+export function entry(value: string = '') {
   switch (value.toLowerCase()) {
     case 'barca':
     case 'boat':
@@ -146,7 +146,7 @@ function entry(value = '') {
   }
 }
 
-function water(value = '') {
+export function water(value: string = '') {
   switch (value.toLowerCase()) {
     case 'pool':
     case 'piscina':
@@ -162,7 +162,7 @@ function water(value = '') {
   }
 }
 
-function surfaceInterval(isRepetitive, surfIntervalInMinutes) {
+export function surfaceInterval(isRepetitive: boolean, surfIntervalInMinutes: number) {
   if (!isRepetitive) {
     return;
   }
@@ -171,18 +171,3 @@ function surfaceInterval(isRepetitive, surfIntervalInMinutes) {
   const minutes = normalized % 60;
   return timeFromValues([hours, minutes, 0]);
 }
-
-module.exports = {
-  bottom_time,
-  buddies,
-  emersion_time,
-  entry,
-  half_depth_break_time,
-  half_depth_break,
-  normalizeCurrent,
-  normalizeSurface,
-  normalizeVisibility,
-  normalizeWeather,
-  surfaceInterval,
-  water,
-};

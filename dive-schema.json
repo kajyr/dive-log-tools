@@ -98,6 +98,7 @@
         "samples": {
           "type": "array",
           "items": {
+            "type": "object",
             "properties": {
               "time": {
                 "type": "number"

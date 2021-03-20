@@ -1,4 +1,4 @@
-function tankName(size, name, isDouble) {
+export function tankName(size: string | number, name: string | null, isDouble: boolean) {
   if (name) {
     return name;
   }
@@ -11,7 +11,3 @@ function tankName(size, name, isDouble) {
 
   return size.toString();
 }
-
-module.exports = {
-  tankName,
-};

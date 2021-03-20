@@ -1,12 +1,12 @@
-const { importer } = require('../src');
-const path = require('path');
-const fs = require('fs');
-const Ajv = require('ajv').default;
+import { importer } from '../src';
+import path from 'path';
+import fs from 'fs';
+import Ajv from 'ajv';
 
 const MOCK_FOLDER = path.join(__dirname, '__mocks__');
 
 // List all files in a directory in Node.js recursively in a synchronous fashion
-const walkSync = function (dir, filelist = []) {
+const walkSync = function (dir: string, filelist: string[] = []) {
   const files = fs.readdirSync(dir);
 
   files.forEach(function (file) {
@@ -28,12 +28,12 @@ describe('JSON Schema Validation', () => {
   const ajv = new Ajv();
   const validate = ajv.compile(require('../dive-schema.json'));
 
-  files.forEach(async (file) => {
-    test(file, async () => {
+  files.forEach((file) => {
+    test(file, () => {
       const data = fs.readFileSync(file, 'utf8');
-      const logbook = await importer(data);
+      const logbook = importer(data);
 
-      logbook.dives.forEach((dive) => {
+      logbook?.dives.forEach((dive) => {
         const valid = validate(dive);
         if (!valid) {
           console.log('@@@', file, validate.errors);
