@@ -105,7 +105,7 @@ Object {
         Object {
           "manufacturer": "Aqua Lung",
           "name": "Transmitter",
-          "serial": "006491",
+          "serial": "6491",
           "type": "Other",
         },
         Object {
@@ -2249,7 +2249,7 @@ e per questo ho consumato veramente tanto.",
         Object {
           "manufacturer": "Aqua Lung",
           "name": "Transmitter",
-          "serial": "006491",
+          "serial": "6491",
           "type": "Other",
         },
         Object {
@@ -4590,7 +4590,7 @@ e per questo ho consumato veramente tanto.",
         Object {
           "manufacturer": "Aqua Lung",
           "name": "Transmitter",
-          "serial": "006491",
+          "serial": "6491",
           "type": "Other",
         },
         Object {

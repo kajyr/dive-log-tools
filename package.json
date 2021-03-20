@@ -1,13 +1,18 @@
 {
   "name": "dive-log-importer",
   "version": "4.2.4",
-  "main": "src/index.js",
+  "main": "build/index.js",
+  "files": [
+    "build"
+  ],
   "repository": "https://github.com/kajyr/dive-log-importer",
   "author": "Carlo Panzi <carlo.panzi@gmail.com>",
   "license": "MIT",
   "scripts": {
+    "build": "rimraf ./build && rollup -c rollup.config.js",
+    "watch": "rollup -w -c rollup.config.js",
     "test": "jest --verbose",
-    "test-run": "node cli.js ",
+    "test-run": "ts-node  --project ./node.tsconfig.json ./cli.ts",
     "postversion": "git push origin && git push origin --tags",
     "changelog": "changelog",
     "postchangelog": "git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' ",
@@ -19,14 +24,24 @@
     "release:patch": "yarn changelog -p && yarn version:patch"
   },
   "dependencies": {
-    "ajv": "^7.2.3",
     "date-fns": "^2.19.0",
-    "xml2js": "^0.4.23",
+    "fast-xml-parser": "^3.19.0",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^17.1.0",
+    "@types/jest": "^26.0.21",
+    "@types/node": "^14.14.28",
+    "ajv": "^7.2.3",
     "generate-changelog": "^1.8.0",
     "jest": "^26.6.3",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.39.0",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "ts-jest": "^26.5.4",
+    "ts-node": "^9.1.1",
+    "tslib": "^2.1.0",
+    "typescript": "^4.1.5"
   }
 }
