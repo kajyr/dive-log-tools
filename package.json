@@ -15,7 +15,7 @@
     "test-run": "ts-node  --project ./node.tsconfig.json ./cli.ts",
     "postversion": "git push origin && git push origin --tags",
     "changelog": "changelog",
-    "postchangelog": "git add CHANGELOG.md && git commit -m 'updated CHANGELOG.md' ",
+    "postchangelog": "git add CHANGELOG.md && git commit -m 'chore: updated CHANGELOG.md' ",
     "version:major": "yarn version --major",
     "version:minor": "yarn version --minor",
     "version:patch": "yarn version --patch",
