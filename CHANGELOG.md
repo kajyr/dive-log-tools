@@ -1,3 +1,15 @@
+### 4.3.0 (2021-03-24)
+
+##### Build System / Dependencies
+
+*  JSON schema generated from the typescript definitions (5b9f627a)
+*  deps updates (7e439aeb)
+*  updated nvmrc node version (12e8066b)
+
+##### Refactors
+
+*  Moved to typescript (d6791270)
+
 #### 4.2.4 (2020-09-28)
 
 ##### Bug Fixes
