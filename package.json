@@ -1,6 +1,6 @@
 {
   "name": "dive-log-importer",
-  "version": "4.3.0",
+  "version": "4.3.1",
   "main": "build/index.js",
   "files": [
     "build"
@@ -13,6 +13,7 @@
     "watch": "rollup -w -c rollup.config.js",
     "test": "jest --verbose",
     "test-run": "ts-node  --project ./node.tsconfig.json ./cli.ts",
+    "prepublishOnly": "yarn build",
     "postversion": "git push origin && git push origin --tags",
     "changelog": "changelog",
     "postchangelog": "git add CHANGELOG.md && git commit -m 'chore: updated CHANGELOG.md' ",
