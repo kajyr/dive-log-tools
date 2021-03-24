@@ -17,7 +17,7 @@ export function half_depth_break_time(maxDepth: number) {
 
 export function bottom_time(diveTime: number, maxDepth: number) {
   if (diveTime === 0) {
-    return null;
+    return undefined;
   }
   const bottom = diveTime - 5 - Math.ceil((maxDepth - 6) / 9) - (maxDepth > 18 ? 2.5 : 0);
   return bottom;

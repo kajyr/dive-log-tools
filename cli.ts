@@ -13,5 +13,5 @@ argv._.forEach(async (file) => {
   const data = fs.readFileSync(file, 'utf8');
   const json = await importer(data);
 
-  //console.log(json);
+  console.log(json);
 });

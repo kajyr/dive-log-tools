@@ -22,7 +22,7 @@ export type Sample = {
 
 export type Dive = {
   air_used: number;
-  bottom_time: number | null;
+  bottom_time?: number;
   buddies: string;
   current_normalized: string;
   current: string;
@@ -67,7 +67,7 @@ export interface Logbook {
   dives: Dive[];
 }
 
-export interface BaseRawLogbook {}
+export interface BaseRawLogbook { }
 
 export interface Importer {
   name: string;

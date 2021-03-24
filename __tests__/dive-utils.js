@@ -30,6 +30,6 @@ describe('surfaceInterval', () => {
 
 describe('bottom_time', () => {
   test('When dive time is zero it returns null', () => {
-    expect(bottom_time(0, 20)).toBe(null);
+    expect(bottom_time(0, 20)).toBeUndefined();
   });
 });

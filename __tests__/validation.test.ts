@@ -33,13 +33,12 @@ describe('JSON Schema Validation', () => {
       const data = fs.readFileSync(file, 'utf8');
       const logbook = importer(data);
 
-      logbook?.dives.forEach((dive) => {
-        const valid = validate(dive);
-        if (!valid) {
-          console.log('@@@', file, validate.errors);
-        }
-        expect(valid).toBe(true);
-      });
+
+      const valid = validate(logbook);
+      if (!valid) {
+        console.log('@@@', file, validate.errors);
+      }
+      expect(valid).toBe(true);
     });
   });
 });

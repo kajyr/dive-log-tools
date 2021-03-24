@@ -21,7 +21,8 @@
     "version:patch": "yarn version --patch",
     "release:major": "yarn changelog -M && yarn version:major",
     "release:minor": "yarn changelog -m && yarn version:minor",
-    "release:patch": "yarn changelog -p && yarn version:patch"
+    "release:patch": "yarn changelog -p && yarn version:patch",
+    "generate-schema": "typescript-json-schema --required src/types.ts Logbook > dive-schema.json"
   },
   "dependencies": {
     "date-fns": "^2.19.0",
@@ -42,6 +43,7 @@
     "ts-jest": "^26.5.4",
     "ts-node": "^9.1.1",
     "tslib": "^2.1.0",
-    "typescript": "^4.1.5"
+    "typescript": "^4.1.5",
+    "typescript-json-schema": "^0.50.0"
   }
 }
