@@ -21,6 +21,14 @@ export namespace Importer {
     time: number;
   };
 
+  export type Location = {
+    lat?: string;
+    lng?: string;
+    place: string;
+    country: string;
+    site: string;
+  };
+
   export type Dive = {
     air_used: number;
     bottom_time?: number;
@@ -39,13 +47,7 @@ export namespace Importer {
     gear: Gear[];
     half_depth_break_time: string;
     half_depth_break: string;
-    location: {
-      lat: string;
-      lng: string;
-      place: string;
-      country: string;
-      site: string;
-    };
+    location?: Location;
     max_depth: number;
     notes: string;
     number: number;
