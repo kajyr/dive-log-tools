@@ -1,3 +1,14 @@
+#### 4.3.2 (2021-04-27)
+
+##### Build System / Dependencies
+
+*  Updates (a0216784)
+
+##### Chores
+
+*  Grouped exported types into a namespace (1cb199de)
+*  better update message (540df979)
+
 ### 4.3.0 (2021-03-24)
 
 ##### Build System / Dependencies
