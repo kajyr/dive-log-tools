@@ -17,14 +17,14 @@ import {
 
 import { tankName } from '../dive/tank';
 
-import { Dive, Logbook } from '../types';
+import { Importer } from '../types';
 import { DivingLog } from './types';
 
 function toBool(value: 'False' | 'True') {
   return value === 'True';
 }
 
-function normalizeDive(dive: DivingLog.Dive): Dive {
+function normalizeDive(dive: DivingLog.Dive): Importer.Dive {
   const entryDate = new Date(`${dive.Divedate}T${dive.Entrytime}`);
   const exitdate = add(entryDate, { minutes: dive.Divetime });
 
@@ -102,7 +102,7 @@ function normalizeDive(dive: DivingLog.Dive): Dive {
   return data;
 }
 
-function importer(logbook: DivingLog.RawLogbook): Logbook {
+function importer(logbook: DivingLog.RawLogbook): Importer.Logbook {
   let dives: DivingLog.Dive[];
 
   if (Array.isArray(logbook.Divinglog.Logbook.Dive)) {

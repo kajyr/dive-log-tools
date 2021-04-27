@@ -1,15 +1,16 @@
-import parser from 'fast-xml-parser';
 import divinglog from './divelog';
 import macdive from './macdive';
-import { Logbook } from './types';
+import { Importer } from './types';
 
 const importers = [macdive, divinglog];
+
+export { Importer };
 
 export function listImporters() {
   return importers.map((i) => i.name);
 }
 
-export function importer(xml: string): Logbook | null {
+export function importer(xml: string): Importer.Logbook | null {
   if (macdive.canImport(xml)) {
     return macdive.importer(xml);
   }
