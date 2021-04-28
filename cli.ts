@@ -9,9 +9,9 @@ if (argv._.length === 0) {
   process.exit();
 }
 
-argv._.forEach(async (file) => {
+argv._.forEach((file) => {
   const data = fs.readFileSync(file, 'utf8');
-  const json = await importer(data);
+  const json = importer(data);
 
   console.log(json);
 });
