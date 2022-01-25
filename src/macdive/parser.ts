@@ -1,4 +1,4 @@
-import fxp from 'fast-xml-parser';
+import { XMLParser } from 'fast-xml-parser';
 import { MacDive } from './types';
 
 type RawObj = {
@@ -10,6 +10,7 @@ type RawObj = {
 };
 
 function parser(xml: string): MacDive.RawLogbook {
+  const fxp = new XMLParser();
   const jsonObj: RawObj = fxp.parse(xml);
   const { dive, ...other } = jsonObj.dives;
 

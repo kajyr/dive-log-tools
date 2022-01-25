@@ -1,8 +1,9 @@
-import fxp from 'fast-xml-parser';
+import { XMLParser } from 'fast-xml-parser';
 import { DivingLog } from './types';
 
 function parser(xml: string): DivingLog.RawLogbook {
-  const jsonObj = fxp.parse(xml, { ignoreAttributes: false, attributeNamePrefix: 'A_' });
+  const fxp = new XMLParser({ ignoreAttributes: false, attributeNamePrefix: 'A_' });
+  const jsonObj = fxp.parse(xml);
 
   return jsonObj;
 }
