@@ -24,7 +24,7 @@
     "yargs": "^17.3.1"
   },
   "devDependencies": {
-    "release-it": "^14.12.4",
+    "release-it": "^14.14.3",
     "@release-it/conventional-changelog": "^4.1.0",
     "@rollup/plugin-commonjs": "^21.0.1",
     "@types/jest": "^27.4.0",
