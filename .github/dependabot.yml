@@ -5,7 +5,19 @@
 
 version: 2
 updates:
-  - package-ecosystem: "npm" # See documentation for possible values
-    directory: "/" # Location of package manifests
+  - package-ecosystem: 'npm' # See documentation for possible values
+    directory: '/' # Location of package manifests
+    schedule:
+      interval: 'weekly'
+    assignees:
+      - 'kajyr'
+    open-pull-requests-limit: 3
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
       interval: "weekly"
+    labels:
+      - "dependencies"
+     assignees:
+      - 'kajyr'
+    open-pull-requests-limit: 3
