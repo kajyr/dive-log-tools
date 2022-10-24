@@ -1,15 +1,14 @@
-import fs from 'fs';
-import yargs from 'yargs';
+import fs from 'node:fs';
 import { importer } from './src';
+import mclip from 'mclip';
 
-const argv = yargs.usage('$0 file.xml').argv;
+const options = mclip(process.argv);
 
-if (argv._.length === 0) {
-  yargs.showHelp();
+if (options.help) {
   process.exit();
 }
 
-argv._.forEach((file) => {
+(options.list as string[]).forEach((file) => {
   const data = fs.readFileSync(file, 'utf8');
   const json = importer(data);
 
