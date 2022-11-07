@@ -1,6 +1,6 @@
-import fs from 'node:fs';
+import { readFileSync } from 'node:fs';
 import { importer } from './src';
-import mclip from 'mclip';
+import { mclip } from 'mclip';
 
 const options = mclip(process.argv);
 
@@ -9,7 +9,7 @@ if (options.help) {
 }
 
 (options.list as string[]).forEach((file) => {
-  const data = fs.readFileSync(file, 'utf8');
+  const data = readFileSync(file, 'utf8');
   const json = importer(data);
 
   console.log(json);

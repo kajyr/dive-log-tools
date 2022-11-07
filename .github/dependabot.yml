@@ -11,7 +11,6 @@ updates:
       interval: 'weekly'
     assignees:
       - 'kajyr'
-    open-pull-requests-limit: 3
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
@@ -20,4 +19,3 @@ updates:
       - "dependencies"
      assignees:
       - 'kajyr'
-    open-pull-requests-limit: 3
