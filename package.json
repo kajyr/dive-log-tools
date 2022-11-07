@@ -17,6 +17,7 @@
     "generate-schema": "typescript-json-schema --required src/types.ts Logbook > dive-schema.json",
     "release": "release-it"
   },
+  "type": "module",
   "dependencies": {
     "date-fns": "^2.29.3",
     "fast-xml-parser": "^4.0.11",
