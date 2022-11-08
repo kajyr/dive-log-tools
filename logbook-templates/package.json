@@ -5,9 +5,10 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "build": "node cli.js --template=pdfkit --dest=demo/export.pdf",
-    "build:empty": "node cli.js -vl --template=pdfkit --dest=demo/export_empty.pdf --empty",
-    "watch": "nodemon cli.js -lv --template=pdfkit --debug --dest=demo/export.pdf"
+    "build:logbook": "node cli.js --template=pdfkit --dest=build/export.pdf",
+    "build:empty": "node cli.js -vl --template=pdfkit --dest=build/export_empty.pdf --empty",
+    "watch": "nodemon cli.js -lv --template=pdfkit --debug --dest=build/export.pdf",
+    "test:demo": "npm run build:empty"
   },
   "repository": "https://github.com/kajyr/dive-log-tools/logbook-templates",
   "author": "Carlo 'kajyr' <carlo.panzi@gmail.com>",
