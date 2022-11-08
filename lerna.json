@@ -1,5 +1,5 @@
 {
-  "packages": ["importer"],
+  "packages": ["importer", "logbook-templates"],
   "version": "independent",
   "command": {
     "publish": {

@@ -23,7 +23,7 @@
     "build": "tsc -b tsconfig.json",
     "generate-schema": "typescript-json-schema --required src/types.ts Logbook > dive-schema.json",
     "prepublishOnly": "npm run build",
-    "test:demo": "ts-node  --project ./node.tsconfig.json ./cli.ts -- __tests__/__mocks__/macdive/doubles.xml",
+    "test:demo": "ts-node   ./cli.ts -- __tests__/__mocks__/macdive/doubles.xml",
     "watch": "tsc -b -w tsconfig.json"
   },
   "version": "4.3.4"

@@ -61,3 +61,11 @@ typings/
 .next
 
 .DS_Store
+
+dest/*
+data/*.xml
+.nyc_output/*
+
+demo/*.pdf
+demo/*.json
+.cache/

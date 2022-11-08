@@ -13,7 +13,7 @@
   "scripts": {
     "build": "lerna run build",
     "generate-schema": "typescript-json-schema --required src/types.ts Logbook > dive-schema.json",
-    "postinstall": "lerna bootstrap",
+    "postinstall": "lerna bootstrap --no-ci",
     "release": "npm run build && npm run test && lerna publish",
     "test": "jest --verbose",
     "test:ci": "jest --collectCoverage --coverageDirectory=\"./artifacts/testresults\" --ci --reporters=default --reporters=jest-junit",

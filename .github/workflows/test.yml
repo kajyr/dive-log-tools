@@ -12,7 +12,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: '18.11'
-      - run: npm ci
+      - run: npm i
       - run: npm run build
       - run: npm test
-      - run: cd importer && npm run test:demo
+      - run: npx lerna run test:demo

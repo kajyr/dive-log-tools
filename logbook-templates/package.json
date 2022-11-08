@@ -1,0 +1,42 @@
+{
+  "name": "logbook-templates",
+  "version": "2.7.0",
+  "description": "Un template per DivingLog e MacDive per stampare i [logbook F.I.P.S.A.S.][fipsas] precompilati",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "build": "node cli.js --template=pdfkit --dest=demo/export.pdf",
+    "build:empty": "node cli.js -vl --template=pdfkit --dest=demo/export_empty.pdf --empty",
+    "watch": "nodemon cli.js -lv --template=pdfkit --debug --dest=demo/export.pdf"
+  },
+  "repository": "https://github.com/kajyr/dive-log-tools/logbook-templates",
+  "author": "Carlo 'kajyr' <carlo.panzi@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kajyr/dive-log-tools/logbook-fipsas/issues"
+  },
+  "bin": {
+    "logbook": "./cli.js"
+  },
+  "homepage": "https://github.com/kajyr/dive-log-tools/logbook-fipsas#readme",
+  "dependencies": {
+    "date-fns": "^2.28.0",
+    "dive-log-importer": "^4.3.4",
+    "express": "^4.17.2",
+    "fs-extra": "^10.0.0",
+    "glob": "^7.2.0",
+    "home-config": "^0.1.0",
+    "mclip": "^0.3.1",
+    "nodemon": "^2.0.15",
+    "ora": "^4.0.4",
+    "pdfkit": "^0.13.0",
+    "tmp": "0.2.1",
+    "xml2js": "^0.4.23"
+  },
+  "nodemonConfig": {
+    "delay": "250",
+    "ignore": [
+      "./demo"
+    ]
+  }
+}
