@@ -1,38 +1,22 @@
 {
-  "name": "dive-log-importer",
-  "version": "4.3.4",
-  "main": "build/index.js",
-  "files": [
-    "build"
-  ],
-  "repository": "https://github.com/kajyr/dive-log-importer",
   "author": "Carlo Panzi <carlo.panzi@gmail.com>",
-  "license": "MIT",
-  "scripts": {
-    "build": "tsc -b tsconfig.json",
-    "watch": "tsc -b -w tsconfig.json",
-    "test": "jest --verbose",
-    "test:demo": "ts-node  --project ./node.tsconfig.json ./cli.ts -- __tests__/__mocks__/macdive/doubles.xml",
-    "prepublishOnly": "npm run build",
-    "generate-schema": "typescript-json-schema --required src/types.ts Logbook > dive-schema.json",
-    "release": "release-it"
-  },
-  "dependencies": {
-    "date-fns": "^2.29.3",
-    "fast-xml-parser": "^4.0.11",
-    "mclip": "^2.0.0"
-  },
   "devDependencies": {
-    "@release-it/conventional-changelog": "^4.3.0",
     "@types/jest": "^27.4.0",
     "@types/node": "^18.11.9",
-    "ajv": "^8.11.0",
     "jest": "^27.4.7",
-    "release-it": "^14.12.4",
-    "ts-jest": "^27.1.3",
-    "ts-node": "^10.9.1",
-    "tslib": "^2.4.0",
-    "typescript": "^4.8.4",
-    "typescript-json-schema": "^0.54.0"
+    "lerna": "^6.0.3",
+    "ts-jest": "^27.1.3"
+  },
+  "license": "MIT",
+  "name": "dive-log-tools",
+  "repository": "https://github.com/kajyr/dive-log-tools",
+  "scripts": {
+    "build": "lerna run build",
+    "generate-schema": "typescript-json-schema --required src/types.ts Logbook > dive-schema.json",
+    "postinstall": "lerna bootstrap",
+    "release": "npm run build && npm run test && lerna publish",
+    "test": "jest --verbose",
+    "test:ci": "jest --collectCoverage --coverageDirectory=\"./artifacts/testresults\" --ci --reporters=default --reporters=jest-junit",
+    "test:watch": "jest --watch"
   }
 }
