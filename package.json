@@ -3,6 +3,7 @@
   "devDependencies": {
     "@types/jest": "^27.4.0",
     "@types/node": "^18.11.9",
+    "conventional-changelog-conventionalcommits": "^5.0.0",
     "jest": "^27.4.7",
     "lerna": "^6.0.3",
     "ts-jest": "^27.1.3"
