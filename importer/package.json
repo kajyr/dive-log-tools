@@ -1,0 +1,30 @@
+{
+  "author": "Carlo Panzi <carlo.panzi@gmail.com>",
+  "dependencies": {
+    "date-fns": "^2.29.3",
+    "fast-xml-parser": "^4.0.11",
+    "mclip": "^2.0.0"
+  },
+  "devDependencies": {
+    "ajv": "^8.11.0",
+    "ts-node": "^10.9.1",
+    "tslib": "^2.4.0",
+    "typescript": "^4.8.4",
+    "typescript-json-schema": "^0.54.0"
+  },
+  "files": [
+    "build"
+  ],
+  "license": "MIT",
+  "main": "build/index.js",
+  "name": "dive-log-importer",
+  "repository": "https://github.com/kajyr/dive-log-tools/importer",
+  "scripts": {
+    "build": "tsc -b tsconfig.json",
+    "generate-schema": "typescript-json-schema --required src/types.ts Logbook > dive-schema.json",
+    "prepublishOnly": "npm run build",
+    "test:demo": "ts-node  --project ./node.tsconfig.json ./cli.ts -- __tests__/__mocks__/macdive/doubles.xml",
+    "watch": "tsc -b -w tsconfig.json"
+  },
+  "version": "4.3.4"
+}

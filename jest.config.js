@@ -1,12 +1,12 @@
 module.exports = {
-  moduleFileExtensions: ["js", "jsx", "ts", "tsx"],
+  moduleFileExtensions: ['js', 'jsx', 'ts', 'tsx'],
   transform: {
-    "^.+\\.tsx?$": "ts-jest",
+    '^.+\\.tsx?$': 'ts-jest',
   },
   moduleNameMapper: {
-    "^@/(.*)$": "<rootDir>/src/$1",
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
-  testMatch: ["**/*.test.ts", "**/*.test.js"],
-  testURL: "http://localhost/",
-  coveragePathIgnorePatterns: ["/node_modules/", "/build/"],
+  testMatch: ['**/*.test.ts', '**/*.test.js'],
+  testURL: 'http://localhost/',
+  coveragePathIgnorePatterns: ['/node_modules/', '/build/'],
 };
