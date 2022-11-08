@@ -1,6 +1,6 @@
 {
   "name": "logbook-templates",
-  "version": "2.7.0",
+  "version": "2.7.1",
   "description": "Un template per DivingLog e MacDive per stampare i [logbook F.I.P.S.A.S.][fipsas] precompilati",
   "main": "index.js",
   "type": "commonjs",
@@ -22,7 +22,7 @@
   "homepage": "https://github.com/kajyr/dive-log-tools/logbook-fipsas#readme",
   "dependencies": {
     "date-fns": "^2.28.0",
-    "dive-log-importer": "^4.3.4",
+    "dive-log-importer": "^4.3.5",
     "fs-extra": "^10.0.0",
     "glob": "^7.2.0",
     "home-config": "^0.1.0",

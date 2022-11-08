@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## 4.3.5 (2022-11-08)
+
+
+### Chores
+
+* Added logbook-templates ([591d137](https://github.com/kajyr/dive-log-tools/importer/commit/591d1370196f9111a3d27bdbd9ffee786c0990fa))
+* exposed types in package.json ([a430080](https://github.com/kajyr/dive-log-tools/importer/commit/a43008059f428d8000cfb02894ae69506fecfd35))
+* Moved repo to lerna ([120769c](https://github.com/kajyr/dive-log-tools/importer/commit/120769c0d5b77fe6d6d3a70c8d3d2caa938654db))
+
+
+
 #### 4.3.4 (2021-04-27)
 
 ##### Chores
@@ -235,4 +251,3 @@
 ##### Bug Fixes
 
 *  Missing importer export (75138d62)
-

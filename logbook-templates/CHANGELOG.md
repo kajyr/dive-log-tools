@@ -1,3 +1,19 @@
+# Change Log
+
+All notable changes to this project will be documented in this file.
+See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
+
+## 2.7.1 (2022-11-08)
+
+
+### Chores
+
+* Added logbook-templates ([591d137](https://github.com/kajyr/dive-log-tools/logbook-templates/commit/591d1370196f9111a3d27bdbd9ffee786c0990fa))
+* better tests ([2945a9e](https://github.com/kajyr/dive-log-tools/logbook-templates/commit/2945a9e46042e9ae9a3ae244db856b5a29e8e007))
+* updated mclip ([13d524d](https://github.com/kajyr/dive-log-tools/logbook-templates/commit/13d524d0b3857556ea8c3446bc2e2ee05ec46495))
+
+
+
 # [2.7.0](https://github.com/kajyr/logbook-templates/compare/v2.6.2...v2.7.0) (2022-01-21)
 
 #### 2.6.2 (2020-07-06)
