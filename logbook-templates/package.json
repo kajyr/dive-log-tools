@@ -5,8 +5,8 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
-    "build:logbook": "node cli.js --template=pdfkit --dest=build/export.pdf",
-    "build:empty": "node cli.js -vl --template=pdfkit --dest=build/export_empty.pdf --empty",
+    "build:logbook": "ts-node cli.js --template=pdfkit --dest=build/export.pdf",
+    "build:empty": "ts-node cli.js -vl --template=pdfkit --dest=build/export_empty.pdf --empty",
     "watch": "nodemon cli.js -lv --template=pdfkit --debug --dest=build/export.pdf",
     "test:demo": "npm run build:empty"
   },
@@ -17,7 +17,7 @@
     "url": "https://github.com/kajyr/dive-log-tools/logbook-fipsas/issues"
   },
   "bin": {
-    "logbook": "./cli.js"
+    "logbook": "ts-node ./cli.js"
   },
   "homepage": "https://github.com/kajyr/dive-log-tools/logbook-fipsas#readme",
   "dependencies": {
@@ -30,6 +30,7 @@
     "nodemon": "^2.0.15",
     "pdfkit": "^0.13.0",
     "tmp": "0.2.1",
+    "ts-node": "^10.9.1",
     "xml2js": "^0.4.23"
   },
   "nodemonConfig": {
