@@ -1,16 +1,16 @@
 import divinglog from './divelog';
 import macdive from './macdive';
-import { Importer } from './types';
+import { Logbook, Dive, Location, Gear, UsedGas, Sample } from './types';
 
 const importers = [macdive, divinglog];
 
-export { Importer };
+export { Logbook, Dive, Location, Gear, UsedGas, Sample };
 
 export function listImporters() {
   return importers.map((i) => i.name);
 }
 
-export function importer(xml: string): Importer.Logbook | null {
+export function importer(xml: string): Logbook | null {
   if (macdive.canImport(xml)) {
     return macdive.importer(xml);
   }

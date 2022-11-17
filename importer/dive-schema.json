@@ -137,8 +137,6 @@
                         },
                         "required": [
                             "country",
-                            "lat",
-                            "lng",
                             "place",
                             "site"
                         ],
@@ -247,7 +245,6 @@
                     "gear",
                     "half_depth_break",
                     "half_depth_break_time",
-                    "location",
                     "max_depth",
                     "notes",
                     "number",

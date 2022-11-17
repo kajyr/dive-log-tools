@@ -1,4 +1,4 @@
-import { BaseRawLogbook, Importer } from '../types';
+import { BaseRawLogbook, Sample } from '../types';
 
 export namespace MacDive {
   interface Gear {
@@ -75,7 +75,7 @@ export namespace MacDive {
     buddies: { buddy: string };
     gear: string | { item: Gear | Gear[] };
     gases: string | { gas: Gas | Gas[] };
-    samples: string | { sample: Importer.Sample | Importer.Sample[] };
+    samples: string | { sample: Sample | Sample[] };
     events?: { event: Event[] };
   }
 
