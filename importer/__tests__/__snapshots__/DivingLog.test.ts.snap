@@ -26,7 +26,6 @@ Object {
           "pressureStart": 70,
           "tankName": "15",
           "tankSize": 15,
-          "volumeStart": 3150,
         },
       ],
       "gear": Array [
@@ -111,7 +110,6 @@ Object {
           "pressureStart": 70,
           "tankName": "15",
           "tankSize": 15,
-          "volumeStart": 3150,
         },
       ],
       "gear": Array [

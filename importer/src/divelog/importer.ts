@@ -54,7 +54,6 @@ function normalizeDive(dive: DivingLog.Dive): Dive {
       pressureEnd,
       tankSize,
       tankName: tankName(tankSize, null, dive.DblTank !== 'False'),
-      volumeStart: pressureEnd * tankSize,
       oxygen: 0,
       helium: 0,
       double: false,

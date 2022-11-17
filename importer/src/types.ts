@@ -1,12 +1,11 @@
 export type UsedGas = {
-  pressureStart: number;
-  pressureEnd: number;
-  oxygen: number;
-  helium: number;
-  double: boolean;
-  tankSize: number;
-  tankName: string;
-  volumeStart: number;
+  pressureStart?: number;
+  pressureEnd?: number;
+  oxygen?: number;
+  helium?: number;
+  double?: boolean;
+  tankSize?: number;
+  tankName?: string;
 };
 
 export type Gear = { name: string; type: string; manufacturer: string; serial: string };
