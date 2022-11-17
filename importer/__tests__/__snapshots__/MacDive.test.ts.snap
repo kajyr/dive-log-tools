@@ -26,7 +26,6 @@ Object {
           "pressureStart": 194.16,
           "tankName": "15L",
           "tankSize": 15,
-          "volumeStart": 2912.4,
         },
       ],
       "gear": Array [
@@ -2170,7 +2169,6 @@ e per questo ho consumato veramente tanto.",
           "pressureStart": 190.3,
           "tankName": "15L",
           "tankSize": 15,
-          "volumeStart": 2854.5,
         },
       ],
       "gear": Array [
@@ -4511,7 +4509,6 @@ e per questo ho consumato veramente tanto.",
           "pressureStart": 206.84,
           "tankName": "15L",
           "tankSize": 15,
-          "volumeStart": 3102.6,
         },
       ],
       "gear": Array [

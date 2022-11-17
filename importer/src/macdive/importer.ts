@@ -76,7 +76,6 @@ function normalizeDive(dive: MacDive.Dive): Dive {
       double: gas.double !== 0,
       tankSize,
       tankName: tankName(tankSize, gas.tankName, gas.double !== 0),
-      volumeStart: pressureStart * tankSize,
     });
   }
 

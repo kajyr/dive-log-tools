@@ -4,8 +4,10 @@ export function gasLabel({ oxygen }: Partial<UsedGas>) {
   return oxygen && oxygen !== 21 ? `EAN${oxygen}` : 'Aria';
 }
 
-export function volume(pressure: number, size: number) {
-  return pressure * size;
+export function volume(pressure: number | undefined, size: number | undefined) {
+  if (pressure && size) {
+    return pressure * size;
+  }
 }
 
 export function volumeStart(gas: UsedGas) {
@@ -17,5 +19,10 @@ export function volumeEnd(gas: UsedGas) {
 }
 
 export function consumo(gas: UsedGas) {
-  return volumeStart(gas) - volumeEnd(gas);
+  const vstart = volumeStart(gas);
+  const vend = volumeEnd(gas);
+
+  if (vstart && vend) {
+    return vstart - vend;
+  }
 }
