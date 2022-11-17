@@ -2,7 +2,7 @@ const header = require('../atoms/header');
 const footer = require('../atoms/footer');
 const buddies = require('../atoms/buddies');
 const panel = require('../atoms/panel');
-const { LINE_WIDTH, PANELS_SPACING, MAP_PROPORTIONS } = require('../constants/ara-didattica');
+const { LINE_WIDTH, PANELS_SPACING } = require('../constants/ara-didattica').default;
 const { rows, rowsFixed, columns, columnsFixed, block } = require('../atoms/grid');
 const { title } = require('../atoms/titles');
 const page = require('../atoms/page');
@@ -14,6 +14,7 @@ const quadro1 = require('../organisms/quadro1');
 const condizioni = require('../organisms/condizioni');
 const profilo = require('../organisms/profilo');
 const { time } = require('../format');
+const { volumeStart, consumo } = require('../neutrons/gas');
 
 const MARGINS = { top: 5, bottom: 15, left: 42, right: 17 };
 
@@ -25,8 +26,6 @@ const PAGE_2_MARGINS = {
 };
 
 const fWLS = (label, value, options) => (d, x, y, w) => fieldWithLowerSubLabel(d, x, y, w, label, value, options);
-
-const gasLabel = (oxygen) => (oxygen === 21 ? 'Aria' : `EAN${gas.oxygen}`);
 
 /**
  * This logbook layout assumes only one gas.
@@ -67,21 +66,21 @@ async function draw(doc, dive, options) {
         const gpsW = 130;
         const locW = w - gpsW - spacing;
 
-        field(doc, x, r[1], locW, rowH, 'Luogo', dive.location.place, {
+        field(doc, x, r[1], locW, rowH, 'Luogo', dive.location?.place, {
           labelWidth: 45,
           bold: true,
         });
 
-        field(doc, x, r[2], locW, rowH, 'Punto', dive.location.site, {
+        field(doc, x, r[2], locW, rowH, 'Punto', dive.location?.site, {
           labelWidth: 45,
           bold: true,
         });
 
-        field(doc, x + w - gpsW, r[1], gpsW, rowH, 'Lat.', dive.location.lat, {
+        field(doc, x + w - gpsW, r[1], gpsW, rowH, 'Lat.', dive.location?.lat, {
           labelWidth: 45,
           bold: true,
         });
-        field(doc, x + w - gpsW, r[2], gpsW, rowH, 'Long.', dive.location.lng, {
+        field(doc, x + w - gpsW, r[2], gpsW, rowH, 'Long.', dive.location?.lng, {
           labelWidth: 45,
           bold: true,
         });
@@ -105,7 +104,7 @@ async function draw(doc, dive, options) {
         fieldWithLowerSubLabel(doc, x, y, fieldW, 'scopo', dive.scopo, {
           sublabel: '(didattica, svago, esplorazione, foto, ...)',
         });
-        fieldWithLowerSubLabel(doc, x + fieldW + 10, y, fieldW - 10, 'tipo', dive.types.join(','), {
+        fieldWithLowerSubLabel(doc, x + fieldW + 10, y, fieldW - 10, 'tipo', dive.types?.join(','), {
           sublabel: '(da riva, da barca, secca, notturna, relitto,...)',
         });
       });
@@ -123,7 +122,7 @@ async function draw(doc, dive, options) {
           }),
         );
         b(
-          fWLS(null, suit.name, {
+          fWLS(null, suit?.name, {
             sublabel: 'muta',
           }),
         );
