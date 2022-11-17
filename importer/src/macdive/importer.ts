@@ -18,8 +18,8 @@ import {
 
 import { tankName } from '../dive/tank';
 
-import { Importer } from '../types';
 import { MacDive } from './types';
+import { Dive, Logbook, Sample, UsedGas } from '../types';
 
 function getOptionalProp<T>(group: string | Record<string, T | T[]>, prop: string) {
   if (typeof group === 'string') {
@@ -35,14 +35,14 @@ function getOptionalProp<T>(group: string | Record<string, T | T[]>, prop: strin
   return [g];
 }
 
-export function parseSamples(samples: Importer.Sample[]): Importer.Sample[] {
+export function parseSamples(samples: Sample[]): Sample[] {
   return samples.map((s) => {
     // Depth can't be < 0
     return { ...s, depth: Math.max(s.depth, 0) };
   });
 }
 
-function normalizeDive(dive: MacDive.Dive): Importer.Dive {
+function normalizeDive(dive: MacDive.Dive): Dive {
   const dive_time = Math.floor(dive.duration / 60);
   const entryDate = new Date(dive.date);
   const exitDate = add(entryDate, { minutes: dive_time });
@@ -58,7 +58,7 @@ function normalizeDive(dive: MacDive.Dive): Importer.Dive {
   // just take the first
   const [gas] = getOptionalProp(dive.gases, 'gas');
 
-  const clearedGases: Importer.UsedGas[] = [];
+  const clearedGases: UsedGas[] = [];
   let air_used = 0;
 
   if (gas) {
@@ -131,7 +131,7 @@ function normalizeDive(dive: MacDive.Dive): Importer.Dive {
   return data;
 }
 
-function importer(logbook: MacDive.RawLogbook): Importer.Logbook {
+function importer(logbook: MacDive.RawLogbook): Logbook {
   const { dives } = logbook;
   return { dives: dives.map(normalizeDive) };
 }
