@@ -1,20 +1,25 @@
-const header = require('../atoms/header');
-const footer = require('../atoms/footer');
-const buddies = require('../atoms/buddies');
-const panel = require('../atoms/panel');
-const { LINE_WIDTH, PANELS_SPACING } = require('../constants/ara-didattica').default;
-const { rows, rowsFixed, columns, columnsFixed, block } = require('../atoms/grid');
-const { title } = require('../atoms/titles');
-const page = require('../atoms/page');
-const { squares } = require('../atoms/squares');
-const { debugSquare } = require('../atoms/debug');
-const { field, field_date, fieldWithLowerSubLabel, fieldWithFixedInput } = require('../molecules/field');
-const mapBlock = require('../molecules/map');
-const quadro1 = require('../organisms/quadro1');
-const condizioni = require('../organisms/condizioni');
-const profilo = require('../organisms/profilo');
-const { time } = require('../format');
-const { volumeStart, consumo } = require('../neutrons/gas');
+import { Maybe, Options, Doc } from '../types';
+
+import header from '../atoms/header';
+import footer from '../atoms/footer';
+import buddies from '../atoms/buddies';
+import { panel } from '../atoms/panel';
+import { LINE_WIDTH, PANELS_SPACING } from '../constants/ara-didattica';
+import { rows, rowsFixed, columns, columnsFixed, block } from '../atoms/grid';
+import { title } from '../atoms/titles';
+import page from '../atoms/page';
+import { squares } from '../atoms/squares';
+import { field, field_date, fieldWithLowerSubLabel, fieldWithFixedInput } from '../molecules/field';
+import mapBlock from '../molecules/map';
+import quadro1 from '../organisms/quadro1';
+import condizioni from '../organisms/condizioni';
+import profilo from '../organisms/profilo';
+import { time } from '../format';
+import { volumeStart, consumo, getGases } from '../neutrons/gas';
+import { Dive } from 'dive-log-importer';
+import { getComputer, getSuit } from '../neutrons/gear';
+import { getImage } from '../neutrons/location';
+import { getTempi } from '../neutrons/tempi';
 
 const MARGINS = { top: 5, bottom: 15, left: 42, right: 17 };
 
@@ -25,20 +30,23 @@ const PAGE_2_MARGINS = {
   right: MARGINS.left,
 };
 
-const fWLS = (label, value, options) => (d, x, y, w) => fieldWithLowerSubLabel(d, x, y, w, label, value, options);
+const fWLS =
+  (label: Maybe<string>, value: Maybe<string | number>, options?: any) => (d: Doc, x: number, y: number, w: number) =>
+    fieldWithLowerSubLabel(d, x, y, w, label, value, options);
 
 /**
  * This logbook layout assumes only one gas.
  */
-async function draw(doc, dive, options) {
-  const [gas] = dive.gases;
+async function draw(doc: Doc, dive: Partial<Dive>, options: Options, version: string) {
+  const [gas] = getGases(dive);
   const { tankName } = gas;
 
-  const { suit, computer } = dive.namedGears;
-
+  const computer = getComputer(dive);
+  const suit = getSuit(dive);
+  const image = await getImage(dive, options);
   /* END DIVE RELATED THINGS */
 
-  page(doc, MARGINS, (doc, x, contentY, contentWidth, contentHeight) => {
+  page(doc, MARGINS, (doc: Doc, x: number, contentY: number, contentWidth: number, contentHeight: number) => {
     doc.lineWidth(LINE_WIDTH);
 
     const [pHeader, pL, pQ1, pQ2, pB, pF] = rowsFixed(
@@ -50,8 +58,8 @@ async function draw(doc, dive, options) {
 
     header(doc, 'SCHEDA ARIA (didattica)', x, pHeader.y, contentWidth, pHeader.h);
 
-    panel(doc, x, pL.y, contentWidth, pL.h, 2, (doc, x, y, w, h) => {
-      panel(doc, x, y, w, h, 3, (doc, x, y, w, h) => {
+    panel(doc, x, pL.y, contentWidth, pL.h, 2, (doc: Doc, xc: number, y: number, w: number, h: number) => {
+      panel(doc, xc, y, w, h, 3, (doc: Doc, x: number, y: number, w: number, h: number) => {
         const { r, rowH } = rows(y, h, 3, 2);
         doc.fontSize(10);
 
@@ -59,9 +67,7 @@ async function draw(doc, dive, options) {
 
         field(doc, x, r[0], 130, rowH, 'Immersione N°', dive.number, { bold: true });
         const dateX = x + 130 + spacing;
-        field_date(doc, dateX, r[0], w + x - dateX, rowH, 'Data', dive.date, {
-          bold: true,
-        });
+        field_date(doc, dateX, r[0], w + x - dateX, rowH, 'Data', dive.date);
 
         const gpsW = 130;
         const locW = w - gpsW - spacing;
@@ -88,7 +94,7 @@ async function draw(doc, dive, options) {
     });
 
     quadro1(doc, x, pQ1.y, contentWidth, pQ1.h, dive);
-    panel(doc, x, pQ2.y, contentWidth, pQ2.h, 2, (doc, x, y, w, h) => {
+    panel(doc, x, pQ2.y, contentWidth, pQ2.h, 2, (doc: Doc, x: number, y: number, w: number, h: number) => {
       const [q2, qScopo, qCond, qAttr, qProfilo, qRiassunto] = rowsFixed(
         [13, 21, 53, 34, null, 77],
         y,
@@ -96,12 +102,12 @@ async function draw(doc, dive, options) {
         PANELS_SPACING,
       );
 
-      panel(doc, x, q2.y, w, q2.h, 3, (doc, x, y, w, h) => {
+      panel(doc, x, q2.y, w, q2.h, 3, (doc: Doc, x: number, y: number, w: number, h: number) => {
         title(doc, "QUADRO 2 - DESCRIZIONE DELL'IMMERSIONE", x, y, 9, { width: w });
       });
-      panel(doc, x, qScopo.y, w, qScopo.h, 3, (doc, x, y, w, h) => {
+      panel(doc, x, qScopo.y, w, qScopo.h, 3, (doc: Doc, x: number, y: number, w: number, h: number) => {
         const fieldW = w / 2;
-        fieldWithLowerSubLabel(doc, x, y, fieldW, 'scopo', dive.scopo, {
+        fieldWithLowerSubLabel(doc, x, y, fieldW, 'scopo', dive.types?.join(', '), {
           sublabel: '(didattica, svago, esplorazione, foto, ...)',
         });
         fieldWithLowerSubLabel(doc, x + fieldW + 10, y, fieldW - 10, 'tipo', dive.types?.join(','), {
@@ -110,7 +116,7 @@ async function draw(doc, dive, options) {
       });
       condizioni(doc, x, qCond.y, w, qCond.h, dive);
 
-      panel(doc, x, qAttr.y, w, qAttr.h, 3, (doc, x, y, w, h) => {
+      panel(doc, x, qAttr.y, w, qAttr.h, 3, (doc: Doc, x: number, y: number, w: number, h: number) => {
         // attrezzatura
         title(doc, 'ATTREZZATURA', x, y, 9, { width: w });
 
@@ -143,7 +149,8 @@ async function draw(doc, dive, options) {
         );
       });
       profilo(doc, x, qProfilo.y, w, qProfilo.h, dive);
-      panel(doc, x, qRiassunto.y, w, qRiassunto.h, 3, (doc, x, y, w, h) => {
+      panel(doc, x, qRiassunto.y, w, qRiassunto.h, 3, (doc: Doc, x: number, y: number, w: number, h: number) => {
+        const tempi = getTempi(dive);
         // quadro riassuntivo
         const titleW = w / 2 + 20;
         title(doc, "QUADRO RIASSUNTIVO DELL'IMMERSIONE", x, y, 9, { width: titleW });
@@ -156,11 +163,11 @@ async function draw(doc, dive, options) {
 
         const inputWidth = 30;
 
-        a((doc, x, y, w, h) => {
+        a((doc: Doc, x: number, y: number, w: number, h: number) => {
           fieldWithFixedInput(doc, x, r[0], w, rowH, 'ora inizio imm.', dive.entry_time && time(dive.entry_time), {
             inputWidth,
           });
-          fieldWithFixedInput(doc, x, r[1], w, rowH, 'durata', dive.tempi.durata, {
+          fieldWithFixedInput(doc, x, r[1], w, rowH, 'durata', tempi.durata, {
             inputWidth,
             sublabel: 'B+C+D+E+F',
           });
@@ -176,7 +183,7 @@ async function draw(doc, dive, options) {
             inputWidth,
           });
         });
-        b((doc, x, y, w, h) => {
+        b((doc: Doc, x: number, y: number, w: number, h: number) => {
           fieldWithFixedInput(doc, x, r[0], w, rowH, 'ora fine imm.', dive.exit_time && time(dive.exit_time), {
             inputWidth,
           });
@@ -194,17 +201,17 @@ async function draw(doc, dive, options) {
           });
           fieldWithFixedInput(doc, x, r[4], w, rowH, 'FAR finale', null, { inputWidth });
         });
-        c((doc, x, y, w, h) => {
-          fieldWithFixedInput(doc, x, r[0], w, rowH, 'tempo di fondo', dive.tempi.fondo, {
+        c((doc: Doc, x: number, y: number, w: number, h: number) => {
+          fieldWithFixedInput(doc, x, r[0], w, rowH, 'tempo di fondo', tempi.bottom_time, {
             inputWidth,
             sublabel: 'B',
           });
 
-          fieldWithFixedInput(doc, x, r[1], w, rowH, dive.tempi.sostaProf.label, dive.tempi.sostaProf.value, {
+          fieldWithFixedInput(doc, x, r[1], w, rowH, tempi.sostaProf.label, tempi.sostaProf.value, {
             inputWidth,
             sublabel: 'C',
           });
-          fieldWithFixedInput(doc, x, r[2], w, rowH, 'risalita', dive.tempi.risalita, {
+          fieldWithFixedInput(doc, x, r[2], w, rowH, 'risalita', tempi.risalita, {
             inputWidth,
             sublabel: 'D',
           });
@@ -223,13 +230,13 @@ async function draw(doc, dive, options) {
     buddies(doc, x, pB.y, contentWidth, pB.h, dive);
 
     footer(doc, x, pF.y, contentWidth, pF.h, {
-      version: options.version,
-      isFake: dive.tags.indexOf('fake') !== -1,
+      version,
+      isFake: dive.tags?.includes('fake'),
     });
   });
 
-  page(doc, PAGE_2_MARGINS, (doc, x, y, w, h) => {
-    const hasMap = !!(dive.location && dive.location.image);
+  page(doc, PAGE_2_MARGINS, (doc: Doc, x: number, y: number, w: number, h: number) => {
+    const hasMap = !!image;
     const mapHeight = hasMap ? 172 : 0;
 
     const [pHeader, pLabel, pSquares, pMap, pF] = rowsFixed([28, 30, null, mapHeight, 15], y, h, PANELS_SPACING);
@@ -238,7 +245,7 @@ async function draw(doc, dive, options) {
 
     const info = block(doc, x, pLabel.y, w, pLabel.h);
 
-    info((doc, x, y, w, h) => {
+    info((doc: Doc, x: number, y: number, w: number, h: number) => {
       title(doc, 'ANNOTAZIONI', x, y, 9, { width: w });
       doc.text(
         "(compagni d'immersione, indirizzi, numeri telefonici, punti di riferimento, piantina della zona, profili della costa e dei fondali, osservazioni naturalistiche o archeologiche, ecc)",
@@ -248,7 +255,7 @@ async function draw(doc, dive, options) {
       );
     });
 
-    squares(doc, x, pSquares.y, w, pSquares.h, async (doc, x, y, width, h) => {
+    squares(doc, x, pSquares.y, w, pSquares.h, async (doc: Doc, x: number, y: number, width: number, h: number) => {
       let nextY = y;
       const options = {
         width,
@@ -272,11 +279,11 @@ async function draw(doc, dive, options) {
     });
 
     if (hasMap) {
-      mapBlock(doc, x, pMap.y, w, pMap.h, dive.location.image);
+      mapBlock(doc, x, pMap.y, w, pMap.h, image);
     }
 
     footer(doc, x, pF.y, w, pF.h);
   });
 }
 
-module.exports = draw;
+export default draw;

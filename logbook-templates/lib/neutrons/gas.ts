@@ -1,4 +1,4 @@
-import { UsedGas } from 'dive-log-importer';
+import { Dive, UsedGas } from 'dive-log-importer';
 
 export function gasLabel({ oxygen }: Partial<UsedGas>) {
   return oxygen && oxygen !== 21 ? `EAN${oxygen}` : 'Aria';
@@ -25,4 +25,16 @@ export function consumo(gas: UsedGas) {
   if (vstart && vend) {
     return vstart - vend;
   }
+}
+
+const EMPTY_GAS: UsedGas = {
+  oxygen: 21,
+};
+
+/**
+ * Gets the gases from the Dive.
+ * If there are none, assumes that at least Air was used
+ */
+export function getGases(dive: Partial<Dive>) {
+  return dive.gases && dive.gases.length > 0 ? dive.gases : [EMPTY_GAS];
 }

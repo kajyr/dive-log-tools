@@ -1,5 +1,6 @@
-import { EnricherFn } from '.';
-import getUrl from '../neutrons/getUrl';
+import { Dive } from 'dive-log-importer';
+
+import getUrl from './getUrl';
 import mkHash from '../md5';
 import { Options } from '../types';
 
@@ -19,31 +20,21 @@ async function getMap(lat: string, lng: string, options: Options) {
   return getUrl(url, `${hash}.png`, options);
 }
 
-const enricher: EnricherFn = async (dive, options) => {
+export async function getImage(dive: Partial<Dive>, options: Options) {
   if (!options?.maps) {
-    return dive;
+    return null;
   }
   if (!dive.location) {
-    return dive;
+    return null;
   }
+
   const { lat, lng } = dive.location;
 
   if (!lat || !lng) {
-    return dive;
+    return null;
   }
 
   const image = await getMap(lat, lng, options);
 
-  if (!image) {
-    return dive;
-  }
-  return {
-    ...dive,
-    location: {
-      ...dive.location,
-      image,
-    },
-  };
-};
-
-export default enricher;
+  return image;
+}

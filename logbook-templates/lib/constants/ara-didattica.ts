@@ -1,7 +1,5 @@
-export default {
-  FONT_SIZE_MINI_HEADERS: 7,
-  FONT_SIZE_FIELDS: 8,
-  MINI_HEADERS_HEIGHT: 8,
-  PANELS_SPACING: 2,
-  LINE_WIDTH: 0.8,
-};
+export const FONT_SIZE_MINI_HEADERS = 7;
+export const FONT_SIZE_FIELDS = 8;
+export const MINI_HEADERS_HEIGHT = 8;
+export const PANELS_SPACING = 2;
+export const LINE_WIDTH = 0.8;

@@ -1,7 +1,9 @@
-const { centerY } = require('../atoms/text');
-const { LINE_WIDTH } = require('../constants/ara-didattica').default;
+import { Doc, Value } from '../types';
 
-const vInputs = (doc, x, y, w, rowH, values) => {
+import { centerY } from '../atoms/text';
+import { LINE_WIDTH } from '../constants/ara-didattica';
+
+export const vInputs = (doc: Doc, x: number, y: number, w: number, rowH: number, values: Value[]) => {
   /*     debugSquare(doc, x, y, w, h);
    */ const h = rowH * values.length;
   const hLine = LINE_WIDTH / 2;
@@ -17,7 +19,7 @@ const vInputs = (doc, x, y, w, rowH, values) => {
         .stroke();
     }
     if (v) {
-      doc.text(v, x + 3, centerY(doc, lineY, rowH), {
+      doc.text(String(v), x + 3, centerY(doc, lineY, rowH), {
         width: w - 3,
         height: rowH,
         ellipsis: true,
@@ -25,5 +27,3 @@ const vInputs = (doc, x, y, w, rowH, values) => {
     }
   });
 };
-
-module.exports = { vInputs };
