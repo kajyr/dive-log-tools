@@ -25,7 +25,7 @@
     "generate-schema": "typescript-json-schema --required src/types.ts Logbook > dive-schema.json",
     "prepublishOnly": "npm run build",
     "test:demo": "ts-node   ./cli.ts -- __tests__/__mocks__/macdive/doubles.xml",
-    "watch": "tsc -p -w tsconfig.json"
+    "watch": "tsc -w -p tsconfig.json"
   },
   "version": "4.3.5"
 }
