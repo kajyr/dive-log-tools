@@ -1,4 +1,4 @@
-const { scale } = require('../charts');
+import { scale } from './charts';
 
 test('scale', () => {
   // 5 is in the middle between 0 and 10

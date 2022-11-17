@@ -1,6 +1,7 @@
 {
   "author": "Carlo Panzi <carlo.panzi@gmail.com>",
   "devDependencies": {
+    "@types/glob": "^8.0.0",
     "@types/jest": "^27.4.0",
     "@types/node": "^18.11.9",
     "conventional-changelog-conventionalcommits": "^5.0.0",
