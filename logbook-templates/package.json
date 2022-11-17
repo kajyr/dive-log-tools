@@ -2,7 +2,6 @@
   "name": "logbook-templates",
   "version": "2.7.1",
   "description": "Un template per DivingLog e MacDive per stampare i [logbook F.I.P.S.A.S.][fipsas] precompilati",
-  "main": "index.js",
   "type": "commonjs",
   "scripts": {
     "build:logbook": "ts-node cli.ts --template=pdfkit --dest=build/export.pdf",
