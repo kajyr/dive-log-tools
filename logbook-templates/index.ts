@@ -2,7 +2,7 @@ import path from 'path';
 import { ensureDirSync } from 'fs-extra';
 import { saveJson } from './lib/fs';
 import enrich from './lib/enrichers';
-import { importer, Logbook } from 'dive-log-importer';
+import { importer } from 'dive-log-importer';
 import pdfkit from './lib/pdfkit';
 import { readFile } from 'fs/promises';
 import { resolve, dirname } from 'path';
@@ -45,7 +45,7 @@ async function process(logbook: PartialLogbook, options: Options) {
   const folder = dirname(fullDest);
   ensureDirSync(folder);
 
-  pdfkit(enriched, fullDest);
+  await pdfkit(enriched, fullDest, options);
 
   if (options.debug) {
     const jsonDebugFile = path.join(folder, `logbook-debug.json`);

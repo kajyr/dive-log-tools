@@ -1,4 +1,4 @@
-const { fillMissing, spread } = require('../grid');
+import { fillMissing, spread } from './grid';
 
 test('fillMissing', () => {
   expect(fillMissing([null, 25, 25], 100)).toEqual([50, 25, 25]);

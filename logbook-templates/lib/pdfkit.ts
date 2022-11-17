@@ -1,13 +1,14 @@
-const { createWriteStream, readFileSync } = require('fs');
-const path = require('path');
-const PDFDocument = require('pdfkit');
+import { createWriteStream, readFileSync } from 'node:fs';
+import path from 'node:path';
+import PDFDocument from 'pdfkit';
 
 //const page = require('./pages/aria-nx-base');
-const page = require('./pages/ara-didattica');
+import draw from './pages/ara-didattica';
+import { Options, PartialLogbook } from './types';
 
 const PACKAGE_PATH = path.normalize(path.join(__dirname, '../package.json'));
 
-function init(logbook, dest) {
+async function init(logbook: PartialLogbook, dest: string, options: Options) {
   const pkg = JSON.parse(readFileSync(PACKAGE_PATH, 'utf8'));
 
   // Create a document
@@ -28,16 +29,18 @@ function init(logbook, dest) {
   doc.font('Helvetica');
   doc.fontSize(12);
 
-  logbook.dives.reverse().forEach((dive) => {
+  const rev = logbook.dives.reverse();
+
+  for (const dive of rev) {
     try {
-      page(doc, dive, { version: pkg.version });
+      await draw(doc, dive, options, pkg.version);
     } catch (e) {
       console.log('error', e);
     }
-  });
+  }
 
   // Finalize PDF file
   doc.end();
 }
 
-module.exports = init;
+export default init;

@@ -1,8 +1,4 @@
 import typeEnri from './type';
-import maps from './maps';
-import gear from './gear';
-import tempi from './tempi';
-import scopo from './scopo';
 import gases from './gases';
 import { Options, PartialLogbook } from '../types';
 import { Dive } from 'dive-log-importer';
@@ -11,7 +7,7 @@ type MaybePromise<T> = Promise<T> | T;
 
 export type EnricherFn = (dive: Partial<Dive>, options?: Options) => MaybePromise<Partial<Dive>>;
 
-const enrichers = [maps, gear, typeEnri, scopo, gases, tempi];
+const enrichers = [typeEnri, gases];
 
 const enricher = async (dive: Partial<Dive>, options: Options) => {
   let updated = dive;
