@@ -8,7 +8,7 @@ export type UsedGas = {
   tankName?: string;
 };
 
-export type Gear = { name: string; type: string; manufacturer: string; serial: string };
+export type Gear = { name: string; type: string; manufacturer?: string; serial?: string };
 
 export type Sample = {
   depth: number;
