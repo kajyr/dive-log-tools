@@ -68,14 +68,6 @@
                                     "type": "number"
                                 }
                             },
-                            "required": [
-                                "double",
-                                "helium",
-                                "oxygen",
-                                "pressureEnd",
-                                "pressureStart",
-                                "tankSize"
-                            ],
                             "type": "object"
                         },
                         "type": "array"
@@ -97,9 +89,7 @@
                                 }
                             },
                             "required": [
-                                "manufacturer",
                                 "name",
-                                "serial",
                                 "type"
                             ],
                             "type": "object"
