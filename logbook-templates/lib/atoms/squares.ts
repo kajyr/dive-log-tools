@@ -1,10 +1,9 @@
 import { Doc, PFN } from '../types';
-import { debugSquare } from './debug';
 
 const SQUARE_SIDE = 13;
 const LINE_COLOR = '#DEDEDE';
 
-export function squares(doc: Doc, x: number, y: number, w: number, h: number, content?: PFN) {
+export function squares(doc: Doc, x: number, y: number, w: number, h: number, content?: PFN | string) {
   doc.rect(x, y, w, h).fillAndStroke('white', LINE_COLOR).fillColor('black');
 
   let vx = x;

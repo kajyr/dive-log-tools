@@ -5,7 +5,6 @@ import { field, field_date, checkbox, fieldWithUpperLabel } from '../molecules/f
 import { columns, rows, centerY, block } from '../atoms/grid';
 import { title } from '../atoms/titles';
 import { squares } from '../atoms/squares';
-import { debugSquare } from '../atoms/debug';
 import condizioniAmbientali from '../molecules/condizioni-ambientali';
 import { time } from '../format';
 import { gasLabel, getGases } from '../neutrons/gas';
@@ -24,7 +23,6 @@ const FOOTER_HEIGHT = 45;
 
 const FIELD_BIG_HEIGHT = 15;
 
-const FONT_SIZE_TITLES = 12;
 const FONT_SIZE_FIELDS = 8;
 
 /**
