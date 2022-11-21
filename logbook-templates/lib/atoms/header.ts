@@ -15,7 +15,7 @@ function header(doc: Doc, title: string, startX: number, startY: number, width: 
 
   const cY = centerY(doc, startY, height);
 
-  let curX = startX;
+  const curX = startX;
   /*   if (logo) {
     doc.image(`${IMAGES_PATH}/nettuno.png`, curX, startY, {
       height,

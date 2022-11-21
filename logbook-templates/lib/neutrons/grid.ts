@@ -10,7 +10,7 @@ export function fillMissing(list: (number | null)[], total: number) {
   const nulls = list.filter((v) => v == null);
   // the space already taken
   const taken = list.reduce((acc: number, cur) => {
-    return !!cur ? (acc || 0) + cur : acc || 0;
+    return cur ? (acc || 0) + cur : acc || 0;
   }, 0);
 
   const remaining = total - taken;

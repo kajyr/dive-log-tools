@@ -251,6 +251,7 @@ function page(doc: Doc, dive: Partial<Dive>) {
           sublabel: '(min)',
         });
       });
+
       second((doc, x, y, w, h) => {
         fieldWithUpperLabel(doc, x + 5, r[3], baseFW, rowH, 'T fondo', tempi.bottom_time, {
           bold: true,

@@ -12,6 +12,6 @@ module.exports = {
   },
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
-    eqeqeq: 'error',
+    eqeqeq: ['error', 'smart'],
   },
 };

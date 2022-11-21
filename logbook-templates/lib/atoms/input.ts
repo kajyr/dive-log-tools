@@ -22,7 +22,7 @@ export function input(doc: Doc, x: number, y: number, w: number, h: number, valu
   }
   doc.fillColor('black');
 
-  if (!!value) {
+  if (value) {
     doc.text(String(value), x + 3, centerY(doc, y, h), { width: w - 3, height: h, ellipsis: true });
   }
 }

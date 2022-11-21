@@ -43,7 +43,7 @@ const CURRENT_STRONG = 'STRONG';
 const CURRENT_WEAK = 'WEAK';
 const CURRENT_NONE = 'NONE';
 
-export function normalizeVisibility(value: string = '') {
+export function normalizeVisibility(value = '') {
   switch (value.toLowerCase()) {
     case 'scarsa':
     case 'bassa':
@@ -86,7 +86,7 @@ export function normalizeWeather(value: string) {
       return WEATHER_GOOD;
   }
 }
-export function normalizeSurface(value: string = '') {
+export function normalizeSurface(value = '') {
   switch (value.toLowerCase()) {
     case 'molto mosso':
     case 'tempesta':
@@ -112,7 +112,7 @@ export function normalizeSurface(value: string = '') {
   }
 }
 
-export function normalizeCurrent(value: string = '') {
+export function normalizeCurrent(value = '') {
   switch (value.toLowerCase()) {
     case 'forte':
       return CURRENT_STRONG;
@@ -130,7 +130,7 @@ export function normalizeCurrent(value: string = '') {
   }
 }
 
-export function entry(value: string = '') {
+export function entry(value = '') {
   switch (value.toLowerCase()) {
     case 'barca':
     case 'boat':
@@ -146,7 +146,7 @@ export function entry(value: string = '') {
   }
 }
 
-export function water(value: string = '') {
+export function water(value = '') {
   switch (value.toLowerCase()) {
     case 'pool':
     case 'piscina':

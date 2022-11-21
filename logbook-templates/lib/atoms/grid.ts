@@ -31,7 +31,7 @@ export function columns(
   let curX = startX;
   const availableWidth = width - gutter * (list.length - 1);
 
-  return fillMissing(list, 100).map((perc, i) => {
+  return fillMissing(list, 100).map((perc) => {
     const bW = (availableWidth / 100) * perc;
     const fn = block(doc, curX, startY, bW, height);
     curX = curX + bW + gutter;
@@ -54,7 +54,7 @@ export function columnsFixed(
   return spread(list, startX, width, gutter).map(([x, w]) => block(doc, x, startY, w, height));
 }
 
-export function rows(startY: number, height: number, number: number, gutter: number = 0) {
+export function rows(startY: number, height: number, number: number, gutter = 0) {
   const availableH = height - gutter * (number - 1);
   const rowH = availableH / number;
 

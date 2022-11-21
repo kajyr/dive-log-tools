@@ -13,7 +13,7 @@ const chartComponent = (box: (fn: PFN) => void, samples: Sample[]) =>
   box((doc: Doc, x: number, y: number, w: number, h: number) => {
     //y Axe
     const depths = samples.map((s) => s.depth);
-    const minDepth: number = 0;
+    const minDepth = 0;
     const maxDepth = Math.ceil(Math.max(...depths));
     doc.fontSize(6);
     const widthOfYLabels = 9; // two digits..
@@ -27,7 +27,7 @@ const chartComponent = (box: (fn: PFN) => void, samples: Sample[]) =>
     doc.moveTo(axisOriginX, y).lineTo(axisOriginX, axisOriginY).stroke();
 
     // x Axe
-    const minTime: number = 0;
+    const minTime = 0;
     const maxTime = samples[samples.length - 1].time;
 
     doc.text(String(minTime), axisOriginX, bottomLabel);

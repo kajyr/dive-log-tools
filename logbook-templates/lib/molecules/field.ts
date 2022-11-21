@@ -152,7 +152,7 @@ export function fieldWithLowerSubLabel(
   const { labelWidth, labelSpacing = 3, sublabel } = options;
   const labelW = labelWidth ? labelWidth : label ? doc.widthOfString(label) : 0;
 
-  if (!!label) {
+  if (label) {
     doc.text(label, x, centerY(doc, y, inputHeight), { width: labelW });
   }
 
