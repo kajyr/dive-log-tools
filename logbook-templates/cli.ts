@@ -2,19 +2,17 @@
 import { mclip } from 'mclip';
 import { convert, convertEmpty } from '.';
 import conf from './lib/options';
-import { CliOptions, Options } from './lib/types';
+import { Options } from './lib/types';
 
-const uncastOpts = mclip(process.argv, {
+const opts = mclip(process.argv, {
   dest: { default: './export.pdf', description: 'Output file name', short: 'd' },
   template: { default: 'fipsas-didattica', description: 'Template name', short: 't' },
-  logo: { description: 'Prints the club logo', short: 'l' },
-  verbose: { description: 'Verbose mode', short: 'v' },
-  debug: { description: 'Debug mode' },
-  empty: { description: 'Prints an empty sheet (Does not load any xml file)' },
+  logo: { description: 'Prints the club logo', short: 'l', default: false },
+  verbose: { description: 'Verbose mode', short: 'v', default: false },
+  debug: { description: 'Debug mode', default: false },
+  empty: { description: 'Prints an empty sheet (Does not load any xml file)', default: false },
 });
 
-//@ts-ignore
-const opts = uncastOpts as CliOptions;
 const options: Options = { ...conf, ...opts };
 
 if (options.verbose) {
