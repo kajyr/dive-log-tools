@@ -7,7 +7,7 @@ export interface CliOptions {
   debug?: boolean;
   list: string[];
   template: string;
-  logo?: string;
+  logo?: boolean;
 }
 
 /**

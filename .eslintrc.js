@@ -13,5 +13,6 @@ module.exports = {
   plugins: ['@typescript-eslint', 'prettier'],
   rules: {
     eqeqeq: ['error', 'smart'],
+    '@typescript-eslint/no-explicit-any': 'off',
   },
 };
