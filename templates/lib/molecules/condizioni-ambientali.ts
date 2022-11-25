@@ -33,7 +33,7 @@ const component = (
 ) => {
   const [labels, ok, med, nope] = columns(doc, [null, 25, 25, 25], x, y, w, h, 1);
 
-  labels((doc: Doc, x: number, y: number, w: number, h: number) => {
+  labels((doc: Doc, x: number, y: number, w: number) => {
     label(doc, 'meteo:', null, x, r[0], w, rowH, 'left');
     label(doc, 'mare:', null, x, r[1], w, rowH, 'left');
     label(doc, 'visibilità:', null, x, r[2], w, rowH, 'left');

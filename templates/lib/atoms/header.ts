@@ -6,7 +6,7 @@ const IMAGES_PATH = path.normalize(path.join(__dirname, '../../templates/pdfkit'
 
 const FIPSAS_IMAGE_HEIGHT = 25;
 const FIPSAS_IMAGE_WIDTH = 25;
-const LOGO_IMAGE_SIZE = 25;
+//const LOGO_IMAGE_SIZE = 25;
 
 function header(doc: Doc, title: string, startX: number, startY: number, width: number, height: number) {
   //const { logo } = options;

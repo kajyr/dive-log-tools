@@ -5,7 +5,7 @@ export function time(str: string | undefined) {
   if (!str) {
     return;
   }
-  const [h, m, s] = str.split(':');
+  const [h, m] = str.split(':');
   return [h, m].join(':');
 }
 

@@ -1,4 +1,4 @@
-import { columns, rows } from './grid';
+import { rows } from './grid';
 
 describe('Grid', () => {
   test('rows', () => {

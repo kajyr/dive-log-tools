@@ -4,7 +4,6 @@ import getUrl from './getUrl';
 import mkHash from '../md5';
 import { Options } from '../types';
 
-const mapW = 900;
 const mapH = 300;
 const size = `${900}x${mapH}`;
 const zoom = '12';

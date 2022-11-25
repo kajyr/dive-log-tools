@@ -1,4 +1,4 @@
-import { Dive, UsedGas } from 'dive-log-importer';
+import { UsedGas } from 'dive-log-importer';
 import { EnricherFn } from '.';
 import { gasLabel } from '../neutrons/gas';
 

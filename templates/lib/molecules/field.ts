@@ -1,7 +1,6 @@
 import { Doc, Maybe, Value } from '../types';
 
 import format from 'date-fns/format';
-import { debugSquare } from '../atoms/debug';
 import { centerY } from '../atoms/text';
 import { input } from '../atoms/input';
 import labelF from '../atoms/label';
