@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`DiveLog importer Basic 1`] = `
-Object {
-  "dives": Array [
-    Object {
+{
+  "dives": [
+    {
       "air_used": 2100,
       "bottom_time": 31.5,
       "buddies": "Andrea, Mauro",
@@ -17,8 +17,8 @@ Object {
       "entry": "da barca",
       "entry_time": "10:01:00",
       "exit_time": "10:43:00",
-      "gases": Array [
-        Object {
+      "gases": [
+        {
           "double": false,
           "helium": 0,
           "oxygen": 0,
@@ -28,32 +28,32 @@ Object {
           "tankSize": 15,
         },
       ],
-      "gear": Array [
-        Object {
+      "gear": [
+        {
           "manufacturer": "",
           "name": "Aladin Sport Matrix",
           "serial": "",
           "type": "",
         },
-        Object {
+        {
           "manufacturer": "",
           "name": "Jacket",
           "serial": "",
           "type": "",
         },
-        Object {
+        {
           "manufacturer": "",
           "name": "Maschera Blu",
           "serial": "",
           "type": "",
         },
-        Object {
+        {
           "manufacturer": "",
           "name": "Muta 5mm logo giallo",
           "serial": "",
           "type": "",
         },
-        Object {
+        {
           "manufacturer": "",
           "name": "Pinne",
           "serial": "",
@@ -62,7 +62,7 @@ Object {
       ],
       "half_depth_break": "14m",
       "half_depth_break_time": "2.5",
-      "location": Object {
+      "location": {
         "country": "Italia",
         "lat": "42.4010",
         "lng": "11.0914",
@@ -72,12 +72,12 @@ Object {
       "max_depth": 27.4,
       "notes": "",
       "number": 1,
-      "samples": Array [],
+      "samples": [],
       "surface": "Normale",
       "surfaceInterval": "3:12",
       "surface_normalized": "FLAT",
-      "tags": Array [],
-      "types": Array [
+      "tags": [],
+      "types": [
         "addestramento",
       ],
       "visibility": "",
@@ -87,7 +87,7 @@ Object {
       "weather_normalized": "CLEAR",
       "weights": 9,
     },
-    Object {
+    {
       "air_used": 2100,
       "bottom_time": 31.5,
       "buddies": "Andrea, Mauro",
@@ -101,8 +101,8 @@ Object {
       "entry": "da barca",
       "entry_time": "10:01:00",
       "exit_time": "10:43:00",
-      "gases": Array [
-        Object {
+      "gases": [
+        {
           "double": false,
           "helium": 0,
           "oxygen": 0,
@@ -112,32 +112,32 @@ Object {
           "tankSize": 15,
         },
       ],
-      "gear": Array [
-        Object {
+      "gear": [
+        {
           "manufacturer": "",
           "name": "Aladin Sport Matrix",
           "serial": "",
           "type": "",
         },
-        Object {
+        {
           "manufacturer": "",
           "name": "Jacket",
           "serial": "",
           "type": "",
         },
-        Object {
+        {
           "manufacturer": "",
           "name": "Maschera Blu",
           "serial": "",
           "type": "",
         },
-        Object {
+        {
           "manufacturer": "",
           "name": "Muta 5mm logo giallo",
           "serial": "",
           "type": "",
         },
-        Object {
+        {
           "manufacturer": "",
           "name": "Pinne",
           "serial": "",
@@ -146,7 +146,7 @@ Object {
       ],
       "half_depth_break": "14m",
       "half_depth_break_time": "2.5",
-      "location": Object {
+      "location": {
         "country": "Italia",
         "lat": "42.4010",
         "lng": "11.0914",
@@ -156,12 +156,12 @@ Object {
       "max_depth": 27.4,
       "notes": "",
       "number": 1,
-      "samples": Array [],
+      "samples": [],
       "surface": "Normale",
       "surfaceInterval": "3:12",
       "surface_normalized": "FLAT",
-      "tags": Array [],
-      "types": Array [
+      "tags": [],
+      "types": [
         "addestramento",
       ],
       "visibility": "",

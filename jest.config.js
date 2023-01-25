@@ -7,6 +7,6 @@ module.exports = {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
   testMatch: ['**/*.test.ts', '**/*.test.js'],
-  testURL: 'http://localhost/',
   coveragePathIgnorePatterns: ['/node_modules/', '/build/'],
+  testEnvironmentOptions: { url: 'http://localhost/' },
 };
