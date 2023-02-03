@@ -31,7 +31,9 @@
   "nodemonConfig": {
     "delay": "250",
     "ignore": [
-      "./demo"
+      "./demo",
+      "./build",
+      "./mdoelli"
     ]
   },
   "devDependencies": {
