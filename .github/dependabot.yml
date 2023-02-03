@@ -13,6 +13,12 @@ updates:
       interval: 'daily'
     assignees:
       - 'kajyr'
+  - package-ecosystem: 'npm'
+    directory: '/templates'
+    schedule:
+      interval: 'daily'
+    assignees:
+      - 'kajyr'
     open-pull-requests-limit: 1
   - package-ecosystem: 'github-actions'
     directory: '/'
