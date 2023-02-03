@@ -2,8 +2,8 @@ import { createWriteStream, readFileSync } from 'node:fs';
 import path from 'node:path';
 import PDFDocument from 'pdfkit';
 
-//const page = require('./pages/aria-nx-base');
-import draw from './pages/ara-didattica';
+import didattica from './pages/ara-didattica';
+import base from './pages/aria-nx-base';
 import { Options, PartialLogbook } from './types';
 
 const PACKAGE_PATH = path.normalize(path.join(__dirname, '../package.json'));
@@ -31,9 +31,11 @@ async function init(logbook: PartialLogbook, dest: string, options: Options) {
 
   const rev = logbook.dives.reverse();
 
+  const pageRenderer = options.template === 'base' ? base : didattica;
+
   for (const dive of rev) {
     try {
-      await draw(doc, dive, options, pkg.version);
+      await pageRenderer(doc, dive, options, pkg.version);
     } catch (e) {
       console.log('error', e);
     }

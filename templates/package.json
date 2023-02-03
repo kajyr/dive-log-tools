@@ -4,9 +4,9 @@
   "description": "Un template per DivingLog e MacDive per stampare i [logbook F.I.P.S.A.S.][fipsas] precompilati",
   "type": "commonjs",
   "scripts": {
-    "build": "ts-node cli.ts --template=pdfkit --dest=build/export.pdf",
-    "build:empty": "ts-node cli.ts -vl --template=pdfkit --dest=build/export_empty.pdf --empty",
-    "watch": "nodemon cli.ts -lv --template=pdfkit --debug --dest=build/export.pdf",
+    "build": "ts-node cli.ts --dest=build/export.pdf",
+    "build:empty": "ts-node cli.ts -vl --dest=build/export_empty.pdf --empty",
+    "watch": "nodemon cli.ts -l --debug --dest=build/export.pdf",
     "test:demo": "npm run build:empty"
   },
   "repository": "https://github.com/kajyr/dive-log-tools/templates",

@@ -20,15 +20,7 @@ import { Dive } from 'dive-log-importer';
 import { getComputer, getSuit } from '../neutrons/gear';
 import { getImage } from '../neutrons/location';
 import { getTempi } from '../neutrons/tempi';
-
-const MARGINS = { top: 5, bottom: 15, left: 42, right: 17 };
-
-const PAGE_2_MARGINS = {
-  top: MARGINS.top,
-  bottom: MARGINS.bottom,
-  left: MARGINS.right,
-  right: MARGINS.left,
-};
+import { MARGINS, PAGE_2_MARGINS } from '../constants/margins';
 
 const fWLS =
   (label: Maybe<string>, value: Maybe<string | number>, options?: any) => (d: Doc, x: number, y: number, w: number) =>

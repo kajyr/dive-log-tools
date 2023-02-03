@@ -6,7 +6,7 @@ import { Options } from './lib/types';
 
 const opts = mclip(process.argv, {
   dest: { default: './export.pdf', description: 'Output file name', short: 'd' },
-  template: { default: 'fipsas-didattica', description: 'Template name', short: 't' },
+  template: { default: 'didattica', description: 'Template name', short: 't' },
   logo: { description: 'Prints the club logo', short: 'l', default: false },
   verbose: { description: 'Verbose mode', short: 'v', default: false },
   debug: { description: 'Debug mode', default: false },

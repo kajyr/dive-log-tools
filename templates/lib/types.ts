@@ -6,6 +6,7 @@ export interface CliOptions {
   dest: string;
   debug?: boolean;
   list: string[];
+  //template: 'didattica' | 'base';
   template: string;
   logo?: boolean;
 }
