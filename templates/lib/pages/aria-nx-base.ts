@@ -1,25 +1,27 @@
-import header from '../atoms/header';
-import footer from '../atoms/footer';
-import { panel } from '../atoms/panel';
-import { field, field_date, checkbox, fieldWithUpperLabel } from '../molecules/field';
-import { columns, rows, centerY, block } from '../atoms/grid';
-import { title } from '../atoms/titles';
-import { squares } from '../atoms/squares';
-import condizioniAmbientali from '../molecules/condizioni-ambientali';
-import { time } from '../format';
-import { gasLabel, getGases } from '../neutrons/gas';
-import { Doc } from '../types';
 import { Dive } from 'dive-log-importer';
+
+import footer from '../atoms/footer';
+import { block, centerY, columns, rows } from '../atoms/grid';
+import header from '../atoms/header';
+import page from '../atoms/page';
+import { panel } from '../atoms/panel';
+import { squares } from '../atoms/squares';
+import { title } from '../atoms/titles';
+import { time } from '../format';
+import condizioniAmbientali from '../molecules/condizioni-ambientali';
+import { checkbox, field, fieldWithUpperLabel, field_date } from '../molecules/field';
+import { gasLabel, getGases } from '../neutrons/gas';
 import { getSuit } from '../neutrons/gear';
 import { getTempi } from '../neutrons/tempi';
-import page from '../atoms/page';
+import { Doc } from '../types';
+
 /*
  * A5 === 420 × 595 points
  */
 const PAGE_W = 420;
 const PAGE_H = 595;
 
-const MARGINS = { top: 5, bottom: 20, left: 42, right: 17 };
+const MARGINS = { bottom: 20, left: 42, right: 17, top: 5 };
 const FOOTER_HEIGHT = 45;
 
 const FIELD_BIG_HEIGHT = 15;
@@ -212,7 +214,7 @@ function draw(doc: Doc, dive: Partial<Dive>) {
         const { r, rowH } = rows(nextY, groupHeight, 4, 5);
 
         const fH = 22;
-        const fieldOptions = { labelSpacing: 2, fullBorder: true, bold: true };
+        const fieldOptions = { bold: true, fullBorder: true, labelSpacing: 2 };
 
         const baseFW = 40;
 

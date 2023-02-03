@@ -1,6 +1,8 @@
 import { UsedGas } from 'dive-log-importer';
-import { EnricherFn } from '.';
+
 import { getGases } from '../neutrons/gas';
+
+import { EnricherFn } from '.';
 
 /* const EMPTY_GAS: UsedGas = {
   oxygen: 21,
@@ -12,8 +14,8 @@ function normalizePressures(gas: UsedGas): UsedGas {
 
   return {
     ...gas,
-    pressureStart,
     pressureEnd,
+    pressureStart,
   };
 }
 

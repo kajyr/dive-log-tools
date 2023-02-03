@@ -10,9 +10,10 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
   },
-  plugins: ['@typescript-eslint', 'prettier'],
+  plugins: ['@typescript-eslint', 'prettier', 'sort-keys-fix'],
   rules: {
-    eqeqeq: ['error', 'smart'],
     '@typescript-eslint/no-explicit-any': 'off',
+    eqeqeq: ['error', 'smart'],
+    'sort-keys-fix/sort-keys-fix': 'warn',
   },
 };

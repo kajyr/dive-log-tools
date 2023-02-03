@@ -1,26 +1,26 @@
-import { Maybe, Options, Doc } from '../types';
-
-import header from '../atoms/header';
-import footer from '../atoms/footer';
-import buddies from '../atoms/buddies';
-import { panel } from '../atoms/panel';
-import { LINE_WIDTH, PANELS_SPACING } from '../constants/ara-didattica';
-import { rows, rowsFixed, columns, columnsFixed, block } from '../atoms/grid';
-import { title } from '../atoms/titles';
-import page from '../atoms/page';
-import { squares } from '../atoms/squares';
-import { field, field_date, fieldWithLowerSubLabel, fieldWithFixedInput } from '../molecules/field';
-import mapBlock from '../molecules/map';
-import quadro1 from '../organisms/quadro1';
-import condizioni from '../organisms/condizioni';
-import profilo from '../organisms/profilo';
-import { time } from '../format';
-import { volumeStart, consumo, getGases } from '../neutrons/gas';
 import { Dive } from 'dive-log-importer';
+
+import buddies from '../atoms/buddies';
+import footer from '../atoms/footer';
+import { block, columns, columnsFixed, rows, rowsFixed } from '../atoms/grid';
+import header from '../atoms/header';
+import page from '../atoms/page';
+import { panel } from '../atoms/panel';
+import { squares } from '../atoms/squares';
+import { title } from '../atoms/titles';
+import { LINE_WIDTH, PANELS_SPACING } from '../constants/ara-didattica';
+import { MARGINS, PAGE_2_MARGINS } from '../constants/margins';
+import { time } from '../format';
+import { field, fieldWithFixedInput, fieldWithLowerSubLabel, field_date } from '../molecules/field';
+import mapBlock from '../molecules/map';
+import { consumo, getGases, volumeStart } from '../neutrons/gas';
 import { getComputer, getSuit } from '../neutrons/gear';
 import { getImage } from '../neutrons/location';
 import { getTempi } from '../neutrons/tempi';
-import { MARGINS, PAGE_2_MARGINS } from '../constants/margins';
+import condizioni from '../organisms/condizioni';
+import profilo from '../organisms/profilo';
+import quadro1 from '../organisms/quadro1';
+import { Doc, Maybe, Options } from '../types';
 
 const fWLS =
   (label: Maybe<string>, value: Maybe<string | number>, options?: any) => (d: Doc, x: number, y: number, w: number) =>
@@ -65,22 +65,22 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, version: st
         const locW = w - gpsW - spacing;
 
         field(doc, x, r[1], locW, rowH, 'Luogo', dive.location?.place, {
-          labelWidth: 45,
           bold: true,
+          labelWidth: 45,
         });
 
         field(doc, x, r[2], locW, rowH, 'Punto', dive.location?.site, {
-          labelWidth: 45,
           bold: true,
+          labelWidth: 45,
         });
 
         field(doc, x + w - gpsW, r[1], gpsW, rowH, 'Lat.', dive.location?.lat, {
-          labelWidth: 45,
           bold: true,
+          labelWidth: 45,
         });
         field(doc, x + w - gpsW, r[2], gpsW, rowH, 'Long.', dive.location?.lng, {
-          labelWidth: 45,
           bold: true,
+          labelWidth: 45,
         });
       });
     });
@@ -146,7 +146,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, version: st
         // quadro riassuntivo
         const titleW = w / 2 + 20;
         title(doc, "QUADRO RIASSUNTIVO DELL'IMMERSIONE", x, y, 9, { width: titleW });
-        doc.text('tempi parziali', x + titleW, y, { width: w - titleW, align: 'right' });
+        doc.text('tempi parziali', x + titleW, y, { align: 'right', width: w - titleW });
 
         const fieldsY = y + 10;
         const fieldsH = h - 10;
@@ -222,8 +222,8 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, version: st
     buddies(doc, x, pB.y, contentWidth, pB.h, dive);
 
     footer(doc, x, pF.y, contentWidth, pF.h, {
-      version,
       isFake: dive.tags?.includes('fake'),
+      version,
     });
   });
 
