@@ -4,6 +4,7 @@ import PDFDocument from 'pdfkit';
 
 import didattica from './pages/ara-didattica';
 import base from './pages/aria-nx-base';
+
 import { Options, PartialLogbook } from './types';
 
 const PACKAGE_PATH = path.normalize(path.join(__dirname, '../package.json'));
@@ -33,12 +34,10 @@ async function init(logbook: PartialLogbook, dest: string, options: Options) {
 
   const pageRenderer = options.template === 'base' ? base : didattica;
 
+  let pageCount = 0;
   for (const dive of rev) {
-    try {
-      await pageRenderer(doc, dive, options, pkg.version);
-    } catch (e) {
-      console.log('error', e);
-    }
+    const pages = await pageRenderer(doc, dive, options, { pageIndex: pageCount + 1, version: pkg.version });
+    pageCount = pageCount + pages;
   }
 
   // Finalize PDF file

@@ -21,6 +21,11 @@ export interface Config {
 
 export interface Options extends CliOptions, Config {}
 
+export interface RenderOptions {
+  pageIndex: number;
+  version: string;
+}
+
 export type PartialLogbook = { dives: Partial<Dive>[] };
 
 export type Doc = PDFKit.PDFDocument;
@@ -30,3 +35,6 @@ export type Value = Maybe<string | number>;
 
 export type PFN = (d: Doc, x: number, y: number, w: number, h: number) => void;
 export type Component = (d: Doc, x: number, y: number, w: number, h: number, dive: Partial<Dive>) => void;
+
+export type Area = { x: number; y: number; w: number; h: number };
+export type AreaFn = (a: Area) => void;

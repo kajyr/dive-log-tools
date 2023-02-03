@@ -1,4 +1,4 @@
-export type SignOpts = { version: string; isFake: boolean | undefined };
+export type SignOpts = { version: string; isFake: boolean };
 
 export function sign({ version, isFake }: SignOpts) {
   const s = [isFake ? ':' : '.'];

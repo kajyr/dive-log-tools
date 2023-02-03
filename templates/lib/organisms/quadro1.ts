@@ -1,16 +1,11 @@
-import {
-  FONT_SIZE_MINI_HEADERS,
-  FONT_SIZE_FIELDS,
-  MINI_HEADERS_HEIGHT,
-  PANELS_SPACING,
-} from '../constants/ara-didattica';
+import { Dive } from 'dive-log-importer';
 
-import { columnsFixed, columns, rows } from '../atoms/grid';
+import { columns, columnsFixed, rows } from '../atoms/grid';
+import label from '../atoms/label';
 import { panel } from '../atoms/panel';
 import { title } from '../atoms/titles';
-import label from '../atoms/label';
+import { FONT_SIZE_FIELDS, FONT_SIZE_MINI_HEADERS, MINI_HEADERS_HEIGHT, PANELS_SPACING } from '../constants/page';
 import { vInputs } from '../molecules/vertical-inputs';
-import { Dive } from 'dive-log-importer';
 import { Doc, PFN } from '../types';
 
 const component = (doc: Doc, x: number, y: number, w: number, h: number, dive: Partial<Dive>) =>

@@ -1,3 +1,4 @@
+import { MARGINS_EVEN, MARGINS_ODD } from '../constants/page';
 import { Doc, PFN } from '../types';
 
 /*
@@ -6,14 +7,8 @@ import { Doc, PFN } from '../types';
 const PAGE_W = 420;
 const PAGE_H = 595;
 
-type Margins = {
-  top: number;
-  bottom: number;
-  left: number;
-  right: number;
-};
-
-function page(doc: Doc, margins: Margins, content: PFN) {
+function page(doc: Doc, isEven: boolean, content: PFN) {
+  const margins = isEven ? MARGINS_EVEN : MARGINS_ODD;
   doc.addPage({
     margins,
     size: 'A5',

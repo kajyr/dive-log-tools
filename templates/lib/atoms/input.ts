@@ -1,6 +1,7 @@
-import { centerY } from './text';
-import { LINE_WIDTH } from '../constants/ara-didattica';
+import { LINE_WIDTH } from '../constants/page';
 import { Doc, Value } from '../types';
+
+import { centerY } from './text';
 
 type Option = { fullBorder?: boolean };
 

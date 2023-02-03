@@ -1,7 +1,10 @@
 import { Component } from '../types';
+
 import { title } from './titles';
 
 const str = '(Compagno, Istruttore, Guida)';
+
+export const BUDDIES_HEIGHT = 37;
 
 const component: Component = (doc, x, y, w, h, dive) => {
   title(doc, 'CONVALIDA', x, y + 10, 9, { width: w });

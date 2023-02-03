@@ -16,3 +16,8 @@ export function getSuit(dive: Partial<Dive>): Gear {
     dive.gear && dive.gear.find((g) => g.type.toLowerCase() === 'drysuit' || g.type.toLowerCase() === 'wetsuit');
   return suit || { name: '', type: 'wetsuit' };
 }
+
+export function gearList(dive: Partial<Dive>): string | null {
+  const gear_a = dive.gear?.map((g) => `${g.manufacturer} ${g.name}`).sort();
+  return gear_a ? `Attrezzatura: ${gear_a.join(', ')}` : null;
+}

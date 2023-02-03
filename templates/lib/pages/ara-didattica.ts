@@ -1,26 +1,26 @@
 import { Dive } from 'dive-log-importer';
 
-import buddies from '../atoms/buddies';
-import footer from '../atoms/footer';
+import buddies, { BUDDIES_HEIGHT } from '../atoms/buddies';
+import footer, { FOOTER_HEIGHT } from '../atoms/footer';
 import { block, columns, columnsFixed, rows, rowsFixed } from '../atoms/grid';
-import header from '../atoms/header';
+import header, { HEADER_HEIGHT } from '../atoms/header';
 import page from '../atoms/page';
 import { panel } from '../atoms/panel';
 import { squares } from '../atoms/squares';
 import { title } from '../atoms/titles';
-import { LINE_WIDTH, PANELS_SPACING } from '../constants/ara-didattica';
-import { MARGINS, PAGE_2_MARGINS } from '../constants/margins';
+import { LINE_WIDTH, PANELS_SPACING } from '../constants/page';
 import { time } from '../format';
 import { field, fieldWithFixedInput, fieldWithLowerSubLabel, field_date } from '../molecules/field';
 import mapBlock from '../molecules/map';
 import { consumo, getGases, volumeStart } from '../neutrons/gas';
-import { getComputer, getSuit } from '../neutrons/gear';
+import { gearList, getComputer, getSuit } from '../neutrons/gear';
 import { getImage } from '../neutrons/location';
+import { trimNewLines } from '../neutrons/strings';
 import { getTempi } from '../neutrons/tempi';
 import condizioni from '../organisms/condizioni';
 import profilo from '../organisms/profilo';
 import quadro1 from '../organisms/quadro1';
-import { Doc, Maybe, Options } from '../types';
+import { Doc, Maybe, Options, RenderOptions } from '../types';
 
 const fWLS =
   (label: Maybe<string>, value: Maybe<string | number>, options?: any) => (d: Doc, x: number, y: number, w: number) =>
@@ -28,8 +28,9 @@ const fWLS =
 
 /**
  * This logbook layout assumes only one gas.
+ * Returns the number of pages added
  */
-async function draw(doc: Doc, dive: Partial<Dive>, options: Options, version: string) {
+async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptions: RenderOptions): Promise<number> {
   const [gas] = getGases(dive);
   const { tankName } = gas;
 
@@ -38,11 +39,11 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, version: st
   const image = await getImage(dive, options);
   /* END DIVE RELATED THINGS */
 
-  page(doc, MARGINS, (doc: Doc, x: number, contentY: number, contentWidth: number, contentHeight: number) => {
+  page(doc, false, (doc: Doc, x: number, contentY: number, contentWidth: number, contentHeight: number) => {
     doc.lineWidth(LINE_WIDTH);
 
     const [pHeader, pL, pQ1, pQ2, pB, pF] = rowsFixed(
-      [28, 50, 92, null, 37, 15],
+      [HEADER_HEIGHT, 50, 92, null, BUDDIES_HEIGHT, FOOTER_HEIGHT],
       contentY,
       contentHeight,
       PANELS_SPACING,
@@ -120,7 +121,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, version: st
           }),
         );
         b(
-          fWLS(null, suit?.name, {
+          fWLS(null, suit.name, {
             sublabel: 'muta',
           }),
         );
@@ -155,7 +156,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, version: st
 
         const inputWidth = 30;
 
-        a((doc: Doc, x: number, y: number, w: number, h: number) => {
+        a((doc: Doc, x: number, y: number, w: number) => {
           fieldWithFixedInput(doc, x, r[0], w, rowH, 'ora inizio imm.', dive.entry_time && time(dive.entry_time), {
             inputWidth,
           });
@@ -222,12 +223,12 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, version: st
     buddies(doc, x, pB.y, contentWidth, pB.h, dive);
 
     footer(doc, x, pF.y, contentWidth, pF.h, {
-      isFake: dive.tags?.includes('fake'),
-      version,
+      isFake: !!dive.tags?.includes('fake'),
+      version: renderOptions.version,
     });
   });
 
-  page(doc, PAGE_2_MARGINS, (doc: Doc, x: number, y: number, w: number, h: number) => {
+  page(doc, true, (doc: Doc, x: number, y: number, w: number, h: number) => {
     const hasMap = !!image;
     const mapHeight = hasMap ? 172 : 0;
 
@@ -248,25 +249,20 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, version: st
     });
 
     squares(doc, x, pSquares.y, w, pSquares.h, async (doc: Doc, x: number, y: number, width: number, h: number) => {
-      let nextY = y;
       const options = {
         width,
       };
       if (dive.notes) {
         doc.fontSize(10);
-        const text_height = doc.heightOfString(dive.notes, options);
-        doc.text(dive.notes, x, y, options).fontSize(8);
-        nextY += text_height + 10;
+        doc.text(trimNewLines(dive.notes), x, y, options);
       }
 
-      if (dive.gear && dive.gear.length > 0) {
-        const gear_a = dive.gear.map((g) => `${g.manufacturer} ${g.name}`).sort();
-        const str = `Attrezzatura: ${gear_a.join(', ')}`;
-        const options = {
-          width,
-        };
-        const text_height = doc.heightOfString(str, options);
-        doc.text(str, x, y + h - text_height, options);
+      const gearStr = gearList(dive);
+      if (gearStr) {
+        doc.fontSize(8);
+        const text_height = doc.heightOfString(gearStr, options);
+        doc.text(gearStr, x, y + h - text_height, options);
+        doc.fontSize(10);
       }
     });
 
@@ -276,6 +272,8 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, version: st
 
     footer(doc, x, pF.y, w, pF.h);
   });
+
+  return 2;
 }
 
 export default draw;

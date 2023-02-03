@@ -1,7 +1,6 @@
-import { Doc, Value } from '../types';
-
 import { centerY } from '../atoms/text';
-import { LINE_WIDTH } from '../constants/ara-didattica';
+import { LINE_WIDTH } from '../constants/page';
+import { Doc, Value } from '../types';
 
 export const vInputs = (doc: Doc, x: number, y: number, w: number, rowH: number, values: Value[]) => {
   /*     debugSquare(doc, x, y, w, h);

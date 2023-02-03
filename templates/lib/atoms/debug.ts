@@ -1,4 +1,4 @@
-import { Doc } from '../types';
+import { Area, Doc } from '../types';
 
 //import options from '../options';
 
@@ -15,4 +15,9 @@ export function debugSquare(doc: Doc, x: number, y: number, w: number, h: number
 }
 */
   doc.rect(x, y, w, h).fillOpacity(0.3).fill(fillColor).fillOpacity(1).fillColor('black');
+}
+
+export function debug(doc: Doc, area: Area, fill?: string) {
+  const fillColor = typeof fill === 'string' ? fill : COLORS[Math.floor(Math.random() * COLORS.length)];
+  doc.rect(area.x, area.y, area.w, area.h).fillOpacity(0.3).fill(fillColor).fillOpacity(1).fillColor('black');
 }

@@ -1,6 +1,7 @@
-import { debugSquare } from './debug';
 import { fillMissing, spread } from '../neutrons/grid';
-import { Doc, PFN } from '../types';
+import { Area, AreaFn, Doc, PFN } from '../types';
+
+import { debugSquare } from './debug';
 
 type ListWithNulls = (number | null)[];
 
@@ -8,17 +9,22 @@ export function block(doc: Doc, startX: number, startY: number, width: number, h
   return (children: PFN) => children(doc, startX, startY, width, height);
 }
 
-/**
- *
- * @param doc
- * @param list THe percentages of the various columns
- * @param startX
- * @param startY
- * @param width
- * @param height
- * @param gutter
- * @returns
- */
+export function blockArea(area: Area) {
+  return (children: AreaFn) => children(area);
+}
+
+export function columnsArea(list: ListWithNulls, area: Area, gutter: number): ((children: AreaFn) => void)[] {
+  let x = area.x;
+  const availableWidth = area.w - gutter * (list.length - 1);
+
+  return fillMissing(list, 100).map((perc) => {
+    const w = (availableWidth / 100) * perc;
+    const fn = blockArea({ ...area, w: w, x });
+    x = x + w + gutter;
+    return fn;
+  });
+}
+
 export function columns(
   doc: Doc,
   list: ListWithNulls,
@@ -27,7 +33,7 @@ export function columns(
   width: number,
   height: number,
   gutter: number,
-) {
+): ((children: PFN) => void)[] {
   let curX = startX;
   const availableWidth = width - gutter * (list.length - 1);
 
@@ -69,6 +75,10 @@ export function rows(startY: number, height: number, number: number, gutter = 0)
 
 export function rowsFixed(list: ListWithNulls, y: number, h: number, gutter: number) {
   return spread(list, y, h, gutter).map(([y, h]) => ({ h, y }));
+}
+
+export function rowsFixedArea(list: ListWithNulls, area: Area, gutter: number) {
+  return spread(list, area.y, area.h, gutter).map(([y, h]) => blockArea({ ...area, h, y }));
 }
 
 export function centerY(y: number, elementHeight: number, containerHeight: number) {
