@@ -5,12 +5,12 @@ import conf from './lib/options';
 import { Options } from './lib/types';
 
 const opts = mclip(process.argv, {
+  debug: { default: false, description: 'Debug mode' },
   dest: { default: './export.pdf', description: 'Output file name', short: 'd' },
+  empty: { default: false, description: 'Prints an empty sheet (Does not load any xml file)' },
+  logo: { default: false, description: 'Prints the club logo', short: 'l' },
   template: { default: 'didattica', description: 'Template name', short: 't' },
-  logo: { description: 'Prints the club logo', short: 'l', default: false },
-  verbose: { description: 'Verbose mode', short: 'v', default: false },
-  debug: { description: 'Debug mode', default: false },
-  empty: { description: 'Prints an empty sheet (Does not load any xml file)', default: false },
+  verbose: { default: false, description: 'Verbose mode', short: 'v' },
 });
 
 const options: Options = { ...conf, ...opts };

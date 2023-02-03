@@ -11,13 +11,13 @@ import { Options, PartialLogbook } from './lib/types';
 const EMPTY_LOGBOOK: PartialLogbook = {
   dives: [
     {
-      gases: [],
-      tags: [],
-      entry: '',
       date: '',
-      types: [],
-      samples: [],
+      entry: '',
       entry_time: '',
+      gases: [],
+      samples: [],
+      tags: [],
+      types: [],
     },
   ],
 };

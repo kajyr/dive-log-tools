@@ -20,7 +20,7 @@ function label(
 
   const width = letter ? w - letterW - padding : w;
 
-  doc.fontSize(8).text(text, x, centerY(doc, y, h), { width, align });
+  doc.fontSize(8).text(text, x, centerY(doc, y, h), { align, width });
 
   if (letter) {
     doc

@@ -1,6 +1,6 @@
 import enricher from './gases';
 
-const emptyOpts = { list: [], dest: '', template: '', cacheDir: '' };
+const emptyOpts = { cacheDir: '', dest: '', list: [], template: '' };
 
 describe('Gas enricher', () => {
   test('no gases', async () => {
@@ -18,11 +18,11 @@ describe('Gas enricher', () => {
       {
         gases: [
           {
-            pressureStart: 207.81,
-            pressureEnd: 83.29,
-            oxygen: 21,
-            helium: 0,
             double: false,
+            helium: 0,
+            oxygen: 21,
+            pressureEnd: 83.29,
+            pressureStart: 207.81,
             tankSize: 15,
           },
         ],
@@ -31,11 +31,11 @@ describe('Gas enricher', () => {
     );
     expect(dive.gases).toEqual([
       {
-        pressureStart: 207,
-        pressureEnd: 83,
-        oxygen: 21,
-        helium: 0,
         double: false,
+        helium: 0,
+        oxygen: 21,
+        pressureEnd: 83,
+        pressureStart: 207,
         tankSize: 15,
       },
     ]);
@@ -45,11 +45,11 @@ describe('Gas enricher', () => {
       {
         gases: [
           {
-            pressureStart: 207.81,
-            pressureEnd: 83.29,
-            oxygen: 36,
-            helium: 0,
             double: false,
+            helium: 0,
+            oxygen: 36,
+            pressureEnd: 83.29,
+            pressureStart: 207.81,
             tankSize: 15,
           },
         ],
@@ -60,11 +60,11 @@ describe('Gas enricher', () => {
     // EAN 36
     expect(dive.gases).toEqual([
       {
-        pressureStart: 207,
-        pressureEnd: 83,
-        oxygen: 36,
-        helium: 0,
         double: false,
+        helium: 0,
+        oxygen: 36,
+        pressureEnd: 83,
+        pressureStart: 207,
         tankSize: 15,
       },
     ]);

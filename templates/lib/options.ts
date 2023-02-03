@@ -18,8 +18,8 @@ const cacheDir = path.resolve(path.join(home, CONF_DIR, 'cache'));
 fs.ensureDirSync(cacheDir);
 
 const options: Config = {
-  maps: homeConfig.maps,
   cacheDir,
+  maps: homeConfig.maps,
 };
 
 export default options;

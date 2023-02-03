@@ -17,12 +17,12 @@ const component: Component = (doc, x, y, w, h, dive) =>
     const { r, rowH } = rows(y + 10, h - 10, 4, 1);
 
     ambientali((doc: Doc, x: number, y: number, w: number, h: number) => {
-      title(doc, 'AMBIENTALI', x, y, 6, { width: w, align: 'center' });
+      title(doc, 'AMBIENTALI', x, y, 6, { align: 'center', width: w });
 
       condizioniAmbientali(doc, x, y, w, h, r, rowH, dive);
     });
     personali((doc: Doc, x: number, y: number, w: number, h: number) => {
-      title(doc, 'PERSONALI', x, y, 6, { width: w, align: 'center' });
+      title(doc, 'PERSONALI', x, y, 6, { align: 'center', width: w });
 
       const [labels, inputs] = columnsFixed(doc, [25, null], x, y, w, h, 2);
 

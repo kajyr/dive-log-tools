@@ -61,14 +61,14 @@ export function rows(startY: number, height: number, number: number, gutter = 0)
   const r = Array.from({ length: number }, (_, i) => startY + (rowH + gutter) * i);
 
   return {
-    rowH,
-    r,
     debug: (doc: Doc, x: number, w: number) => r.forEach((ry) => debugSquare(doc, x, ry, w, rowH)),
+    r,
+    rowH,
   };
 }
 
 export function rowsFixed(list: ListWithNulls, y: number, h: number, gutter: number) {
-  return spread(list, y, h, gutter).map(([y, h]) => ({ y, h }));
+  return spread(list, y, h, gutter).map(([y, h]) => ({ h, y }));
 }
 
 export function centerY(y: number, elementHeight: number, containerHeight: number) {

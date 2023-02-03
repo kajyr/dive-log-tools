@@ -15,8 +15,8 @@ type Margins = {
 
 function page(doc: Doc, margins: Margins, content: PFN) {
   doc.addPage({
-    size: 'A5',
     margins,
+    size: 'A5',
   });
 
   const contentWidth = PAGE_W - margins.left - margins.right;

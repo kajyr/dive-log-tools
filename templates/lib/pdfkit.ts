@@ -15,8 +15,8 @@ async function init(logbook: PartialLogbook, dest: string, options: Options) {
   const doc = new PDFDocument({
     autoFirstPage: false,
     permissions: {
-      printing: 'highResolution',
       modifying: false,
+      printing: 'highResolution',
     },
   });
   doc.pipe(createWriteStream(dest));

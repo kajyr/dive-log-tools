@@ -19,12 +19,12 @@ export function getTempi(dive: Partial<Dive>): Tempi {
   const sostaProfValue = max_depth > 18 ? 2.5 : 0;
   const risalita = Math.ceil(max_depth / 9);
   return {
+    bottom_time,
+    durata: (bottom_time || 0) + sostaProfValue + risalita + 5,
+    risalita,
     sostaProf: {
       label: max_depth > 18 ? `sosta prof. ${Math.ceil(max_depth) / 2}m` : 'sosta prof.',
       value: sostaProfValue, // can be 0
     },
-    bottom_time,
-    risalita,
-    durata: (bottom_time || 0) + sostaProfValue + risalita + 5,
   };
 }

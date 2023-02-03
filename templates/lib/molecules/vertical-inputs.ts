@@ -20,9 +20,9 @@ export const vInputs = (doc: Doc, x: number, y: number, w: number, rowH: number,
     }
     if (v) {
       doc.text(String(v), x + 3, centerY(doc, lineY, rowH), {
-        width: w - 3,
-        height: rowH,
         ellipsis: true,
+        height: rowH,
+        width: w - 3,
       });
     }
   });

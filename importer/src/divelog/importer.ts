@@ -34,13 +34,13 @@ function normalizeDive(dive: DivingLog.Dive): Dive {
     surfaceInterval = `${parseInt(hours, 10)}:${parseInt(minutes, 10)}`;
   }
 
-  const gear = dive.UsedEquip.split(',').map((name: string) => ({ name, type: '', manufacturer: '', serial: '' }));
+  const gear = dive.UsedEquip.split(',').map((name: string) => ({ manufacturer: '', name, serial: '', type: '' }));
 
   const location = {
+    country: dive.Country ? dive.Country.A_Name : '',
     lat: dive.Place.Lat.toFixed(4),
     lng: dive.Place.Lon.toFixed(4),
     place: dive.City ? dive.City.A_Name : '',
-    country: dive.Country ? dive.Country.A_Name : '',
     site: dive.Place.A_Name,
   };
 
@@ -50,13 +50,13 @@ function normalizeDive(dive: DivingLog.Dive): Dive {
 
   const gases = [
     {
-      pressureStart,
-      pressureEnd,
-      tankSize,
-      tankName: tankName(tankSize, null, dive.DblTank !== 'False'),
-      oxygen: 0,
-      helium: 0,
       double: false,
+      helium: 0,
+      oxygen: 0,
+      pressureEnd,
+      pressureStart,
+      tankName: tankName(tankSize, null, dive.DblTank !== 'False'),
+      tankSize,
     },
   ];
 
@@ -70,8 +70,8 @@ function normalizeDive(dive: DivingLog.Dive): Dive {
     current_normalized: normalizeCurrent(dive.UWCurrent),
     date: datetime(entryDate),
     deco_stops: toBool(dive.Deco) ? dive.Decostops : '-',
-    dive_time,
     dive_master: dive.Divemaster,
+    dive_time,
     emersion_time: emersion_time(dive.Depth),
     entry: entry(dive.Entry),
     entry_time: time(entryDate),
@@ -86,8 +86,8 @@ function normalizeDive(dive: DivingLog.Dive): Dive {
     number: Number(dive.Number),
     samples: [],
     surface: dive.Surface,
-    surface_normalized: normalizeSurface(dive.Surface),
     surfaceInterval,
+    surface_normalized: normalizeSurface(dive.Surface),
     tags: [],
     types: [dive.Divetype.toLowerCase()],
     visibility: dive.UWCurrent || '',

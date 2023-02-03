@@ -14,14 +14,8 @@ import { gasLabel, getGases } from '../neutrons/gas';
 import { getSuit } from '../neutrons/gear';
 import { getTempi } from '../neutrons/tempi';
 import { Doc } from '../types';
+import { MARGINS } from 'lib/constants/margins';
 
-/*
- * A5 === 420 × 595 points
- */
-const PAGE_W = 420;
-const PAGE_H = 595;
-
-const MARGINS = { bottom: 20, left: 42, right: 17, top: 5 };
 const FOOTER_HEIGHT = 45;
 
 const FIELD_BIG_HEIGHT = 15;
@@ -41,7 +35,7 @@ function draw(doc: Doc, dive: Partial<Dive>) {
     const [gas] = getGases(dive);
     const tankVolume = gas.tankSize;
 
-    const panelH = PAGE_H - nextY - FOOTER_HEIGHT - MARGINS.bottom;
+    const panelH = h - nextY - FOOTER_HEIGHT - MARGINS.bottom;
 
     panel(doc, nextX, nextY, contentWidth, panelH, 5, (doc, startX, startY, width, height) => {
       const fieldPadding = 5;

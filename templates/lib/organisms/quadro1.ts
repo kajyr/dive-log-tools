@@ -53,7 +53,7 @@ const component = (doc: Doc, x: number, y: number, w: number, h: number, dive: P
         (doc: Doc, x: number, y: number, w: number, h: number) => {
           doc
             .fontSize(FONT_SIZE_MINI_HEADERS)
-            .text('IMMERSIONE RIPETITIVA', x, y, { width: w, align: 'center' })
+            .text('IMMERSIONE RIPETITIVA', x, y, { align: 'center', width: w })
             .fontSize(FONT_SIZE_FIELDS);
 
           const [labels, inputs] = columnsFixed(doc, [null, 25], x, y, w, h, 4);
@@ -89,7 +89,7 @@ const component = (doc: Doc, x: number, y: number, w: number, h: number, dive: P
           prof((doc: Doc, x: number, y: number, w: number, h: number) => {
             doc
               .fontSize(FONT_SIZE_MINI_HEADERS)
-              .text('PROF.', x, y, { width: w, align: 'center' })
+              .text('PROF.', x, y, { align: 'center', width: w })
               .fontSize(FONT_SIZE_FIELDS);
 
             vInputs(doc, x, rowsY, w, rowH, [null, null, null, null]);
@@ -97,7 +97,7 @@ const component = (doc: Doc, x: number, y: number, w: number, h: number, dive: P
           tempi((doc: Doc, x: number, y: number, w: number, h: number) => {
             doc
               .fontSize(FONT_SIZE_MINI_HEADERS)
-              .text('TEMPI.', x, y, { width: w, align: 'center' })
+              .text('TEMPI.', x, y, { align: 'center', width: w })
               .fontSize(FONT_SIZE_FIELDS);
 
             vInputs(doc, x, rowsY, w, rowH, [null, null, null, null]);
@@ -105,7 +105,7 @@ const component = (doc: Doc, x: number, y: number, w: number, h: number, dive: P
           cons((doc: Doc, x: number, y: number, w: number, h: number) => {
             doc
               .fontSize(FONT_SIZE_MINI_HEADERS)
-              .text('CONS.', x, y, { width: w, align: 'center' })
+              .text('CONS.', x, y, { align: 'center', width: w })
               .fontSize(FONT_SIZE_FIELDS);
             vInputs(doc, x, rowsY, w, rowH, [null, null, null, null]);
           });
@@ -126,7 +126,7 @@ const component = (doc: Doc, x: number, y: number, w: number, h: number, dive: P
       panel(doc, x, y, w, h, 3, (doc: Doc, x: number, y: number, w: number, h: number) => {
         doc
           .fontSize(FONT_SIZE_MINI_HEADERS)
-          .text('RIEPILOGO', x, y, { width: w, align: 'center' })
+          .text('RIEPILOGO', x, y, { align: 'center', width: w })
           .fontSize(FONT_SIZE_FIELDS);
 
         const [labels, inputs] = columnsFixed(doc, [null, 25], x, y, w, h, 4);

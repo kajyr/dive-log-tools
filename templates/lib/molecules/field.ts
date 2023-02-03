@@ -35,13 +35,13 @@ export function field(
   const labelW = labelWidth ? labelWidth : Math.max(mainlabelWidth, sublabelWidth) + labelSpacing;
 
   const cY = centerY(doc, startY, height);
-  doc.text(label, startX, sublabel ? startY : cY, { width: labelW, align: 'right' }).font('Helvetica');
+  doc.text(label, startX, sublabel ? startY : cY, { align: 'right', width: labelW }).font('Helvetica');
 
   if (sublabel) {
     doc
       .text(sublabel, startX, startY + height / 2, {
-        width: labelW,
         align: 'right',
+        width: labelW,
       })
       .fontSize(8);
   }
@@ -87,12 +87,12 @@ export function checkbox(
     .fillColor('black');
 
   if (checked) {
-    doc.text('x', checkStartX, startY, { width: squareSide, align: 'center' });
+    doc.text('x', checkStartX, startY, { align: 'center', width: squareSide });
   }
 
   doc
     .font('Helvetica-Oblique')
-    .text(label, startX, startY, { width: checkStartX - startX - 2, align: 'right' })
+    .text(label, startX, startY, { align: 'right', width: checkStartX - startX - 2 })
     .font('Helvetica');
 }
 
@@ -117,12 +117,12 @@ export function fieldWithUpperLabel(
     doc.font('Helvetica-Bold');
   }
   const lineHeight = doc.currentLineHeight() + 2;
-  doc.text(label, startX, startY, { width, align: labelAlign }).font('Helvetica');
+  doc.text(label, startX, startY, { align: labelAlign, width }).font('Helvetica');
   const boxY = startY + lineHeight;
   const boxH = height - lineHeight - 2;
 
   if (sublabel) {
-    doc.fontSize(5).text(sublabel, startX + 1, startY, { width, align: 'right' });
+    doc.fontSize(5).text(sublabel, startX + 1, startY, { align: 'right', width });
   }
 
   doc.fontSize(8);
@@ -162,7 +162,7 @@ export function fieldWithLowerSubLabel(
 
   doc
     .fontSize(5)
-    .text(sublabel, inputX, y + inputHeight + 2, { width: inputW, align: 'center' })
+    .text(sublabel, inputX, y + inputHeight + 2, { align: 'center', width: inputW })
     .fontSize(8);
 }
 

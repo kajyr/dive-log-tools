@@ -23,6 +23,6 @@ export function input(doc: Doc, x: number, y: number, w: number, h: number, valu
   doc.fillColor('black');
 
   if (value) {
-    doc.text(String(value), x + 3, centerY(doc, y, h), { width: w - 3, height: h, ellipsis: true });
+    doc.text(String(value), x + 3, centerY(doc, y, h), { ellipsis: true, height: h, width: w - 3 });
   }
 }

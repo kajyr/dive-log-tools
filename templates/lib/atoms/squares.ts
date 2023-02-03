@@ -35,8 +35,8 @@ export function squares(doc: Doc, x: number, y: number, w: number, h: number, co
     doc
       .fontSize(10)
       .text(content, x + padding, y + padding, {
-        width: content_w,
         height: content_h,
+        width: content_w,
       })
       .fontSize(8);
   }
