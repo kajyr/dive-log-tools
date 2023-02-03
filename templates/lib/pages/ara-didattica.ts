@@ -12,6 +12,7 @@ import { LINE_WIDTH, PANELS_SPACING } from '../constants/page';
 import { time } from '../format';
 import { field, fieldWithFixedInput, fieldWithLowerSubLabel, field_date } from '../molecules/field';
 import mapBlock from '../molecules/map';
+import { lower } from '../neutrons/area';
 import { consumo, getGases, volumeStart } from '../neutrons/gas';
 import { gearList, getComputer, getSuit } from '../neutrons/gear';
 import { getImage } from '../neutrons/location';
@@ -39,81 +40,79 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
   const image = await getImage(dive, options);
   /* END DIVE RELATED THINGS */
 
-  page(doc, false, (doc: Doc, x: number, contentY: number, contentWidth: number, contentHeight: number) => {
+  page(doc, false, (pageArea) => {
     doc.lineWidth(LINE_WIDTH);
 
     const [pHeader, pL, pQ1, pQ2, pB, pF] = rowsFixed(
       [HEADER_HEIGHT, 50, 92, null, BUDDIES_HEIGHT, FOOTER_HEIGHT],
-      contentY,
-      contentHeight,
+      pageArea,
       PANELS_SPACING,
     );
 
-    header(doc, 'SCHEDA ARIA (didattica)', x, pHeader.y, contentWidth, pHeader.h);
+    header(doc, 'SCHEDA ARIA (didattica)', pHeader);
 
-    panel(doc, x, pL.y, contentWidth, pL.h, 2, (doc: Doc, xc: number, y: number, w: number, h: number) => {
-      panel(doc, xc, y, w, h, 3, (doc: Doc, x: number, y: number, w: number, h: number) => {
-        const { r, rowH } = rows(y, h, 3, 2);
+    panel(doc, pL, 2, (area) => {
+      panel(doc, area, 3, (area) => {
+        const { r, rowH } = rows(area.y, area.h, 3, 2);
         doc.fontSize(10);
 
         const spacing = 5;
 
-        field(doc, x, r[0], 130, rowH, 'Immersione N°', dive.number, { bold: true });
-        const dateX = x + 130 + spacing;
-        field_date(doc, dateX, r[0], w + x - dateX, rowH, 'Data', dive.date);
+        field(doc, area.x, r[0], 130, rowH, 'Immersione N°', dive.number, { bold: true });
+        const dateX = area.x + 130 + spacing;
+        field_date(doc, dateX, r[0], area.w + area.x - dateX, rowH, 'Data', dive.date);
 
         const gpsW = 130;
-        const locW = w - gpsW - spacing;
+        const locW = area.w - gpsW - spacing;
 
-        field(doc, x, r[1], locW, rowH, 'Luogo', dive.location?.place, {
+        field(doc, area.x, r[1], locW, rowH, 'Luogo', dive.location?.place, {
           bold: true,
           labelWidth: 45,
         });
 
-        field(doc, x, r[2], locW, rowH, 'Punto', dive.location?.site, {
+        field(doc, area.x, r[2], locW, rowH, 'Punto', dive.location?.site, {
           bold: true,
           labelWidth: 45,
         });
 
-        field(doc, x + w - gpsW, r[1], gpsW, rowH, 'Lat.', dive.location?.lat, {
+        field(doc, area.x + area.w - gpsW, r[1], gpsW, rowH, 'Lat.', dive.location?.lat, {
           bold: true,
           labelWidth: 45,
         });
-        field(doc, x + w - gpsW, r[2], gpsW, rowH, 'Long.', dive.location?.lng, {
+        field(doc, area.x + area.w - gpsW, r[2], gpsW, rowH, 'Long.', dive.location?.lng, {
           bold: true,
           labelWidth: 45,
         });
       });
     });
 
-    quadro1(doc, x, pQ1.y, contentWidth, pQ1.h, dive);
-    panel(doc, x, pQ2.y, contentWidth, pQ2.h, 2, (doc: Doc, x: number, y: number, w: number, h: number) => {
+    quadro1(doc, pQ1);
+    panel(doc, pQ2, 2, (area) => {
       const [q2, qScopo, qCond, qAttr, qProfilo, qRiassunto] = rowsFixed(
         [13, 21, 53, 34, null, 77],
-        y,
-        h,
+        area,
         PANELS_SPACING,
       );
 
-      panel(doc, x, q2.y, w, q2.h, 3, (doc: Doc, x: number, y: number, w: number, h: number) => {
-        title(doc, "QUADRO 2 - DESCRIZIONE DELL'IMMERSIONE", x, y, 9, { width: w });
+      panel(doc, q2, 3, (area) => {
+        title(doc, "QUADRO 2 - DESCRIZIONE DELL'IMMERSIONE", area.x, area.y, 9, { width: area.w });
       });
-      panel(doc, x, qScopo.y, w, qScopo.h, 3, (doc: Doc, x: number, y: number, w: number, h: number) => {
-        const fieldW = w / 2;
-        fieldWithLowerSubLabel(doc, x, y, fieldW, 'scopo', dive.types?.join(', '), {
+      panel(doc, qScopo, 3, (area) => {
+        const fieldW = area.w / 2;
+        fieldWithLowerSubLabel(doc, area.x, area.y, fieldW, 'scopo', dive.types?.join(', '), {
           sublabel: '(didattica, svago, esplorazione, foto, ...)',
         });
-        fieldWithLowerSubLabel(doc, x + fieldW + 10, y, fieldW - 10, 'tipo', dive.types?.join(','), {
+        fieldWithLowerSubLabel(doc, area.x + fieldW + 10, area.y, fieldW - 10, 'tipo', dive.types?.join(','), {
           sublabel: '(da riva, da barca, secca, notturna, relitto,...)',
         });
       });
-      condizioni(doc, x, qCond.y, w, qCond.h, dive);
+      condizioni(doc, qCond, dive);
 
-      panel(doc, x, qAttr.y, w, qAttr.h, 3, (doc: Doc, x: number, y: number, w: number, h: number) => {
+      panel(doc, qAttr, 3, (area) => {
         // attrezzatura
-        title(doc, 'ATTREZZATURA', x, y, 9, { width: w });
+        title(doc, 'ATTREZZATURA', area.x, area.y, 9, { width: area.w });
 
-        const [a, b, c, d, e] = columnsFixed(doc, [37, 68, 34, 54, null], x, y + 10, w, h - 10, 3);
+        const [a, b, c, d, e] = columnsFixed(doc, [37, 68, 34, 54, null], lower(area, 10), 3);
 
         a(
           fWLS(null, tankName, {
@@ -141,22 +140,22 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
           }),
         );
       });
-      profilo(doc, x, qProfilo.y, w, qProfilo.h, dive);
-      panel(doc, x, qRiassunto.y, w, qRiassunto.h, 3, (doc: Doc, x: number, y: number, w: number, h: number) => {
+      profilo(doc, qProfilo, dive);
+      panel(doc, qRiassunto, 3, (area) => {
         const tempi = getTempi(dive);
         // quadro riassuntivo
-        const titleW = w / 2 + 20;
-        title(doc, "QUADRO RIASSUNTIVO DELL'IMMERSIONE", x, y, 9, { width: titleW });
-        doc.text('tempi parziali', x + titleW, y, { align: 'right', width: w - titleW });
+        const titleW = area.w / 2 + 20;
+        title(doc, "QUADRO RIASSUNTIVO DELL'IMMERSIONE", area.x, area.y, 9, { width: titleW });
+        doc.text('tempi parziali', area.x + titleW, area.y, { align: 'right', width: area.w - titleW });
 
-        const fieldsY = y + 10;
-        const fieldsH = h - 10;
-        const [a, b, c] = columns(doc, [null, null, null], x, fieldsY, w, fieldsH, 15);
-        const { r, rowH } = rows(fieldsY, fieldsH, 5, 2);
+        const content = lower(area, 10);
+
+        const [a, b, c] = columns(doc, [null, null, null], content.x, content.y, content.w, content.h, 15);
+        const { r, rowH } = rows(content.y, content.h, 5, 2);
 
         const inputWidth = 30;
 
-        a((doc: Doc, x: number, y: number, w: number) => {
+        a((doc, x, y, w) => {
           fieldWithFixedInput(doc, x, r[0], w, rowH, 'ora inizio imm.', dive.entry_time && time(dive.entry_time), {
             inputWidth,
           });
@@ -176,7 +175,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
             inputWidth,
           });
         });
-        b((doc: Doc, x: number, y: number, w: number, h: number) => {
+        b((doc: Doc, x: number, y: number, w: number) => {
           fieldWithFixedInput(doc, x, r[0], w, rowH, 'ora fine imm.', dive.exit_time && time(dive.exit_time), {
             inputWidth,
           });
@@ -194,7 +193,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
           });
           fieldWithFixedInput(doc, x, r[4], w, rowH, 'FAR finale', null, { inputWidth });
         });
-        c((doc: Doc, x: number, y: number, w: number, h: number) => {
+        c((doc: Doc, x: number, y: number, w: number) => {
           fieldWithFixedInput(doc, x, r[0], w, rowH, 'tempo di fondo', tempi.bottom_time, {
             inputWidth,
             sublabel: 'B',
@@ -220,25 +219,29 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
       });
     });
 
-    buddies(doc, x, pB.y, contentWidth, pB.h, dive);
+    buddies(doc, pB, dive);
 
-    footer(doc, x, pF.y, contentWidth, pF.h, {
-      isFake: !!dive.tags?.includes('fake'),
-      version: renderOptions.version,
-    });
+    footer(
+      doc,
+      { ...pageArea, ...pF },
+      {
+        isFake: !!dive.tags?.includes('fake'),
+        version: renderOptions.version,
+      },
+    );
   });
 
-  page(doc, true, (doc: Doc, x: number, y: number, w: number, h: number) => {
+  page(doc, true, (pageArea) => {
     const hasMap = !!image;
     const mapHeight = hasMap ? 172 : 0;
 
-    const [pHeader, pLabel, pSquares, pMap, pF] = rowsFixed([28, 30, null, mapHeight, 15], y, h, PANELS_SPACING);
+    const [pHeader, pLabel, pSquares, pMap, pF] = rowsFixed([28, 30, null, mapHeight, 15], pageArea, PANELS_SPACING);
 
-    header(doc, 'SCHEDA ARIA (didattica)', x, pHeader.y, w, pHeader.h);
+    header(doc, 'SCHEDA ARIA (didattica)', pHeader);
 
-    const info = block(doc, x, pLabel.y, w, pLabel.h);
+    const info = block(doc, pageArea.x, pLabel.y, pageArea.w, pLabel.h);
 
-    info((doc: Doc, x: number, y: number, w: number, h: number) => {
+    info((doc: Doc, x: number, y: number, w: number, h) => {
       title(doc, 'ANNOTAZIONI', x, y, 9, { width: w });
       doc.text(
         "(compagni d'immersione, indirizzi, numeri telefonici, punti di riferimento, piantina della zona, profili della costa e dei fondali, osservazioni naturalistiche o archeologiche, ecc)",
@@ -248,29 +251,29 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
       );
     });
 
-    squares(doc, x, pSquares.y, w, pSquares.h, async (doc: Doc, x: number, y: number, width: number, h: number) => {
+    squares(doc, pSquares, (area) => {
       const options = {
-        width,
+        width: area.w,
       };
       if (dive.notes) {
         doc.fontSize(10);
-        doc.text(trimNewLines(dive.notes), x, y, options);
+        doc.text(trimNewLines(dive.notes), area.x, area.y, options);
       }
 
       const gearStr = gearList(dive);
       if (gearStr) {
         doc.fontSize(8);
         const text_height = doc.heightOfString(gearStr, options);
-        doc.text(gearStr, x, y + h - text_height, options);
+        doc.text(gearStr, area.x, area.y + area.h - text_height, options);
         doc.fontSize(10);
       }
     });
 
     if (hasMap) {
-      mapBlock(doc, x, pMap.y, w, pMap.h, image);
+      mapBlock(doc, pageArea.x, pMap.y, pageArea.w, pMap.h, image);
     }
 
-    footer(doc, x, pF.y, w, pF.h);
+    footer(doc, pF);
   });
 
   return 2;

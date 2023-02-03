@@ -1,36 +1,38 @@
-import { columnsFixed, columns, rows } from '../atoms/grid';
-import { panel } from '../atoms/panel';
+import { columnsArea, columnsFixed, rows } from '../atoms/grid';
 import { input } from '../atoms/input';
-import { title } from '../atoms/titles';
 import label from '../atoms/label';
+import { panel } from '../atoms/panel';
+import { title } from '../atoms/titles';
 import condizioniAmbientali from '../molecules/condizioni-ambientali';
+import { lower } from '../neutrons/area';
 import { Component, Doc } from '../types';
-import { Dive } from 'dive-log-importer';
 
-const component: Component = (doc, x, y, w, h, dive) =>
-  panel(doc, x, y, w, h, 3, (doc: Doc, x: number, y: number, w: number, h: number) => {
+const component: Component = (doc, area, dive) =>
+  panel(doc, area, 3, (a) => {
     // condizioni
-    title(doc, 'CONDIZIONI', x, y, 9, { width: w });
+    title(doc, 'CONDIZIONI', a.x, a.y, 9, { width: a.w });
 
-    const [ambientali, personali] = columns(doc, [60, 40], x, y, w, h, 5);
+    const content = lower(area, 10);
 
-    const { r, rowH } = rows(y + 10, h - 10, 4, 1);
+    const [ambientali, personali] = columnsArea([60, 40], content, 5);
 
-    ambientali((doc: Doc, x: number, y: number, w: number, h: number) => {
-      title(doc, 'AMBIENTALI', x, y, 6, { align: 'center', width: w });
+    const { r, rowH } = rows(content.y, content.h, 4, 1);
 
-      condizioniAmbientali(doc, x, y, w, h, r, rowH, dive);
+    ambientali((area) => {
+      title(doc, 'AMBIENTALI', area.x, area.y, 6, { align: 'center', width: area.w });
+
+      condizioniAmbientali(doc, area, r, rowH, dive);
     });
-    personali((doc: Doc, x: number, y: number, w: number, h: number) => {
-      title(doc, 'PERSONALI', x, y, 6, { align: 'center', width: w });
+    personali((area) => {
+      title(doc, 'PERSONALI', area.x, area.y, 6, { align: 'center', width: area.w });
 
-      const [labels, inputs] = columnsFixed(doc, [25, null], x, y, w, h, 2);
+      const [labels, inputs] = columnsFixed(doc, [25, null], area, 2);
 
-      labels((doc: Doc, x: number, y: number, w: number, h: number) => {
+      labels((doc: Doc, x: number, y: number, w: number) => {
         label(doc, 'prima', null, x, r[0], w, rowH, 'left');
         label(doc, 'dopo', null, x, r[2], w, rowH, 'left');
       });
-      inputs((doc: Doc, x: number, y: number, w: number, h: number) => {
+      inputs((doc: Doc, x: number, y: number, w: number) => {
         input(doc, x, r[0], w, rowH, null);
         input(doc, x, r[1], w, rowH, null);
         input(doc, x, r[2], w, rowH, null);

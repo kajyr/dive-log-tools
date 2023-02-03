@@ -1,4 +1,4 @@
-import { Doc } from '../types';
+import { Doc, Maybe } from '../types';
 
 import { centerY } from './text';
 
@@ -7,7 +7,7 @@ const padding = 2;
 function label(
   doc: Doc,
   text: string,
-  letter: string | null,
+  letter: Maybe<string>,
   x: number,
   y: number,
   w: number,

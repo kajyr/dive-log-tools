@@ -1,9 +1,8 @@
-import { Doc, Maybe, Value } from '../types';
-
-import format from 'date-fns/format';
-import { centerY } from '../atoms/text';
 import { input } from '../atoms/input';
 import labelF from '../atoms/label';
+import { centerY } from '../atoms/text';
+import { Doc, Maybe, Value } from '../types';
+import format from 'date-fns/format';
 
 type FieldOptions = {
   labelSpacing?: number;
@@ -185,7 +184,7 @@ export function fieldWithFixedInput(
 
   const labelW = w - inputWidth - 2;
 
-  sublabel && labelF(doc, label, sublabel, x, y, labelW, h);
+  labelF(doc, label, sublabel, x, y, labelW, h);
 
   input(doc, x + labelW + 2, y, inputWidth, h, value);
 }

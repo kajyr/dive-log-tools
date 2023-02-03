@@ -34,7 +34,7 @@ export type Maybe<T> = T | null | undefined;
 export type Value = Maybe<string | number>;
 
 export type PFN = (d: Doc, x: number, y: number, w: number, h: number) => void;
-export type Component = (d: Doc, x: number, y: number, w: number, h: number, dive: Partial<Dive>) => void;
+export type Component = (d: Doc, area: Area, dive: Partial<Dive>) => void;
 
 export type Area = { x: number; y: number; w: number; h: number };
 export type AreaFn = (a: Area) => void;

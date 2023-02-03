@@ -25,6 +25,10 @@ export function columnsArea(list: ListWithNulls, area: Area, gutter: number): ((
   });
 }
 
+/**
+ *
+ * @deprecated Use columnsArea
+ */
 export function columns(
   doc: Doc,
   list: ListWithNulls,
@@ -48,16 +52,8 @@ export function columns(
 /*
     Fixed sizes in points instead of percentage
 */
-export function columnsFixed(
-  doc: Doc,
-  list: ListWithNulls,
-  startX: number,
-  startY: number,
-  width: number,
-  height: number,
-  gutter: number,
-) {
-  return spread(list, startX, width, gutter).map(([x, w]) => block(doc, x, startY, w, height));
+export function columnsFixed(doc: Doc, list: ListWithNulls, area: Area, gutter: number) {
+  return spread(list, area.x, area.w, gutter).map(([x, w]) => block(doc, x, area.y, w, area.h));
 }
 
 export function rows(startY: number, height: number, number: number, gutter = 0) {
@@ -73,8 +69,8 @@ export function rows(startY: number, height: number, number: number, gutter = 0)
   };
 }
 
-export function rowsFixed(list: ListWithNulls, y: number, h: number, gutter: number) {
-  return spread(list, y, h, gutter).map(([y, h]) => ({ h, y }));
+export function rowsFixed(list: ListWithNulls, area: Area, gutter: number) {
+  return spread(list, area.y, area.h, gutter).map(([y, h]) => ({ ...area, h, y }));
 }
 
 export function rowsFixedArea(list: ListWithNulls, area: Area, gutter: number) {

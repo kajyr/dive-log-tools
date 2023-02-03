@@ -31,27 +31,22 @@ const HEADER_LINE_HEIGHT = 18;
  * Returns the number of pages added
  */
 async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptions: RenderOptions): Promise<number> {
-  page(doc, renderOptions.pageIndex % 2 === 0, (doc, x, y, w, h) => {
+  page(doc, renderOptions.pageIndex % 2 === 0, (pageArea) => {
     const [rowHeader, rowPanel, rowBuddies, rowFooter] = rowsFixed(
       [HEADER_HEIGHT, null, BUDDIES_HEIGHT, FOOTER_HEIGHT],
-      y,
-      h,
+      pageArea,
       PANELS_SPACING,
     );
 
-    header(doc, 'SCHEDA ARIA - NITROX BASE', x, rowHeader.y, w, rowHeader.h);
+    header(doc, 'SCHEDA ARIA - NITROX BASE', rowHeader);
 
     /* DIVE RELATED THINGS */
     const [gas] = getGases(dive);
     const tankVolume = gas.tankSize;
 
-    panel(doc, x, rowPanel.y, w, rowPanel.h, 5, (doc, startX, startY, width, height) => {
+    panel(doc, rowPanel, 5, (area) => {
       const fieldPadding = 5;
-      const [location, condizioni, profilo, annotazioni] = rowsFixedArea(
-        [45, 80, 160, null],
-        { h: height, w: width, x: startX, y: startY },
-        fieldPadding,
-      );
+      const [location, condizioni, profilo, annotazioni] = rowsFixedArea([45, 80, 160, null], area, fieldPadding);
 
       location((area) => {
         // First group
@@ -84,7 +79,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
 
           const { r, rowH } = rows(content.y, content.h, 4, 5);
 
-          condizioniAmbientali(doc, content.x, content.y, content.w, content.h, r, rowH, dive);
+          condizioniAmbientali(doc, content, r, rowH, dive);
         });
         second((area) => {
           title(doc, 'Attrezzatura', area.x, area.y);
@@ -165,7 +160,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
 
         doc
           .lineWidth(3)
-          .moveTo(startX, top_y)
+          .moveTo(area.x, top_y)
           .lineTo(initial_x, top_y)
           .lineTo(bottom_x, bottom_y)
           .lineTo(bottom_w, bottom_y)
@@ -230,7 +225,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
             },
           );
 
-          fieldWithUpperLabel(doc, x + 27, r[3], baseFW, rowH, 'Penalità', null, {
+          fieldWithUpperLabel(doc, area.x + 27, r[3], baseFW, rowH, 'Penalità', null, {
             bold: true,
             sublabel: '(min)',
           });
@@ -285,9 +280,9 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
         title(doc, 'Annotazioni', area.x, area.y);
         const content = lower(area, HEADER_LINE_HEIGHT);
 
-        squares(doc, content.x, content.y, area.w, content.h, (d, x, y, w, h) => {
+        squares(doc, content, (a) => {
           const options = {
-            width,
+            width: a.w,
           };
 
           if (dive.notes) {
@@ -298,26 +293,30 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
             if (notesStrHeight > (content.h / 3) * 2) {
               doc.fontSize(6);
             }
-            doc.text(notes, x, y, options);
+            doc.text(notes, a.x, a.y, options);
           }
 
           const gearStr = gearList(dive);
           if (gearStr) {
             doc.fontSize(8);
             const text_height = doc.heightOfString(gearStr, options);
-            doc.text(gearStr, x, y + h - text_height, options);
+            doc.text(gearStr, a.x, a.y + a.h - text_height, options);
           }
           doc.fontSize(10);
         });
       });
     });
 
-    buddies(doc, x, rowBuddies.y, w, rowBuddies.h, dive);
+    buddies(doc, rowBuddies, dive);
 
-    footer(doc, x, rowFooter.y, w, rowFooter.h, {
-      isFake: !!dive.tags?.includes('fake'),
-      version: renderOptions.version,
-    });
+    footer(
+      doc,
+      { ...pageArea, ...rowFooter },
+      {
+        isFake: !!dive.tags?.includes('fake'),
+        version: renderOptions.version,
+      },
+    );
   });
 
   return 1;

@@ -1,6 +1,6 @@
 import path from 'path';
 
-import { Doc } from '../types';
+import { Area, Doc } from '../types';
 
 import { centerY } from './text';
 
@@ -10,14 +10,12 @@ const FIPSAS_IMAGE_HEIGHT = 25;
 const FIPSAS_IMAGE_WIDTH = 25;
 export const HEADER_HEIGHT = 28;
 
-function header(doc: Doc, title: string, startX: number, startY: number, width: number, height: number) {
-  //const { logo } = options;
+function header(doc: Doc, title: string, area: Area) {
+  let rightBorder = area.x + area.w;
 
-  let rightBorder = startX + width;
+  const cY = centerY(doc, area.y, area.h);
 
-  const cY = centerY(doc, startY, height);
-
-  const curX = startX;
+  const curX = area.x;
   /*   if (logo) {
     doc.image(`${IMAGES_PATH}/nettuno.png`, curX, startY, {
       height,
@@ -33,7 +31,7 @@ function header(doc: Doc, title: string, startX: number, startY: number, width: 
     })
     .font('Helvetica');
 
-  doc.image(`${IMAGES_PATH}/fipsas1x.png`, rightBorder - FIPSAS_IMAGE_WIDTH, startY, {
+  doc.image(`${IMAGES_PATH}/fipsas1x.png`, rightBorder - FIPSAS_IMAGE_WIDTH, area.y, {
     height: FIPSAS_IMAGE_HEIGHT,
   });
   rightBorder = rightBorder - FIPSAS_IMAGE_WIDTH;
@@ -44,7 +42,7 @@ function header(doc: Doc, title: string, startX: number, startY: number, width: 
     doc.text(fip_str, rightBorder - fip_width, cY, { align: 'right', width: fip_width });
   }
 
-  return [startX, startY + height];
+  return [area.x, area.y + area.h];
 }
 
 export default header;

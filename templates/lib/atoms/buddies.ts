@@ -6,12 +6,12 @@ const str = '(Compagno, Istruttore, Guida)';
 
 export const BUDDIES_HEIGHT = 37;
 
-const component: Component = (doc, x, y, w, h, dive) => {
-  title(doc, 'CONVALIDA', x, y + 10, 9, { width: w });
+const component: Component = (doc, area, dive) => {
+  title(doc, 'CONVALIDA', area.x, area.y + 10, 9, { width: area.w });
 
-  const textY = y + 25;
-  const signatureX = x + doc.widthOfString(str) + 5;
-  doc.text(str, x, textY);
+  const textY = area.y + 25;
+  const signatureX = area.x + doc.widthOfString(str) + 5;
+  doc.text(str, area.x, textY);
 
   if (dive.buddies) {
     doc.fontSize(9).text(dive.buddies, signatureX, textY).fontSize(8);
@@ -21,7 +21,7 @@ const component: Component = (doc, x, y, w, h, dive) => {
 
   doc
     .moveTo(signatureX, lineY)
-    .lineTo(x + w, lineY)
+    .lineTo(area.x + area.w, lineY)
     .stroke();
 };
 

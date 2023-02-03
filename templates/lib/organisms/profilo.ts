@@ -1,11 +1,12 @@
+import { Dive, Sample } from 'dive-log-importer';
+
 import { block } from '../atoms/grid';
 import { panel } from '../atoms/panel';
-import { title } from '../atoms/titles';
 import { squares } from '../atoms/squares';
-import { scale } from '../pdfkit/lib/charts';
+import { title } from '../atoms/titles';
 import { timefromSeconds } from '../format';
-import { Doc, PFN } from '../types';
-import { Dive, Sample } from 'dive-log-importer';
+import { scale } from '../pdfkit/lib/charts';
+import { Area, Doc, PFN } from '../types';
 
 const CHART_LINES_COLORS = ['#5B7AB7', '#362455'];
 
@@ -55,23 +56,23 @@ const chartComponent = (box: (fn: PFN) => void, samples: Sample[]) =>
     });
   });
 
-const component = (doc: Doc, x: number, y: number, w: number, h: number, dive: Partial<Dive>) =>
-  panel(doc, x, y, w, h, 3, (doc: Doc, x: number, y: number, w: number, h: number) => {
-    title(doc, "PROFILO DELL'IMMERSIONE", x, y, 9, { width: w });
+const component = (doc: Doc, area: Area, dive: Partial<Dive>) =>
+  panel(doc, area, 3, (a) => {
+    title(doc, "PROFILO DELL'IMMERSIONE", a.x, a.y, 9, { width: a.w });
 
-    const boxY = y + 15;
-    const boxH = h - 15;
+    const boxY = a.y + 15;
+    const boxH = a.h - 15;
     const boxPadding = 2;
-    doc.rect(x, boxY, w, boxH).fill('white').fillColor('black');
+    doc.rect(a.x, boxY, a.w, boxH).fill('white').fillColor('black');
 
-    const chartBox = block(doc, x + boxPadding, boxY + boxPadding, w - 2 * boxPadding, boxH - 2 * boxPadding);
+    const chartBox = block(doc, a.x + boxPadding, boxY + boxPadding, a.w - 2 * boxPadding, boxH - 2 * boxPadding);
 
     const { samples } = dive;
 
     if (samples?.length) {
       chartComponent(chartBox, samples);
     } else {
-      chartBox(squares);
+      chartBox((doc, x, y, w, h) => squares(doc, { h, w, x, y }));
     }
   });
 

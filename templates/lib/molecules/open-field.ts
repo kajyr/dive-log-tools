@@ -1,6 +1,6 @@
-import { Area, Doc, Maybe } from '../types';
+import { Area, Doc, Value } from '../types';
 
-export function openField(doc: Doc, label: string, value: Maybe<string | number>, area: Area) {
+export function openField(doc: Doc, label: string, value: Value, area: Area) {
   const mainlabelWidth = doc.widthOfString(label);
   const heightOfText = doc.heightOfString(label);
 

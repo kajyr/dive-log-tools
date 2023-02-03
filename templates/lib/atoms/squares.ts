@@ -1,40 +1,40 @@
-import { Doc, PFN } from '../types';
+import { Area, AreaFn, Doc } from '../types';
 
 const SQUARE_SIDE = 13;
 const LINE_COLOR = '#DEDEDE';
 
-export function squares(doc: Doc, x: number, y: number, w: number, h: number, content?: PFN | string) {
-  doc.rect(x, y, w, h).fillAndStroke('white', LINE_COLOR).fillColor('black');
+export function squares(doc: Doc, area: Area, content?: AreaFn) {
+  doc.rect(area.x, area.y, area.w, area.h).fillAndStroke('white', LINE_COLOR).fillColor('black');
 
-  let vx = x;
-  while (vx < x + w) {
+  let vx = area.x;
+  while (vx < area.x + area.w) {
     doc
-      .moveTo(vx, y)
-      .lineTo(vx, y + h)
+      .moveTo(vx, area.y)
+      .lineTo(vx, area.y + area.h)
       .stroke(LINE_COLOR);
     vx += SQUARE_SIDE;
   }
 
-  let vy = y;
-  while (vy < y + h) {
+  let vy = area.y;
+  while (vy < area.y + area.h) {
     doc
-      .moveTo(x, vy)
-      .lineTo(x + w, vy)
+      .moveTo(area.x, vy)
+      .lineTo(area.x + area.w, vy)
       .stroke(LINE_COLOR);
     vy += SQUARE_SIDE;
   }
 
   const padding = 5;
 
-  const content_w = w - padding * 2;
-  const content_h = h - padding * 2;
+  const content_w = area.w - padding * 2;
+  const content_h = area.h - padding * 2;
 
   if (typeof content === 'function') {
-    content(doc, x + padding, y + padding, content_w, content_h);
+    content({ h: content_h, w: content_w, x: area.x + padding, y: area.y + padding });
   } else if (typeof content === 'string') {
     doc
       .fontSize(10)
-      .text(content, x + padding, y + padding, {
+      .text(content, area.x + padding, area.y + padding, {
         height: content_h,
         width: content_w,
       })
