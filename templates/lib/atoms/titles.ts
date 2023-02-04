@@ -1,5 +1,6 @@
-import { center } from '../neutrons/math';
 import { Doc } from '../types';
+
+import { centerY } from './grid';
 
 interface Options extends PDFKit.Mixins.TextOptions {
   valign?: 'center';
@@ -11,7 +12,7 @@ export function title(doc: Doc, label: string, x: number, y: number, fontSize = 
     if (!options.height) {
       throw new Error('To use vertical alignement the height need to be set');
     }
-    y = center(y, options.height, doc.heightOfString(label));
+    y = centerY(y, doc.heightOfString(label), options.height);
   }
   doc.text(label, x, y, options).font('Helvetica').fontSize(8);
 }

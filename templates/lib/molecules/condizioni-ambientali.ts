@@ -24,31 +24,25 @@ const CURRENT_NONE = 'NONE';
 const component = (doc: Doc, area: Area, r: number[], rowH: number, dive: Partial<Dive>) => {
   const [labels, ok, med, nope] = columnsArea([null, 25, 25, 25], area, 1);
 
-  labels((area) => {
-    label(doc, 'meteo:', null, area.x, r[0], area.w, rowH, 'left');
-    label(doc, 'mare:', null, area.x, r[1], area.w, rowH, 'left');
-    label(doc, 'visibilità:', null, area.x, r[2], area.w, rowH, 'left');
-    label(doc, 'corrente:', null, area.x, r[3], area.w, rowH, 'left');
-  });
+  label(doc, 'meteo:', null, labels.x, r[0], labels.w, rowH, 'left');
+  label(doc, 'mare:', null, labels.x, r[1], labels.w, rowH, 'left');
+  label(doc, 'visibilità:', null, labels.x, r[2], labels.w, rowH, 'left');
+  label(doc, 'corrente:', null, labels.x, r[3], labels.w, rowH, 'left');
 
-  ok((area) => {
-    checkbox(doc, area.x, r[0], area.w, rowH, 'sereno', dive.weather_normalized === WEATHER_GOOD);
-    checkbox(doc, area.x, r[1], area.w, rowH, 'calmo', dive.surface_normalized === SURFACE_FLAT);
-    checkbox(doc, area.x, r[2], area.w, rowH, 'buona', dive.visibility_normalized === VISIBILITY_GOOD);
-    checkbox(doc, area.x, r[3], area.w, rowH, 'assente', dive.current_normalized === CURRENT_NONE);
-  });
-  med((area) => {
-    checkbox(doc, area.x, r[0], area.w, rowH, 'coperto', dive.weather_normalized === WEATHER_MEDIUM);
-    checkbox(doc, area.x, r[1], area.w, rowH, 'p. mosso', dive.surface_normalized === SURFACE_WEAK);
-    checkbox(doc, area.x, r[2], area.w, rowH, 'sufficiente', dive.visibility_normalized === VISIBILITY_MEDIUM);
-    checkbox(doc, area.x, r[3], area.w, rowH, 'debole', dive.current_normalized === CURRENT_WEAK);
-  });
-  nope((area) => {
-    checkbox(doc, area.x, r[0], area.w, rowH, 'pioggia', dive.weather_normalized === WEATHER_POOR);
-    checkbox(doc, area.x, r[1], area.w, rowH, 'mosso', dive.surface_normalized === SURFACE_ROUGH);
-    checkbox(doc, area.x, r[2], area.w, rowH, 'scarsa', dive.visibility_normalized === VISIBILITY_POOR);
-    checkbox(doc, area.x, r[3], area.w, rowH, 'forte', dive.current_normalized === CURRENT_STRONG);
-  });
+  checkbox(doc, ok.x, r[0], ok.w, rowH, 'sereno', dive.weather_normalized === WEATHER_GOOD);
+  checkbox(doc, ok.x, r[1], ok.w, rowH, 'calmo', dive.surface_normalized === SURFACE_FLAT);
+  checkbox(doc, ok.x, r[2], ok.w, rowH, 'buona', dive.visibility_normalized === VISIBILITY_GOOD);
+  checkbox(doc, ok.x, r[3], ok.w, rowH, 'assente', dive.current_normalized === CURRENT_NONE);
+
+  checkbox(doc, med.x, r[0], med.w, rowH, 'coperto', dive.weather_normalized === WEATHER_MEDIUM);
+  checkbox(doc, med.x, r[1], med.w, rowH, 'p. mosso', dive.surface_normalized === SURFACE_WEAK);
+  checkbox(doc, med.x, r[2], med.w, rowH, 'sufficiente', dive.visibility_normalized === VISIBILITY_MEDIUM);
+  checkbox(doc, med.x, r[3], med.w, rowH, 'debole', dive.current_normalized === CURRENT_WEAK);
+
+  checkbox(doc, nope.x, r[0], nope.w, rowH, 'pioggia', dive.weather_normalized === WEATHER_POOR);
+  checkbox(doc, nope.x, r[1], nope.w, rowH, 'mosso', dive.surface_normalized === SURFACE_ROUGH);
+  checkbox(doc, nope.x, r[2], nope.w, rowH, 'scarsa', dive.visibility_normalized === VISIBILITY_POOR);
+  checkbox(doc, nope.x, r[3], nope.w, rowH, 'forte', dive.current_normalized === CURRENT_STRONG);
 };
 
 export default component;

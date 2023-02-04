@@ -1,9 +1,16 @@
-import { SignOpts, sign } from '../pdfkit/lib/dotSignature';
 import { Area, Doc } from '../types';
 
 import { centerY } from './text';
 
 export const FOOTER_HEIGHT = 15;
+
+export type SignOpts = { version: string; isFake: boolean };
+
+export function sign({ version, isFake }: SignOpts) {
+  const s = [isFake ? ':' : '.'];
+
+  return `${s.join('')} ${version}`;
+}
 
 function footer(doc: Doc, area: Area, options?: SignOpts) {
   doc.fontSize(8);

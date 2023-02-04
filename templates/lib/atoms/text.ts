@@ -1,6 +1,6 @@
-import { center } from '../neutrons/math';
+import { centerY as gridCenterY } from '../atoms/grid';
 import { Doc } from '../types';
 
 export function centerY(doc: Doc, startY: number, height: number) {
-  return center(startY, height, doc.currentLineHeight());
+  return gridCenterY(startY, doc.currentLineHeight(), height);
 }

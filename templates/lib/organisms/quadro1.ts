@@ -4,6 +4,7 @@ import { panel } from '../atoms/panel';
 import { title } from '../atoms/titles';
 import { FONT_SIZE_FIELDS, FONT_SIZE_MINI_HEADERS, MINI_HEADERS_HEIGHT, PANELS_SPACING } from '../constants/page';
 import { vInputs } from '../molecules/vertical-inputs';
+import { box } from '../neutrons/area';
 import { Area, Doc } from '../types';
 
 const component = (doc: Doc, area: Area) =>
@@ -29,7 +30,7 @@ const component = (doc: Doc, area: Area) =>
     const rowsH = panelsInnerH - MINI_HEADERS_HEIGHT * 1.5;
     const { r, rowH } = rows(rowsY, rowsH, 5, 0);
 
-    first((area) => {
+    box(first, (area) => {
       const labelPanelH = 11;
       const ripetitivaPanelW = 100;
       const ripetitivaPanelH = area.h - labelPanelH - PANELS_SPACING;
@@ -42,13 +43,13 @@ const component = (doc: Doc, area: Area) =>
 
         const [labels, inputs] = columnsFixed(doc, [null, 25], a, 4);
 
-        labels((doc: Doc, x: number, y: number, w: number) => {
+        box(labels, ({ x, w }) => {
           label(doc, 'FAR imm. prec.', null, x, r[0], w, rowH);
           label(doc, 'intervallo di sup.', null, x, r[1], w, rowH);
           label(doc, 'FAR fine int. sup.', null, x, r[2], w, rowH);
           label(doc, 'penalità', 'a', x, r[3], w, rowH);
         });
-        inputs((doc: Doc, x: number, y: number, w: number) => {
+        box(inputs, ({ x, w }) => {
           vInputs(doc, x, rowsY, w, rowH, [null, null, null, null]);
         });
       });
@@ -65,13 +66,13 @@ const component = (doc: Doc, area: Area) =>
         (a) => {
           const [labels, prof, tempi, cons] = columnsFixed(doc, [null, 25, 25, 25], a, 4);
 
-          labels((doc: Doc, x: number, y: number, w: number) => {
+          box(labels, ({ x, w }) => {
             label(doc, 'fondo reale', 'b', x, r[0], w, rowH);
             label(doc, 'sosta profonda', 'c', x, r[1], w, rowH);
             label(doc, 'risalita', 'd', x, r[2], w, rowH);
             label(doc, 'sosta + emers', 'f', x, r[3], w, rowH);
           });
-          prof((doc: Doc, x: number, y: number, w: number) => {
+          box(prof, ({ x, w, y }) => {
             doc
               .fontSize(FONT_SIZE_MINI_HEADERS)
               .text('PROF.', x, y, { align: 'center', width: w })
@@ -79,7 +80,7 @@ const component = (doc: Doc, area: Area) =>
 
             vInputs(doc, x, rowsY, w, rowH, [null, null, null, null]);
           });
-          tempi((doc: Doc, x: number, y: number, w: number) => {
+          box(tempi, ({ x, y, w }) => {
             doc
               .fontSize(FONT_SIZE_MINI_HEADERS)
               .text('TEMPI.', x, y, { align: 'center', width: w })
@@ -87,7 +88,7 @@ const component = (doc: Doc, area: Area) =>
 
             vInputs(doc, x, rowsY, w, rowH, [null, null, null, null]);
           });
-          cons((doc: Doc, x: number, y: number, w: number) => {
+          box(cons, ({ x, y, w }) => {
             doc
               .fontSize(FONT_SIZE_MINI_HEADERS)
               .text('CONS.', x, y, { align: 'center', width: w })
@@ -107,7 +108,7 @@ const component = (doc: Doc, area: Area) =>
       });
     });
 
-    second((area) => {
+    box(second, (area) => {
       panel(doc, area, 3, (a) => {
         doc
           .fontSize(FONT_SIZE_MINI_HEADERS)
@@ -116,14 +117,14 @@ const component = (doc: Doc, area: Area) =>
 
         const [labels, inputs] = columnsFixed(doc, [null, 25], a, 4);
 
-        labels((doc: Doc, x: number, y: number, w: number) => {
+        box(labels, ({ x, w }) => {
           label(doc, 'prof. tab', null, x, r[0], w, rowH);
           label(doc, 'tempo tab.', null, x, r[1], w, rowH);
           label(doc, 'durata', null, x, r[2], w, rowH);
           label(doc, 'FAR', null, x, r[3], w, rowH);
           label(doc, 'consumo', null, x, r[4], w, rowH);
         });
-        inputs((doc: Doc, x: number, y: number, w: number) => {
+        box(inputs, ({ x, w }) => {
           vInputs(doc, x, rowsY, w, rowH, [null, null, null, null, null]);
         });
       });

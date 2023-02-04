@@ -1,5 +1,5 @@
 import { fillMissing, spread } from '../neutrons/grid';
-import { Area, AreaFn, Doc, PFN } from '../types';
+import { Area, Doc, PFN } from '../types';
 
 import { debugSquare } from './debug';
 
@@ -8,52 +8,27 @@ type ListWithNulls = (number | null)[];
 export function block(doc: Doc, startX: number, startY: number, width: number, height: number) {
   return (children: PFN) => children(doc, startX, startY, width, height);
 }
-
-export function blockArea(area: Area) {
-  return (children: AreaFn) => children(area);
-}
-
-export function columnsArea(list: ListWithNulls, area: Area, gutter: number): ((children: AreaFn) => void)[] {
+/**
+ *
+ * @param list are percentages.
+ */
+export function columnsArea(list: ListWithNulls, area: Area, gutter: number): Area[] {
   let x = area.x;
   const availableWidth = area.w - gutter * (list.length - 1);
 
   return fillMissing(list, 100).map((perc) => {
     const w = (availableWidth / 100) * perc;
-    const fn = blockArea({ ...area, w: w, x });
+    const ret = { ...area, w: w, x };
     x = x + w + gutter;
-    return fn;
-  });
-}
-
-/**
- *
- * @deprecated Use columnsArea
- */
-export function columns(
-  doc: Doc,
-  list: ListWithNulls,
-  startX: number,
-  startY: number,
-  width: number,
-  height: number,
-  gutter: number,
-): ((children: PFN) => void)[] {
-  let curX = startX;
-  const availableWidth = width - gutter * (list.length - 1);
-
-  return fillMissing(list, 100).map((perc) => {
-    const bW = (availableWidth / 100) * perc;
-    const fn = block(doc, curX, startY, bW, height);
-    curX = curX + bW + gutter;
-    return fn;
+    return ret;
   });
 }
 
 /*
     Fixed sizes in points instead of percentage
 */
-export function columnsFixed(doc: Doc, list: ListWithNulls, area: Area, gutter: number) {
-  return spread(list, area.x, area.w, gutter).map(([x, w]) => block(doc, x, area.y, w, area.h));
+export function columnsFixed(doc: Doc, list: ListWithNulls, area: Area, gutter: number): Area[] {
+  return spread(list, area.x, area.w, gutter).map(([x, w]) => ({ ...area, w, x }));
 }
 
 export function rows(startY: number, height: number, number: number, gutter = 0) {
@@ -69,12 +44,12 @@ export function rows(startY: number, height: number, number: number, gutter = 0)
   };
 }
 
-export function rowsFixed(list: ListWithNulls, area: Area, gutter: number) {
+export function rowsFixed(list: ListWithNulls, area: Area, gutter: number): Area[] {
   return spread(list, area.y, area.h, gutter).map(([y, h]) => ({ ...area, h, y }));
 }
 
-export function rowsFixedArea(list: ListWithNulls, area: Area, gutter: number) {
-  return spread(list, area.y, area.h, gutter).map(([y, h]) => blockArea({ ...area, h, y }));
+export function rowsFixedArea(list: ListWithNulls, area: Area, gutter: number): Area[] {
+  return spread(list, area.y, area.h, gutter).map(([y, h]) => ({ ...area, h, y }));
 }
 
 export function centerY(y: number, elementHeight: number, containerHeight: number) {

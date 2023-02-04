@@ -2,7 +2,7 @@ import { Dive } from 'dive-log-importer';
 
 import buddies, { BUDDIES_HEIGHT } from '../atoms/buddies';
 import footer, { FOOTER_HEIGHT } from '../atoms/footer';
-import { block, columns, columnsFixed, rows, rowsFixed } from '../atoms/grid';
+import { block, columnsArea, columnsFixed, rows, rowsFixed } from '../atoms/grid';
 import header, { HEADER_HEIGHT } from '../atoms/header';
 import page from '../atoms/page';
 import { panel } from '../atoms/panel';
@@ -12,7 +12,7 @@ import { LINE_WIDTH, PANELS_SPACING } from '../constants/page';
 import { time } from '../format';
 import { field, fieldWithFixedInput, fieldWithLowerSubLabel, field_date } from '../molecules/field';
 import mapBlock from '../molecules/map';
-import { lower } from '../neutrons/area';
+import { box, lower } from '../neutrons/area';
 import { consumo, getGases, volumeStart } from '../neutrons/gas';
 import { gearList, getComputer, getSuit } from '../neutrons/gear';
 import { getImage } from '../neutrons/location';
@@ -21,11 +21,10 @@ import { getTempi } from '../neutrons/tempi';
 import condizioni from '../organisms/condizioni';
 import profilo from '../organisms/profilo';
 import quadro1 from '../organisms/quadro1';
-import { Doc, Maybe, Options, RenderOptions } from '../types';
+import { Area, Doc, Maybe, Options, RenderOptions, Value } from '../types';
 
-const fWLS =
-  (label: Maybe<string>, value: Maybe<string | number>, options?: any) => (d: Doc, x: number, y: number, w: number) =>
-    fieldWithLowerSubLabel(d, x, y, w, label, value, options);
+const fWLS = (doc: Doc, { x, y, w }: Area, label: Maybe<string>, value: Value, options?: any) =>
+  fieldWithLowerSubLabel(doc, x, y, w, label, value, options);
 
 /**
  * This logbook layout assumes only one gas.
@@ -114,31 +113,22 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
 
         const [a, b, c, d, e] = columnsFixed(doc, [37, 68, 34, 54, null], lower(area, 10), 3);
 
-        a(
-          fWLS(null, tankName, {
-            sublabel: 'bombole(l)',
-          }),
-        );
-        b(
-          fWLS(null, suit.name, {
-            sublabel: 'muta',
-          }),
-        );
-        c(
-          fWLS(null, dive.weights, {
-            sublabel: 'zavorra (kg)',
-          }),
-        );
-        d(
-          fWLS(null, computer.name, {
-            sublabel: 'tabelle / computer',
-          }),
-        );
-        e(
-          fWLS(null, null, {
-            sublabel: 'altro',
-          }),
-        );
+        fWLS(doc, a, null, tankName, {
+          sublabel: 'bombole(l)',
+        });
+        fWLS(doc, b, null, suit.name, {
+          sublabel: 'muta',
+        });
+
+        fWLS(doc, c, null, dive.weights, {
+          sublabel: 'zavorra (kg)',
+        });
+        fWLS(doc, d, null, computer.name, {
+          sublabel: 'tabelle / computer',
+        });
+        fWLS(doc, e, null, null, {
+          sublabel: 'altro',
+        });
       });
       profilo(doc, qProfilo, dive);
       panel(doc, qRiassunto, 3, (area) => {
@@ -150,12 +140,12 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
 
         const content = lower(area, 10);
 
-        const [a, b, c] = columns(doc, [null, null, null], content.x, content.y, content.w, content.h, 15);
+        const [a, b, c] = columnsArea([null, null, null], content, 15);
         const { r, rowH } = rows(content.y, content.h, 5, 2);
 
         const inputWidth = 30;
 
-        a((doc, x, y, w) => {
+        box(a, ({ x, w }) => {
           fieldWithFixedInput(doc, x, r[0], w, rowH, 'ora inizio imm.', dive.entry_time && time(dive.entry_time), {
             inputWidth,
           });
@@ -175,7 +165,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
             inputWidth,
           });
         });
-        b((doc: Doc, x: number, y: number, w: number) => {
+        box(b, ({ x, w }) => {
           fieldWithFixedInput(doc, x, r[0], w, rowH, 'ora fine imm.', dive.exit_time && time(dive.exit_time), {
             inputWidth,
           });
@@ -193,7 +183,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
           });
           fieldWithFixedInput(doc, x, r[4], w, rowH, 'FAR finale', null, { inputWidth });
         });
-        c((doc: Doc, x: number, y: number, w: number) => {
+        box(c, ({ x, w }) => {
           fieldWithFixedInput(doc, x, r[0], w, rowH, 'tempo di fondo', tempi.bottom_time, {
             inputWidth,
             sublabel: 'B',

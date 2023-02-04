@@ -1,11 +1,9 @@
-/**
- * Centers a length inside another.
- * Useful for v-centering text into an area
- * s       length
- * ---------
- *   ----
- *      l2
- */
-export function center(start: number, length: number, l2: number) {
-  return start + (length - l2) / 2;
+export function scale(in_min: number, in_max: number, out_min: number, out_max: number) {
+  return (num: number) => {
+    // short circuit
+    if (in_min === in_max) {
+      return out_min;
+    }
+    return ((num - in_min) * (out_min - out_max)) / (in_max - in_min) + out_max;
+  };
 }

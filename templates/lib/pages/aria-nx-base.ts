@@ -2,7 +2,7 @@ import { Dive } from 'dive-log-importer';
 
 import buddies, { BUDDIES_HEIGHT } from '../atoms/buddies';
 import footer, { FOOTER_HEIGHT } from '../atoms/footer';
-import { centerY, columns, columnsArea, rows, rowsFixed, rowsFixedArea } from '../atoms/grid';
+import { centerY, columnsArea, rows, rowsFixed, rowsFixedArea } from '../atoms/grid';
 import header, { HEADER_HEIGHT } from '../atoms/header';
 import page from '../atoms/page';
 import { panel } from '../atoms/panel';
@@ -13,7 +13,7 @@ import { time } from '../format';
 import condizioniAmbientali from '../molecules/condizioni-ambientali';
 import { field, fieldWithUpperLabel, field_date } from '../molecules/field';
 import { openField } from '../molecules/open-field';
-import { lower } from '../neutrons/area';
+import { box, lower } from '../neutrons/area';
 import { gasLabel, getGases } from '../neutrons/gas';
 import { gearList, getSuit } from '../neutrons/gear';
 import { trimNewLines } from '../neutrons/strings';
@@ -48,7 +48,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
       const fieldPadding = 5;
       const [location, condizioni, profilo, annotazioni] = rowsFixedArea([45, 80, 160, null], area, fieldPadding);
 
-      location((area) => {
+      box(location, (area) => {
         // First group
         const columnMargin = 10;
 
@@ -56,12 +56,12 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
 
         const [first, second] = columnsArea([40, 60], area, columnMargin);
         doc.fontSize(10);
-        first((area) => {
+        box(first, (area) => {
           field(doc, area.x, area.y, area.w, FIELD_BIG_HEIGHT, 'Immersione N°', dive.number);
           field_date(doc, area.x, secondLineY, area.w, FIELD_BIG_HEIGHT, 'Data', dive.date);
         });
 
-        second((area) => {
+        box(second, (area) => {
           field(doc, area.x, area.y, area.w, FIELD_BIG_HEIGHT, 'Luogo', dive.location?.place, {
             labelWidth: 37,
           });
@@ -71,9 +71,9 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
         });
       });
 
-      condizioni((area) => {
+      box(condizioni, (area) => {
         const [first, second] = columnsArea([56, 44], area, 5);
-        first((area) => {
+        box(first, (area) => {
           title(doc, 'Condizioni Meteo Marine', area.x, area.y);
           const content = lower(area, HEADER_LINE_HEIGHT);
 
@@ -81,7 +81,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
 
           condizioniAmbientali(doc, content, r, rowH, dive);
         });
-        second((area) => {
+        box(second, (area) => {
           title(doc, 'Attrezzatura', area.x, area.y);
           const content = lower(area, HEADER_LINE_HEIGHT);
 
@@ -89,15 +89,15 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
 
           doc.fontSize(FONT_SIZE_FIELDS);
 
-          const [muta, zavorra] = columns(doc, [55, 45], content.x, r[0], content.w, rowH, 5);
-          const [bombola, gasArea] = columns(doc, [40, 60], content.x, r[1], content.w, rowH, 5);
+          const [muta, zavorra] = columnsArea([55, 45], { h: rowH, w: content.w, x: content.x, y: r[0] }, 5);
+          const [bombola, gasArea] = columnsArea([40, 60], { h: rowH, w: content.w, x: content.x, y: r[1] }, 5);
 
           const fieldOptions = { labelSpacing: 2 };
 
           const suit = getSuit(dive);
           const suitType = suit.type.toLowerCase();
 
-          muta((doc, x, y, w, h) => {
+          box(muta, ({ x, y, w, h }) => {
             let mutaValue = '';
             if (suitType === 'wetsuit') {
               mutaValue = 'umida';
@@ -107,20 +107,20 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
             field(doc, x, y, w, h, 'muta', mutaValue, fieldOptions);
           });
 
-          zavorra((doc, x, y, w, h) => {
+          box(zavorra, ({ x, y, w, h }) => {
             field(doc, x, y, w, h, 'zavorra', dive.weights, {
               ...fieldOptions,
               sublabel: '(kg)',
             }); // dive.weights
           });
-          bombola((doc, x, y, w, h) => {
+          box(bombola, ({ x, y, w, h }) => {
             field(doc, x, y, w, h, 'bombola', tankVolume, {
               ...fieldOptions,
               sublabel: '(litri)',
             });
           });
 
-          gasArea((doc, x, y, w, h) => {
+          box(gasArea, ({ x, y, w, h }) => {
             field(doc, x, y, w, h, 'gas', gasLabel(gas), {
               ...fieldOptions,
               sublabel: '(Aria/EANx)',
@@ -131,7 +131,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
         });
       });
 
-      profilo((area) => {
+      box(profilo, (area) => {
         title(doc, 'Profilo Di Immersione', area.x, area.y);
         const tempi = getTempi(dive);
 
@@ -201,7 +201,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
 
         const baseFW = 40;
 
-        first((area) => {
+        box(first, (area) => {
           fieldWithUpperLabel(doc, area.x, r[0], 15, rowH, 'FAR');
           fieldWithUpperLabel(doc, area.x + 15, r[0], 50, rowH, 'Int. di sup.', dive.surfaceInterval);
           fieldWithUpperLabel(doc, area.x + 15 + 50, r[0], 15, rowH, 'FAR');
@@ -231,7 +231,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
           });
         });
 
-        second((area) => {
+        box(second, (area) => {
           fieldWithUpperLabel(doc, area.x + 5, r[3], baseFW, rowH, 'T fondo', tempi.bottom_time, {
             bold: true,
             sublabel: '(min)',
@@ -241,13 +241,13 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
             sublabel: '(min)',
           });
         });
-        third((area) => {
+        box(third, (area) => {
           fieldWithUpperLabel(doc, area.x, r[3], baseFW, rowH, 'Prof max', dive.max_depth, {
             bold: true,
             sublabel: '(min)',
           });
         });
-        fourth((area) => {
+        box(fourth, (area) => {
           fieldWithUpperLabel(doc, area.x + 17, r[0], 15, rowH, 'FAR');
 
           field(doc, area.x, centerY(r[1], fH, rowH), area.w, fH, 'Ora', time(dive.exit_time), {
@@ -276,7 +276,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
         });
       });
 
-      annotazioni((area) => {
+      box(annotazioni, (area) => {
         title(doc, 'Annotazioni', area.x, area.y);
         const content = lower(area, HEADER_LINE_HEIGHT);
 
