@@ -1,5 +1,5 @@
-import { findNearestPackageJson } from 'find-nearest-package-json';
 import { createWriteStream, readFileSync } from 'node:fs';
+import { join, normalize } from 'node:path';
 import PDFDocument from 'pdfkit';
 
 import didattica from './pages/ara-didattica';
@@ -7,10 +7,10 @@ import base from './pages/aria-nx-base';
 
 import { Options, PartialLogbook } from './types';
 
-async function init(logbook: PartialLogbook, dest: string, options: Options) {
-  const pkgObj = await findNearestPackageJson();
+const PACKAGE_PATH = normalize(join(__dirname, '../package.json'));
 
-  const pkg = pkgObj.data;
+async function init(logbook: PartialLogbook, dest: string, options: Options) {
+  const pkg = JSON.parse(readFileSync(PACKAGE_PATH, 'utf8'));
 
   // Create a document
   const doc = new PDFDocument({
