@@ -28,7 +28,7 @@ const component = (doc: Doc, area: Area) =>
 
     const rowsY = panelsInnerY + MINI_HEADERS_HEIGHT;
     const rowsH = panelsInnerH - MINI_HEADERS_HEIGHT * 1.5;
-    const { r, rowH } = rows(rowsY, rowsH, 5, 0);
+    const { r, rowH } = rows({ h: rowsH, w: 0, x: 0, y: rowsY }, 5, 0);
 
     box(first, (area) => {
       const labelPanelH = 11;
@@ -41,7 +41,7 @@ const component = (doc: Doc, area: Area) =>
           .text('IMMERSIONE RIPETITIVA', a.x, a.y, { align: 'center', width: a.w })
           .fontSize(FONT_SIZE_FIELDS);
 
-        const [labels, inputs] = columnsFixed(doc, [null, 25], a, 4);
+        const [labels, inputs] = columnsFixed([null, 25], a, 4);
 
         box(labels, ({ x, w }) => {
           label(doc, 'FAR imm. prec.', null, x, r[0], w, rowH);
@@ -64,7 +64,7 @@ const component = (doc: Doc, area: Area) =>
         },
         3,
         (a) => {
-          const [labels, prof, tempi, cons] = columnsFixed(doc, [null, 25, 25, 25], a, 4);
+          const [labels, prof, tempi, cons] = columnsFixed([null, 25, 25, 25], a, 4);
 
           box(labels, ({ x, w }) => {
             label(doc, 'fondo reale', 'b', x, r[0], w, rowH);
@@ -115,7 +115,7 @@ const component = (doc: Doc, area: Area) =>
           .text('RIEPILOGO', a.x, a.y, { align: 'center', width: a.w })
           .fontSize(FONT_SIZE_FIELDS);
 
-        const [labels, inputs] = columnsFixed(doc, [null, 25], a, 4);
+        const [labels, inputs] = columnsFixed([null, 25], a, 4);
 
         box(labels, ({ x, w }) => {
           label(doc, 'prof. tab', null, x, r[0], w, rowH);

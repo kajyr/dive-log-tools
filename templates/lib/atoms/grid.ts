@@ -27,15 +27,15 @@ export function columnsArea(list: ListWithNulls, area: Area, gutter: number): Ar
 /*
     Fixed sizes in points instead of percentage
 */
-export function columnsFixed(doc: Doc, list: ListWithNulls, area: Area, gutter: number): Area[] {
+export function columnsFixed(list: ListWithNulls, area: Area, gutter: number): Area[] {
   return spread(list, area.x, area.w, gutter).map(([x, w]) => ({ ...area, w, x }));
 }
 
-export function rows(startY: number, height: number, number: number, gutter = 0) {
-  const availableH = height - gutter * (number - 1);
+export function rows({ y, h }: Area, number: number, gutter = 0) {
+  const availableH = h - gutter * (number - 1);
   const rowH = availableH / number;
 
-  const r = Array.from({ length: number }, (_, i) => startY + (rowH + gutter) * i);
+  const r = Array.from({ length: number }, (_, i) => y + (rowH + gutter) * i);
 
   return {
     debug: (doc: Doc, x: number, w: number) => r.forEach((ry) => debugSquare(doc, x, ry, w, rowH)),

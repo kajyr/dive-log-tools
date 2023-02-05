@@ -52,7 +52,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
 
     panel(doc, pL, 2, (area) => {
       panel(doc, area, 3, (area) => {
-        const { r, rowH } = rows(area.y, area.h, 3, 2);
+        const { r, rowH } = rows(area, 3, 2);
         doc.fontSize(10);
 
         const spacing = 5;
@@ -111,7 +111,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
         // attrezzatura
         title(doc, 'ATTREZZATURA', area.x, area.y, 9, { width: area.w });
 
-        const [a, b, c, d, e] = columnsFixed(doc, [37, 68, 34, 54, null], lower(area, 10), 3);
+        const [a, b, c, d, e] = columnsFixed([37, 68, 34, 54, null], lower(area, 10), 3);
 
         fWLS(doc, a, null, tankName, {
           sublabel: 'bombole(l)',
@@ -141,7 +141,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
         const content = lower(area, 10);
 
         const [a, b, c] = columnsArea([null, null, null], content, 15);
-        const { r, rowH } = rows(content.y, content.h, 5, 2);
+        const { r, rowH } = rows(content, 5, 2);
 
         const inputWidth = 30;
 

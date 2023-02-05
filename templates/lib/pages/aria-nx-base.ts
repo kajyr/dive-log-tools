@@ -77,7 +77,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
           title(doc, 'Condizioni Meteo Marine', area.x, area.y);
           const content = lower(area, HEADER_LINE_HEIGHT);
 
-          const { r, rowH } = rows(content.y, content.h, 4, 5);
+          const { r, rowH } = rows(content, 4, 5);
 
           condizioniAmbientali(doc, content, r, rowH, dive);
         });
@@ -85,7 +85,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
           title(doc, 'Attrezzatura', area.x, area.y);
           const content = lower(area, HEADER_LINE_HEIGHT);
 
-          const { r, rowH } = rows(content.y, content.h, 3, 5);
+          const { r, rowH } = rows(content, 3, 5);
 
           doc.fontSize(FONT_SIZE_FIELDS);
 
@@ -194,7 +194,7 @@ async function draw(doc: Doc, dive: Partial<Dive>, options: Options, renderOptio
 
         const [first, second, third, fourth] = columnsArea([25, 36, 17, 21], chartArea, 10);
 
-        const { r, rowH } = rows(chartArea.y, chartArea.h, 4, 5);
+        const { r, rowH } = rows(chartArea, 4, 5);
 
         const fH = 22;
         const fieldOptions = { bold: true, fullBorder: true, labelSpacing: 2 };
