@@ -27,5 +27,5 @@
     "test:demo": "ts-node   ./cli.ts -- __tests__/__mocks__/macdive/doubles.xml",
     "watch": "tsc -w -p tsconfig.json"
   },
-  "version": "4.3.5"
+  "version": "5.0.0"
 }
