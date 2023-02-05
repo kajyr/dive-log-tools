@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.1](https://github.com/kajyr/dive-log-tools/templates/compare/logbook-templates@2.8.0...logbook-templates@2.8.1) (2023-02-05)
+
+
+### Chores
+
+* moved src files to src ([98f91d3](https://github.com/kajyr/dive-log-tools/templates/commit/98f91d3a36b3067217f54f24cd40ee2ab012a609))
+
+
+
 ## [2.8.0](https://github.com/kajyr/dive-log-tools/templates/compare/logbook-templates@2.7.1...logbook-templates@2.8.0) (2023-02-05)
 
 
