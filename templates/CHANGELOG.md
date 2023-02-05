@@ -3,6 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [2.8.2](https://github.com/kajyr/dive-log-tools/templates/compare/logbook-templates@2.8.1...logbook-templates@2.8.2) (2023-02-05)
+
+
+### Bug Fixes
+
+* Fixed version tag ([53fa702](https://github.com/kajyr/dive-log-tools/templates/commit/53fa702041e79298b6cc1a5a54ef1707dab097af))
+
+
+
 ## [2.8.1](https://github.com/kajyr/dive-log-tools/templates/compare/logbook-templates@2.8.0...logbook-templates@2.8.1) (2023-02-05)
 
 
