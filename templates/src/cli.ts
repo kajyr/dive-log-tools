@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 import { mclip } from 'mclip';
+
 import { convert, convertEmpty } from '.';
-import conf from './lib/options';
-import { Options } from './lib/types';
+import conf from './options';
+import { Options } from './types';
 
 const opts = mclip(process.argv, {
   debug: { default: false, description: 'Debug mode' },

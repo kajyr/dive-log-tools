@@ -4,7 +4,7 @@ import { Area, Doc } from '../types';
 
 import { centerY } from './text';
 
-const IMAGES_PATH = path.normalize(path.join(__dirname, '../../templates/pdfkit'));
+const IMAGES_PATH = path.normalize(path.join(__dirname, '../../assets'));
 
 const FIPSAS_IMAGE_HEIGHT = 25;
 const FIPSAS_IMAGE_WIDTH = 25;

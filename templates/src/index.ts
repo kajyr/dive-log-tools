@@ -1,12 +1,14 @@
-import path from 'path';
-import { ensureDirSync } from 'fs-extra';
-import { saveJson } from './lib/fs';
-import enrich from './lib/enrichers';
 import { importer } from 'dive-log-importer';
-import pdfkit from './lib/pdfkit';
+import { ensureDirSync } from 'fs-extra';
+import path from 'path';
+import { dirname, resolve } from 'path';
+
 import { readFile } from 'fs/promises';
-import { resolve, dirname } from 'path';
-import { Options, PartialLogbook } from './lib/types';
+
+import enrich from './enrichers';
+import { saveJson } from './fs';
+import pdfkit from './pdfkit';
+import { Options, PartialLogbook } from './types';
 
 const EMPTY_LOGBOOK: PartialLogbook = {
   dives: [
