@@ -1,7 +1,7 @@
 {
   "author": "Carlo Panzi <carlo.panzi@gmail.com>",
   "dependencies": {
-    "date-fns": "^2.29.3",
+    "date-fns": "^2.30.0",
     "fast-xml-parser": "^4.2.2",
     "mclip": "^2.1.1"
   },
