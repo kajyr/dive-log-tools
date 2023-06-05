@@ -26,7 +26,7 @@
     "date-fns": "^2.29.3",
     "dive-log-importer": "^5.0.0",
     "fs-extra": "^11.1.0",
-    "glob": "^8.1.0",
+    "glob": "^10.2.6",
     "home-config": "^0.1.0",
     "mclip": "^2.1.1",
     "nodemon": "^2.0.20",
