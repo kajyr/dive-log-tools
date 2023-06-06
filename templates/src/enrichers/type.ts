@@ -1,6 +1,8 @@
 import { UsedGas } from 'dive-log-importer';
-import { EnricherFn } from '.';
+
 import { gasLabel } from '../neutrons/gas';
+
+import { EnricherFn } from '.';
 
 const hidden = ['istruttore', 'fake'];
 
