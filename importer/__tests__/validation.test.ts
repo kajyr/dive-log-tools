@@ -1,7 +1,8 @@
+import { readFileSync, readdirSync, statSync } from 'node:fs';
+import { basename, join } from 'node:path';
+
 import { importer } from '../src';
-import { join } from 'node:path';
-import fs, { readdirSync, readFileSync, statSync } from 'node:fs';
-import Ajv from 'ajv';
+import { schema } from '../src/schema';
 
 const MOCK_FOLDER = join(__dirname, '__mocks__');
 
@@ -25,19 +26,13 @@ const walkSync = function (dir: string, filelist: string[] = []) {
 describe('JSON Schema Validation', () => {
   const files = walkSync(MOCK_FOLDER);
 
-  const ajv = new Ajv();
-  const validate = ajv.compile(require('../dive-schema.json'));
-
   files.forEach((file) => {
-    test(file, () => {
+    test(basename(file), () => {
       const data = readFileSync(file, 'utf8');
       const logbook = importer(data);
 
-      const valid = validate(logbook);
-      if (!valid) {
-        console.log('@@@', file, validate.errors);
-      }
-      expect(valid).toBe(true);
+      const ret = schema.safeParse(logbook);
+      expect(ret.success).toBe(true);
     });
   });
 });

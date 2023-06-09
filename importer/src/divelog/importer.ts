@@ -1,5 +1,4 @@
 import { add } from 'date-fns';
-import { datetime, time } from '../formats';
 
 import {
   bottom_time,
@@ -8,23 +7,23 @@ import {
   entry,
   half_depth_break,
   half_depth_break_time,
+  normalizeCurrent,
   normalizeSurface,
   normalizeVisibility,
-  normalizeCurrent,
-  water,
   normalizeWeather,
+  water,
 } from '../dive';
-
 import { tankName } from '../dive/tank';
-
+import { datetime, time } from '../formats';
 import { Dive, Logbook } from '../types';
-import { DivingLog } from './types';
+
+import { Dive as DivingLogDive, RawLogbook } from './types';
 
 function toBool(value: 'False' | 'True') {
   return value === 'True';
 }
 
-function normalizeDive(dive: DivingLog.Dive): Dive {
+function normalizeDive(dive: DivingLogDive): Dive {
   const entryDate = new Date(`${dive.Divedate}T${dive.Entrytime}`);
   const exitdate = add(entryDate, { minutes: dive.Divetime });
 
@@ -101,8 +100,8 @@ function normalizeDive(dive: DivingLog.Dive): Dive {
   return data;
 }
 
-function importer(logbook: DivingLog.RawLogbook): Logbook {
-  let dives: DivingLog.Dive[];
+function importer(logbook: RawLogbook): Logbook {
+  let dives: DivingLogDive[];
 
   if (Array.isArray(logbook.Divinglog.Logbook.Dive)) {
     dives = logbook.Divinglog.Logbook.Dive;
