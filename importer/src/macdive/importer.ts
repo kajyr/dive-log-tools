@@ -1,25 +1,24 @@
 import { add } from 'date-fns';
-import { datetime, time } from '../formats';
 
 import {
   bottom_time,
   buddies,
-  normalizeCurrent,
   emersion_time,
   entry,
   half_depth_break,
   half_depth_break_time,
+  normalizeCurrent,
   normalizeSurface,
-  surfaceInterval,
   normalizeVisibility,
   normalizeWeather,
+  surfaceInterval,
   water,
 } from '../dive';
-
 import { tankName } from '../dive/tank';
-
-import { MacDive } from './types';
+import { datetime, time } from '../formats';
 import { Dive, Logbook, Sample, UsedGas } from '../types';
+
+import { Dive as MacDiveDive, RawLogbook } from './types';
 
 function getOptionalProp<T>(group: string | Record<string, T | T[]>, prop: string) {
   if (typeof group === 'string') {
@@ -42,7 +41,7 @@ export function parseSamples(samples: Sample[]): Sample[] {
   });
 }
 
-function normalizeDive(dive: MacDive.Dive): Dive {
+function normalizeDive(dive: MacDiveDive): Dive {
   const dive_time = Math.floor(dive.duration / 60);
   const entryDate = new Date(dive.date);
   const exitDate = add(entryDate, { minutes: dive_time });
@@ -130,7 +129,7 @@ function normalizeDive(dive: MacDive.Dive): Dive {
   return data;
 }
 
-function importer(logbook: MacDive.RawLogbook): Logbook {
+function importer(logbook: RawLogbook): Logbook {
   const { dives } = logbook;
   return { dives: dives.map(normalizeDive) };
 }
