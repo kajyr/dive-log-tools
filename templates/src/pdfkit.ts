@@ -1,13 +1,26 @@
+import { Dive } from 'dive-log-importer';
 import { createWriteStream, readFileSync } from 'node:fs';
 import { join, normalize } from 'node:path';
 import PDFDocument from 'pdfkit';
 
+import isTeachingDive from './neutrons/is-teaching-dive';
 import didattica from './pages/ara-didattica';
 import base from './pages/aria-nx-base';
+import { blankPage } from './pages/blank';
+import { PageFn } from './pages/types';
 
 import { Options, PartialLogbook } from './types';
 
 const PACKAGE_PATH = normalize(join(__dirname, '../package.json'));
+
+function getPageFactory(options: Options, dive: Partial<Dive>) {
+  if (options.template === 'base') {
+    return base;
+  } else if (options.template === 'didattica') {
+    return didattica;
+  }
+  return isTeachingDive(dive) ? didattica : base;
+}
 
 async function init(logbook: PartialLogbook, dest: string, options: Options) {
   const pkg = JSON.parse(readFileSync(PACKAGE_PATH, 'utf8'));
@@ -24,7 +37,6 @@ async function init(logbook: PartialLogbook, dest: string, options: Options) {
 
   // Set some meta data
   doc.info['Title'] = 'FIPSAS Logbook';
-
   doc.info['Author'] = 'Carlo Panzi';
 
   doc.font('Helvetica');
@@ -32,13 +44,18 @@ async function init(logbook: PartialLogbook, dest: string, options: Options) {
 
   const rev = logbook.dives.reverse();
 
-  const pageRenderer = options.template === 'base' ? base : didattica;
-
-  let pageCount = 0;
+  const pages: PageFn[] = [];
   for (const dive of rev) {
-    const pages = await pageRenderer(doc, dive, options, { pageIndex: pageCount + 1, version: pkg.version });
-    pageCount = pageCount + pages;
+    const pageFactory = getPageFactory(options, dive);
+    const pagesFns = await pageFactory(doc, dive, options, { pageIndex: pages.length + 1, version: pkg.version });
+    pages.push(...pagesFns);
   }
+
+  // in case we want a4 friendly prints, do the sorting.
+  //pages = sortPagesForPrinting(pages);
+  //console.log(pages);
+  // run the pages
+  pages.forEach((page) => (page ? page() : blankPage(doc)));
 
   // Finalize PDF file
   doc.end();

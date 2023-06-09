@@ -10,7 +10,7 @@ const opts = mclip(process.argv, {
   dest: { default: './export.pdf', description: 'Output file name', short: 'd' },
   empty: { default: false, description: 'Prints an empty sheet (Does not load any xml file)' },
   logo: { default: false, description: 'Prints the club logo', short: 'l' },
-  template: { default: 'didattica', description: 'Template name', short: 't' },
+  template: { default: 'auto', description: 'Template name', short: 't' },
   verbose: { default: false, description: 'Verbose mode', short: 'v' },
 });
 
