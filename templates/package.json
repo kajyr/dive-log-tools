@@ -33,7 +33,7 @@
     "pdfkit": "^0.13.0",
     "tmp": "0.2.1",
     "ts-node": "^10.9.1",
-    "xml2js": "^0.4.23"
+    "xml2js": "^0.6.0"
   },
   "nodemonConfig": {
     "delay": "250",
