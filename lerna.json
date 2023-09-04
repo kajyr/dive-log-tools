@@ -1,5 +1,4 @@
 {
-  "packages": ["importer", "templates"],
   "version": "independent",
   "command": {
     "publish": {

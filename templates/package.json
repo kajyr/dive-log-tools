@@ -23,17 +23,17 @@
     "logbook-templates": "./build/cli.js"
   },
   "dependencies": {
-    "date-fns": "^2.29.3",
+    "date-fns": "^2.30.0",
     "dive-log-importer": "^5.0.0",
-    "fs-extra": "^11.1.0",
-    "glob": "^10.2.6",
+    "fs-extra": "^11.1.1",
+    "glob": "^10.3.4",
     "home-config": "^0.1.0",
     "mclip": "^2.1.1",
     "nodemon": "^3.0.1",
     "pdfkit": "^0.13.0",
     "tmp": "0.2.1",
     "ts-node": "^10.9.1",
-    "xml2js": "^0.6.0"
+    "xml2js": "^0.6.2"
   },
   "nodemonConfig": {
     "delay": "250",
@@ -45,6 +45,6 @@
   },
   "devDependencies": {
     "@types/fs-extra": "^11.0.1",
-    "@types/pdfkit": "^0.12.8"
+    "@types/pdfkit": "^0.12.10"
   }
 }
