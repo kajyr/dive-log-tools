@@ -22,7 +22,6 @@ export interface Config {
 export interface Options extends CliOptions, Config {}
 
 export interface RenderOptions {
-  pageIndex: number;
   version: string;
 }
 

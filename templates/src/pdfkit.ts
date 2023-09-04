@@ -4,10 +4,9 @@ import { join, normalize } from 'node:path';
 import PDFDocument from 'pdfkit';
 
 import isTeachingDive from './neutrons/is-teaching-dive';
-import didattica from './pages/ara-didattica';
-import base from './pages/aria-nx-base';
-import { blankPage } from './pages/blank';
-import { PageFn } from './pages/types';
+import didattica from './templates/ara-didattica';
+import base from './templates/aria-nx-base';
+import { PageFn } from './templates/types';
 
 import { Options, PartialLogbook } from './types';
 
@@ -47,15 +46,14 @@ async function init(logbook: PartialLogbook, dest: string, options: Options) {
   const pages: PageFn[] = [];
   for (const dive of rev) {
     const pageFactory = getPageFactory(options, dive);
-    const pagesFns = await pageFactory(doc, dive, options, { pageIndex: pages.length + 1, version: pkg.version });
+    const pagesFns = await pageFactory(doc, dive, options, { version: pkg.version });
     pages.push(...pagesFns);
   }
 
-  // in case we want a4 friendly prints, do the sorting.
-  //pages = sortPagesForPrinting(pages);
-  //console.log(pages);
-  // run the pages
-  pages.forEach((page) => (page ? page() : blankPage(doc)));
+  // Run the page functions
+  pages.forEach(async (page) => {
+    page(doc);
+  });
 
   // Finalize PDF file
   doc.end();
