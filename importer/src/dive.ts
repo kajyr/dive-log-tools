@@ -68,12 +68,13 @@ export function normalizeWeather(value: string) {
     case 'burrasca':
     case 'neve':
       return WEATHER_POOR;
-    case 'grigio':
+    case 'coperto':
     case 'foschia':
+    case 'grigio':
     case 'nuvoloso':
-    case 'ventoso':
-    case 'variabile':
     case 'pioggia leggera':
+    case 'variabile':
+    case 'ventoso':
       return WEATHER_MEDIUM;
     case '':
     case 'sereno':
@@ -96,15 +97,17 @@ export function normalizeSurface(value = '') {
     case 'medio':
     case 'poco mosso':
     case 'medio mosso':
+    case 'medio calmo':
     case 'leggermente mosso':
       return SURFACE_WEAK;
     case '':
+    case 'calmo':
+    case 'ghiaccio':
     case 'nessuno':
     case 'normale':
-    case 'calmo':
-    case 'piscina':
-    case 'ghiaccio':
     case 'piatto':
+    case 'piscina':
+    case 'sereno':
       return SURFACE_FLAT;
     default:
       console.log('Surface not recognized', value);
@@ -115,6 +118,7 @@ export function normalizeSurface(value = '') {
 export function normalizeCurrent(value = '') {
   switch (value.toLowerCase()) {
     case 'forte':
+    case 'medio forte':
       return CURRENT_STRONG;
     case 'media':
     case 'scarsa':
