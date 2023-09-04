@@ -1,25 +1,27 @@
 import path from 'node:path';
 import fs from 'fs-extra';
 import { Config } from './types';
-import homeCfg from 'home-config';
+import { homedir } from 'node:os';
+import dotenv from 'dotenv';
 
 const CONF_DIR = `.logbook-templates`;
-const home = process.env.HOME || process.env.USERPROFILE || './';
+const home = path.join(homedir(), CONF_DIR);
+
+dotenv.config({ path: path.join(home, 'config') });
 
 // Config from home settings
-const homeConfig: any = homeCfg.load(path.join(CONF_DIR, 'config'));
-const hasMaps = !!homeConfig.maps;
+const hasMaps = !!process.env.MAPS_KEY;
 if (!hasMaps) {
   console.log('No maps api key found.');
 }
 
 // Cache dir
-const cacheDir = path.resolve(path.join(home, CONF_DIR, 'cache'));
+const cacheDir = path.resolve(path.join(home, 'cache'));
 fs.ensureDirSync(cacheDir);
 
 const options: Config = {
   cacheDir,
-  maps: homeConfig.maps,
+  maps: { key: process.env.MAPS_KEY || '' },
 };
 
 export default options;

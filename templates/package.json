@@ -5,7 +5,7 @@
   "main": "./build/cli.js",
   "scripts": {
     "build": "tsc && chmod +x ./build/cli.js",
-    "start": "./build/cli.js",
+    "start": "ts-node src/cli.ts",
     "export:empty:didattica": "npm start -- -l --dest=export/export_empty_didattica.pdf --empty --template=didattica",
     "export:empty:base": "npm start -- -l --dest=export/export_empty_base.pdf --empty --template=base",
     "watch": "tsc -w",
@@ -13,21 +13,21 @@
     "test:demo": "npm run export:empty:didattica && npm run export:empty:base "
   },
   "files": [
-    "/build",
+    "/src",
     "/assets"
   ],
   "repository": "https://github.com/kajyr/dive-log-tools/templates",
   "author": "Carlo 'kajyr' <carlo.panzi@gmail.com>",
   "license": "ISC",
   "bin": {
-    "logbook-templates": "./build/cli.js"
+    "logbook-templates": "ts-node src/cli.ts"
   },
   "dependencies": {
     "date-fns": "^2.30.0",
     "dive-log-importer": "^5.0.0",
+    "dotenv": "^16.3.1",
     "fs-extra": "^11.1.1",
     "glob": "^10.3.4",
-    "home-config": "^0.1.0",
     "mclip": "^2.1.1",
     "nodemon": "^3.0.1",
     "pdfkit": "^0.13.0",
