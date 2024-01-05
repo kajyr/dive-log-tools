@@ -1,5 +1,3 @@
-import { add } from 'date-fns';
-
 import {
   bottom_time,
   buddies,
@@ -18,6 +16,7 @@ import { datetime, time } from '../formats';
 import { Dive, Logbook } from '../types';
 
 import { Dive as DivingLogDive, RawLogbook } from './types';
+import { diveExitTime } from '../helpers/dive-exit-time';
 
 function toBool(value: 'False' | 'True') {
   return value === 'True';
@@ -25,7 +24,6 @@ function toBool(value: 'False' | 'True') {
 
 function normalizeDive(dive: DivingLogDive): Dive {
   const entryDate = new Date(`${dive.Divedate}T${dive.Entrytime}`);
-  const exitdate = add(entryDate, { minutes: dive.Divetime });
 
   let surfaceInterval = '-';
   if (dive.Rep) {
@@ -74,7 +72,7 @@ function normalizeDive(dive: DivingLogDive): Dive {
     emersion_time: emersion_time(dive.Depth),
     entry: entry(dive.Entry),
     entry_time: time(entryDate),
-    exit_time: time(exitdate),
+    exit_time: diveExitTime(entryDate, dive_time),
     gases,
     gear,
     half_depth_break: half_depth_break(dive.Depth),

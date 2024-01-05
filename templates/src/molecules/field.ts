@@ -2,7 +2,7 @@ import { input } from '../atoms/input';
 import labelF from '../atoms/label';
 import { centerY } from '../atoms/text';
 import { Doc, Maybe, Value } from '../types';
-import format from 'date-fns/format';
+import dayjs from 'dayjs';
 
 type FieldOptions = {
   labelSpacing?: number;
@@ -63,7 +63,7 @@ export const field_date = (
   height: number,
   label: string,
   value: Value,
-) => field(doc, startX, startY, width, height, label, value && format(new Date(value), 'dd-MM-yyyy'));
+) => field(doc, startX, startY, width, height, label, value && dayjs(value).format('DD-MM-YYYY'));
 
 export function checkbox(
   doc: Doc,
@@ -117,7 +117,6 @@ export function fieldWithUpperLabel(
   }
   const lineHeight = doc.currentLineHeight() + 2;
   doc.text(label, startX, startY, { align: labelAlign, width }).font('Helvetica');
-  const boxY = startY + lineHeight;
   const boxH = height - lineHeight - 2;
 
   if (sublabel) {

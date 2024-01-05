@@ -1,5 +1,3 @@
-import { add } from 'date-fns';
-
 import {
   bottom_time,
   buddies,
@@ -19,6 +17,7 @@ import { datetime, time } from '../formats';
 import { Dive, Logbook, Sample, UsedGas } from '../types';
 
 import { Dive as MacDiveDive, RawLogbook } from './types';
+import { diveExitTime } from '../helpers/dive-exit-time';
 
 function getOptionalProp<T>(group: string | Record<string, T | T[]>, prop: string) {
   if (typeof group === 'string') {
@@ -44,7 +43,7 @@ export function parseSamples(samples: Sample[]): Sample[] {
 function normalizeDive(dive: MacDiveDive): Dive {
   const dive_time = Math.floor(dive.duration / 60);
   const entryDate = new Date(dive.date);
-  const exitDate = add(entryDate, { minutes: dive_time });
+  const exit_time = diveExitTime(dive.date, dive_time);
 
   const { site, weight } = dive;
 
@@ -103,7 +102,7 @@ function normalizeDive(dive: MacDiveDive): Dive {
     emersion_time: emersion_time(maxDepth),
     entry: entry(dive.entryType),
     entry_time: time(entryDate),
-    exit_time: time(exitDate),
+    exit_time,
     gases: clearedGases,
     gear,
     half_depth_break: half_depth_break(maxDepth),

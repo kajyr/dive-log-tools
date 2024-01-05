@@ -23,7 +23,7 @@
     "logbook-templates": "ts-node src/cli.ts"
   },
   "dependencies": {
-    "date-fns": "^2.30.0",
+    "dayjs": "^1.11.10",
     "dive-log-importer": "^5.0.0",
     "dotenv": "^16.3.1",
     "fs-extra": "^11.1.1",
