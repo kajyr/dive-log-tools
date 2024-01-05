@@ -8,6 +8,6 @@ describe('datetime', () => {
 
 describe('time', () => {
   test('Basic', () => {
-    expect(time(new Date('2020-01-01T11:21:32Z'))).toBe('12:21:32');
+    expect(time(new Date('2020-01-01T11:21:32'))).toBe('11:21:32');
   });
 });
