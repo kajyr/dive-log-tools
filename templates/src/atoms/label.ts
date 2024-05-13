@@ -12,7 +12,7 @@ function label(
   y: number,
   w: number,
   h: number,
-  align = 'right',
+  align: 'center' | 'justify' | 'left' | 'right' | undefined = 'right',
 ) {
   doc.fontSize(6);
   const letter_str = `(${letter})`;

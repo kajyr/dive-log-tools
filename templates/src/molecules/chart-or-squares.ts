@@ -22,7 +22,7 @@ const chartComponent = (doc: Doc, area: Area, samples: Sample[]) => {
   const maxDepth = Math.ceil(Math.max(...depths));
   doc.fontSize(6);
   const widthOfYLabels = 9; // two digits..
-  const yLabelOpts = { align: 'right', width: widthOfYLabels };
+  const yLabelOpts = { align: 'right' as const, width: widthOfYLabels };
   const lineH = doc.currentLineHeight();
   const bottomLabel = y + h - lineH;
   const axisOriginY = y + h - lineH * 1.5;
