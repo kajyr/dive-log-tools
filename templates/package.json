@@ -27,7 +27,7 @@
     "dive-log-importer": "^5.0.0",
     "dotenv": "^16.3.1",
     "fs-extra": "^11.1.1",
-    "glob": "^10.3.4",
+    "glob": "^11.0.0",
     "mclip": "^2.1.1",
     "nodemon": "^3.0.1",
     "pdfkit": "^0.15.0",
