@@ -1,0 +1,12 @@
+{
+  "git": false,
+  "npm": false,
+  "plugins": {
+    "@release-it/bumper": {
+      "out": {
+        "file": "package.json",
+        "path": ["dependencies.dive-log-importer"]
+      }
+    }
+  }
+}

@@ -6,6 +6,8 @@
     "mclip": "^2.1.1"
   },
   "devDependencies": {
+    "@release-it/conventional-changelog": "^10.0.1",
+    "release-it": "^19.0.4",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.2",
     "typescript": "^5.3.3",
@@ -23,7 +25,8 @@
     "build": "tsc -p tsconfig.json",
     "prepublishOnly": "npm run build",
     "test:demo": "ts-node   ./cli.ts -- __tests__/__mocks__/macdive/doubles.xml",
-    "watch": "tsc -w -p tsconfig.json"
+    "watch": "tsc -w -p tsconfig.json",
+    "release": "release-it"
   },
   "version": "5.0.0"
 }

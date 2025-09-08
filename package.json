@@ -13,9 +13,8 @@
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "husky": "^8.0.3",
     "jest": "^29.6.4",
-    "lerna": "^8.0.1",
     "lint-staged": "^15.0.2",
-    "nx": "^19.7.2",
+    "release-it": "^19.0.4",
     "ts-jest": "^29.1.1"
   },
   "workspaces": [
@@ -26,9 +25,9 @@
   "name": "dive-log-tools",
   "repository": "https://github.com/kajyr/dive-log-tools",
   "scripts": {
-    "build": "lerna run build",
     "lint": "eslint .",
-    "release": "npm run build && npm run test && lerna publish",
+    "prerelease": "npm run -ws build && npm run test",
+    "release": "npm run release --workspaces && release-it",
     "test": "jest --verbose",
     "test:ci": "jest --collectCoverage --coverageDirectory=\"./artifacts/testresults\" --ci --reporters=default --reporters=jest-junit",
     "test:watch": "jest --watch",
