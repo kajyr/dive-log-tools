@@ -10,7 +10,7 @@
     "export:empty:base": "npm start -- -l --dest=export/export_empty_base.pdf --empty --template=base",
     "watch": "tsc -w",
     "watch:export": "nodemon cli.ts -l --debug --dest=export/export.pdf",
-    "test:demo": "npm run export:empty:didattica && npm run export:empty:base ",
+    "test": "npm run export:empty:didattica && npm run export:empty:base ",
     "release": "release-it"
   },
   "files": [
