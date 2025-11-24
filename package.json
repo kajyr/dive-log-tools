@@ -25,12 +25,13 @@
   "name": "dive-log-tools",
   "repository": "https://github.com/kajyr/dive-log-tools",
   "scripts": {
+    "build": "npm run build -ws",
     "lint": "eslint .",
+    "prepare": "husky install",
     "prerelease": "npm run -ws build && npm run test",
     "release": "npm run release --workspaces && release-it",
-    "test": "jest --verbose",
     "test:ci": "jest --collectCoverage --coverageDirectory=\"./artifacts/testresults\" --ci --reporters=default --reporters=jest-junit",
     "test:watch": "jest --watch",
-    "prepare": "husky install"
+    "test": "jest --verbose"
   }
 }
