@@ -2,16 +2,16 @@
   "author": "Carlo Panzi <carlo.panzi@gmail.com>",
   "dependencies": {
     "dayjs": "^1.11.19",
-    "fast-xml-parser": "^5.3.2",
+    "fast-xml-parser": "^5.3.5",
     "mclip": "^2.2.1"
   },
   "devDependencies": {
-    "@release-it/conventional-changelog": "^10.0.2",
-    "release-it": "^19.0.6",
+    "@release-it/conventional-changelog": "^10.0.5",
+    "release-it": "^19.2.4",
     "ts-node": "^10.9.2",
     "tslib": "^2.8.1",
     "typescript": "^5.9.3",
-    "zod": "^4.1.13"
+    "zod": "^4.3.6"
   },
   "files": [
     "build"

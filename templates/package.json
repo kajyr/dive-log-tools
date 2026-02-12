@@ -26,9 +26,9 @@
   "dependencies": {
     "dayjs": "^1.11.19",
     "dive-log-importer": "^5.0.0",
-    "dotenv": "^17.2.3",
-    "fs-extra": "^11.3.2",
-    "glob": "^13.0.0",
+    "dotenv": "^17.2.4",
+    "fs-extra": "^11.3.3",
+    "glob": "^13.0.2",
     "mclip": "^2.2.1",
     "nodemon": "^3.1.11",
     "pdfkit": "^0.17.2",
@@ -47,7 +47,7 @@
   "devDependencies": {
     "@release-it/bumper": "^7.0.5",
     "@types/fs-extra": "^11.0.4",
-    "@types/pdfkit": "^0.17.4",
-    "release-it": "^19.0.6"
+    "@types/pdfkit": "^0.17.5",
+    "release-it": "^19.2.4"
   }
 }
