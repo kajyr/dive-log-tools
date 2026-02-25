@@ -3,8 +3,6 @@ import macdive from '../src/macdive';
 import { join } from 'node:path';
 import { readFileSync } from 'node:fs';
 
-const { importer } = macdive;
-
 const MOCK_FILE = join(__dirname, '__mocks__', 'macdive', 'MacDive.xml');
 const MOCK_DATA = readFileSync(MOCK_FILE, 'utf8');
 
@@ -29,7 +27,7 @@ describe('MacDive importer', () => {
 
   test('Missign props', async () => {
     const logbook = macdive.importer(MOCK_DATA_MISSING);
-    const [dive] = logbook?.dives;
+    const [dive] = logbook.dives;
     expect(dive.tags).toEqual([]);
     expect(dive.types).toEqual([]);
   });

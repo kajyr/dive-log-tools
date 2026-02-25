@@ -1,4 +1,3 @@
-import { debug } from '../atoms/debug';
 import { columnsArea, columnsFixed, rows } from '../atoms/grid';
 import { input } from '../atoms/input';
 import label from '../atoms/label';
