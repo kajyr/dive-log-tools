@@ -1,7 +1,9 @@
-const { listImporters } = require('../src');
+import { describe, test } from 'node:test';
+import assert from 'node:assert/strict';
+import { listImporters } from '../src';
 
 describe('Importer entrypoint', () => {
-  test('listImporters', async () => {
-    expect(listImporters()).toEqual(['macdive', 'divelog']);
+  test('listImporters', () => {
+    assert.deepStrictEqual(listImporters(), ['macdive', 'divelog']);
   });
 });

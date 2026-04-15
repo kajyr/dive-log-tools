@@ -18,7 +18,6 @@ module.exports = [
       ecmaVersion: 'latest',
       globals: {
         ...globals.node,
-        ...globals.jest,
       },
       parserOptions: {
         ecmaVersion: 'latest',

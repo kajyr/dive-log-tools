@@ -1,13 +1,15 @@
-const { tankName } = require('../src/dive/tank');
+import { describe, test } from 'node:test';
+import assert from 'node:assert/strict';
+import { tankName } from '../src/dive/tank';
 
 describe('tankName', () => {
   test('Single ', () => {
-    expect(tankName(15, null, false)).toBe('15');
-    expect(tankName(15, 'Pinina', false)).toBe('Pinina');
+    assert.strictEqual(tankName(15, null, false), '15');
+    assert.strictEqual(tankName(15, 'Pinina', false), 'Pinina');
   });
 
   test('Double', () => {
-    expect(tankName(24, null, true)).toBe('12 + 12');
-    expect(tankName(24, 'Pinina', true)).toBe('Pinina');
+    assert.strictEqual(tankName(24, null, true), '12 + 12');
+    assert.strictEqual(tankName(24, 'Pinina', true), 'Pinina');
   });
 });

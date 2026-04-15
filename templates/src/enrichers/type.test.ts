@@ -1,3 +1,5 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
 import enricher from './type';
 
 test('Enricher: type', async () => {
@@ -7,7 +9,7 @@ test('Enricher: type', async () => {
     tags: ['Istruttore', 'notturna'],
   });
 
-  expect(dive1.types).toEqual(['notturna']);
+  assert.deepStrictEqual(dive1.types, ['notturna']);
 
   const dive2 = await enricher({
     entry: 'da barca',
@@ -15,5 +17,5 @@ test('Enricher: type', async () => {
     tags: ['nitrox'],
   });
 
-  expect(dive2.types).toEqual(['EAN32', 'da barca']);
+  assert.deepStrictEqual(dive2.types, ['EAN32', 'da barca']);
 });

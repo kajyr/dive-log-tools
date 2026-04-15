@@ -1,3 +1,5 @@
+import { describe, test } from 'node:test';
+import assert from 'node:assert/strict';
 import enricher from './gases';
 
 const emptyOpts = { cacheDir: '', dest: '', list: [], template: '' };
@@ -6,9 +8,11 @@ describe('Gas enricher', () => {
   test('no gases', async () => {
     const ret = await enricher({}, emptyOpts);
     // No gases
-    expect(ret.gases).toEqual([
+    assert.deepStrictEqual(ret.gases, [
       {
         oxygen: 21,
+        pressureEnd: undefined,
+        pressureStart: undefined,
       },
     ]);
   });
@@ -29,7 +33,7 @@ describe('Gas enricher', () => {
       },
       emptyOpts,
     );
-    expect(dive.gases).toEqual([
+    assert.deepStrictEqual(dive.gases, [
       {
         double: false,
         helium: 0,
@@ -58,7 +62,7 @@ describe('Gas enricher', () => {
     );
 
     // EAN 36
-    expect(dive.gases).toEqual([
+    assert.deepStrictEqual(dive.gases, [
       {
         double: false,
         helium: 0,

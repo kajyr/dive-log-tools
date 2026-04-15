@@ -1,6 +1,3 @@
-// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
-
-exports[`DiveLog importer Basic 1`] = `
 {
   "dives": [
     {
@@ -25,40 +22,40 @@ exports[`DiveLog importer Basic 1`] = `
           "pressureEnd": 210,
           "pressureStart": 70,
           "tankName": "15",
-          "tankSize": 15,
-        },
+          "tankSize": 15
+        }
       ],
       "gear": [
         {
           "manufacturer": "",
           "name": "Aladin Sport Matrix",
           "serial": "",
-          "type": "",
+          "type": ""
         },
         {
           "manufacturer": "",
           "name": "Jacket",
           "serial": "",
-          "type": "",
+          "type": ""
         },
         {
           "manufacturer": "",
           "name": "Maschera Blu",
           "serial": "",
-          "type": "",
+          "type": ""
         },
         {
           "manufacturer": "",
           "name": "Muta 5mm logo giallo",
           "serial": "",
-          "type": "",
+          "type": ""
         },
         {
           "manufacturer": "",
           "name": "Pinne",
           "serial": "",
-          "type": "",
-        },
+          "type": ""
+        }
       ],
       "half_depth_break": "14m",
       "half_depth_break_time": "2.5",
@@ -67,7 +64,7 @@ exports[`DiveLog importer Basic 1`] = `
         "lat": "42.4010",
         "lng": "11.0914",
         "place": "Porto Santo Stefano",
-        "site": "Scoglio del Corallo",
+        "site": "Scoglio del Corallo"
       },
       "max_depth": 27.4,
       "notes": "",
@@ -78,14 +75,14 @@ exports[`DiveLog importer Basic 1`] = `
       "surface_normalized": "FLAT",
       "tags": [],
       "types": [
-        "addestramento",
+        "addestramento"
       ],
       "visibility": "",
       "visibility_normalized": "GOOD",
       "water": "mare",
       "weather": "Sereno",
       "weather_normalized": "CLEAR",
-      "weights": 9,
+      "weights": 9
     },
     {
       "air_used": 2100,
@@ -109,40 +106,40 @@ exports[`DiveLog importer Basic 1`] = `
           "pressureEnd": 210,
           "pressureStart": 70,
           "tankName": "15",
-          "tankSize": 15,
-        },
+          "tankSize": 15
+        }
       ],
       "gear": [
         {
           "manufacturer": "",
           "name": "Aladin Sport Matrix",
           "serial": "",
-          "type": "",
+          "type": ""
         },
         {
           "manufacturer": "",
           "name": "Jacket",
           "serial": "",
-          "type": "",
+          "type": ""
         },
         {
           "manufacturer": "",
           "name": "Maschera Blu",
           "serial": "",
-          "type": "",
+          "type": ""
         },
         {
           "manufacturer": "",
           "name": "Muta 5mm logo giallo",
           "serial": "",
-          "type": "",
+          "type": ""
         },
         {
           "manufacturer": "",
           "name": "Pinne",
           "serial": "",
-          "type": "",
-        },
+          "type": ""
+        }
       ],
       "half_depth_break": "14m",
       "half_depth_break_time": "2.5",
@@ -151,7 +148,7 @@ exports[`DiveLog importer Basic 1`] = `
         "lat": "42.4010",
         "lng": "11.0914",
         "place": "Porto Santo Stefano",
-        "site": "Scoglio del Corallo",
+        "site": "Scoglio del Corallo"
       },
       "max_depth": 27.4,
       "notes": "",
@@ -162,15 +159,14 @@ exports[`DiveLog importer Basic 1`] = `
       "surface_normalized": "FLAT",
       "tags": [],
       "types": [
-        "addestramento",
+        "addestramento"
       ],
       "visibility": "",
       "visibility_normalized": "GOOD",
       "water": "mare",
       "weather": "Sereno",
       "weather_normalized": "CLEAR",
-      "weights": 9,
-    },
-  ],
+      "weights": 9
+    }
+  ]
 }
-`;

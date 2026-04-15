@@ -1,3 +1,5 @@
+import { describe, test } from 'node:test';
+import assert from 'node:assert/strict';
 import { parseSamples } from '../src/macdive/importer';
 
 describe('parseSamples', () => {
@@ -6,6 +8,6 @@ describe('parseSamples', () => {
 
     const [fixed] = parseSamples(samples);
 
-    expect(fixed.depth).toBe(0);
+    assert.strictEqual(fixed.depth, 0);
   });
 });

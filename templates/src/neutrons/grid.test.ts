@@ -1,19 +1,21 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
 import { fillMissing, spread } from './grid';
 
 test('fillMissing', () => {
-  expect(fillMissing([null, 25, 25], 100)).toEqual([50, 25, 25]);
+  assert.deepStrictEqual(fillMissing([null, 25, 25], 100), [50, 25, 25]);
 
-  expect(fillMissing([null, null, 50], 100)).toEqual([25, 25, 50]);
+  assert.deepStrictEqual(fillMissing([null, null, 50], 100), [25, 25, 50]);
 
-  expect(fillMissing([null, null, null], 90)).toEqual([30, 30, 30]);
+  assert.deepStrictEqual(fillMissing([null, null, null], 90), [30, 30, 30]);
 });
 
 test('fillMissing supports 0 heights blocks', () => {
-  expect(fillMissing([0, null, 25, 25], 100)).toEqual([0, 50, 25, 25]);
+  assert.deepStrictEqual(fillMissing([0, null, 25, 25], 100), [0, 50, 25, 25]);
 });
 
 test('spread', () => {
-  expect(spread([25, 25], 0, 100, 2)).toEqual([
+  assert.deepStrictEqual(spread([25, 25], 0, 100, 2), [
     [0, 25],
     [27, 25],
   ]);

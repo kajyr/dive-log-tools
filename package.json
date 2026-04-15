@@ -4,7 +4,6 @@
     "@eslint/js": "^10.0.1",
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "@types/glob": "^9.0.0",
-    "@types/jest": "^30.0.0",
     "@types/node": "^24",
     "@typescript-eslint/eslint-plugin": "^8.58.2",
     "@typescript-eslint/parser": "^8.58.2",
@@ -14,10 +13,9 @@
     "eslint-plugin-sort-keys-fix": "^1.1.2",
     "globals": "^17.3.0",
     "husky": "^9.1.7",
-    "jest": "^30.2.0",
     "lint-staged": "^16.2.7",
     "release-it": "^20.0.0",
-    "ts-jest": "^29.4.6",
+    "tsx": "^4.19.0",
     "typescript-eslint": "^8.58.2",
     "typescript": "^6.0.2",
     "ts-node": "^10.9.2",
@@ -36,8 +34,8 @@
     "prepare": "husky install",
     "prerelease": "npm run -ws build && npm run test",
     "release": "npm run release --workspaces && release-it",
-    "test:ci": "jest --collectCoverage --coverageDirectory=\"./artifacts/testresults\" --ci --reporters=default --reporters=jest-junit",
-    "test:watch": "jest --watch",
-    "test": "jest --verbose"
+    "test:ci": "node --import tsx --test --experimental-test-coverage --test-reporter=spec --test-reporter=junit --test-reporter-destination=stdout --test-reporter-destination=./artifacts/testresults/junit.xml 'importer/**/*.test.ts' 'templates/src/**/*.test.ts'",
+    "test:watch": "node --import tsx --test --watch 'importer/**/*.test.ts' 'templates/src/**/*.test.ts'",
+    "test": "node --import tsx --test 'importer/**/*.test.ts' 'templates/src/**/*.test.ts'"
   }
 }

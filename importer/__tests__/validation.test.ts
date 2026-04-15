@@ -1,3 +1,5 @@
+import { describe, test } from 'node:test';
+import assert from 'node:assert/strict';
 import { readFileSync, readdirSync, statSync } from 'node:fs';
 import { basename, join } from 'node:path';
 
@@ -21,8 +23,6 @@ const walkSync = function (dir: string, filelist: string[] = []) {
   return filelist;
 };
 
-/* const MOCK_FOLDER = fs.readFileSync(MOCK_FILE, 'utf8');
- */
 describe('JSON Schema Validation', () => {
   const files = walkSync(MOCK_FOLDER);
 
@@ -32,7 +32,7 @@ describe('JSON Schema Validation', () => {
       const logbook = importer(data);
 
       const ret = schema.safeParse(logbook);
-      expect(ret.success).toBe(true);
+      assert.strictEqual(ret.success, true);
     });
   });
 });
