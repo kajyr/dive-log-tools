@@ -1,16 +1,8 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "allowSyntheticDefaultImports": true,
-    "baseUrl": "./src",
-    "esModuleInterop": true,
-    "lib": ["esnext"],
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "sourceMap": true,
-    "strict": true,
-    "target": "es2018",
-    "outDir": "./build"
+    "outDir": "./build",
+    "rootDir": "./src"
   },
-  "exclude": ["node_modules", "**/*.test.ts", "**/*.test.ts", "build"]
+  "exclude": ["node_modules", "**/*.test.ts", "build"]
 }

@@ -1,5 +1,5 @@
 import { Dive } from 'dive-log-importer';
-import { Maybe } from 'types';
+import { Maybe } from '../types.js';
 
 function lowerCaseInclude(list: Maybe<string[]>, words: string[]) {
   return list && list.some((element) => words.includes(element.toLowerCase()));

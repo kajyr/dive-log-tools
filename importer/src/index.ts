@@ -4,7 +4,7 @@ import { Logbook, Dive, Location, Gear, UsedGas, Sample } from './types';
 
 const importers = [macdive, divinglog];
 
-export { Logbook, Dive, Location, Gear, UsedGas, Sample };
+export type { Logbook, Dive, Location, Gear, UsedGas, Sample };
 
 export function listImporters() {
   return importers.map((i) => i.name);
