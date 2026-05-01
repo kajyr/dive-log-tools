@@ -6,7 +6,7 @@
     "@types/glob": "^9.0.0",
     "@types/node": "^24",
     "@typescript-eslint/eslint-plugin": "^8.58.2",
-    "@typescript-eslint/parser": "^8.58.2",
+    "@typescript-eslint/parser": "^8.59.1",
     "conventional-changelog-conventionalcommits": "^9.1.0",
     "eslint": "^10.0.2",
     "eslint-plugin-prettier": "^5.5.5",
