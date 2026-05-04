@@ -2,7 +2,7 @@
   "author": "Carlo Panzi <carlo.panzi@gmail.com>",
   "dependencies": {
     "dayjs": "^1.11.19",
-    "fast-xml-parser": "^5.7.1",
+    "fast-xml-parser": "^5.7.2",
     "mclip": "^2.2.1"
   },
   "devDependencies": {
