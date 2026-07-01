@@ -1,7 +1,7 @@
 {
   "author": "Carlo Panzi <carlo.panzi@gmail.com>",
   "dependencies": {
-    "dayjs": "^1.11.19",
+    "dayjs": "^1.11.21",
     "fast-xml-parser": "^5.8.0",
     "mclip": "^2.2.1"
   },
