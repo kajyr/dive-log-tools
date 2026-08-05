@@ -27,7 +27,7 @@
     "dayjs": "^1.11.21",
     "dive-log-importer": "^5.0.0",
     "dotenv": "^17.3.1",
-    "fs-extra": "^11.3.3",
+    "fs-extra": "^11.4.0",
     "glob": "^13.0.6",
     "mclip": "^2.2.1",
     "nodemon": "^3.1.14",
