@@ -1,5 +1,5 @@
 import { importer } from 'dive-log-importer';
-import { ensureDirSync } from 'fs-extra';
+import { mkdirSync } from 'fs';
 import path from 'path';
 import { dirname, resolve } from 'path';
 
@@ -45,7 +45,7 @@ async function process(logbook: PartialLogbook, options: Options) {
   const enriched = await enrich(logbook, options);
   const fullDest = resolve(options.dest);
   const folder = dirname(fullDest);
-  ensureDirSync(folder);
+  mkdirSync(folder, { recursive: true });
 
   await pdfkit(enriched, fullDest, options);
 

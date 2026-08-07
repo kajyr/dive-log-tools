@@ -27,7 +27,6 @@
     "dayjs": "^1.11.21",
     "dive-log-importer": "^5.0.0",
     "dotenv": "^17.3.1",
-    "fs-extra": "^11.3.3",
     "glob": "^13.0.6",
     "mclip": "^2.2.1",
     "nodemon": "^3.1.14",
@@ -46,7 +45,6 @@
   },
   "devDependencies": {
     "@release-it/bumper": "^8.0.0",
-    "@types/fs-extra": "^11.0.4",
     "@types/pdfkit": "^0.17.5",
     "release-it": "^21.0.0"
   }

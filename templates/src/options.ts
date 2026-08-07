@@ -1,5 +1,5 @@
 import path from 'node:path';
-import fs from 'fs-extra';
+import { mkdirSync } from 'node:fs';
 import { Config } from './types';
 import { homedir } from 'node:os';
 import dotenv from 'dotenv';
@@ -17,7 +17,7 @@ if (!hasMaps) {
 
 // Cache dir
 const cacheDir = path.resolve(path.join(home, 'cache'));
-fs.ensureDirSync(cacheDir);
+mkdirSync(cacheDir, { recursive: true });
 
 const options: Config = {
   cacheDir,
