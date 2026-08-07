@@ -3,11 +3,11 @@
   "dependencies": {
     "dayjs": "^1.11.21",
     "fast-xml-parser": "^5.10.1",
-    "mclip": "^2.2.1",
     "zod": "^4.4.3"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^12.0.0",
+    "mclip": "^2.2.1",
     "release-it": "^21.0.0"
   },
   "files": [
