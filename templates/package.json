@@ -44,6 +44,6 @@
     "@release-it/bumper": "^8.0.0",
     "@types/pdfkit": "^0.17.5",
     "nodemon": "^3.1.14",
-    "release-it": "^21.0.0"
+    "release-it": "^21.1.0"
   }
 }
