@@ -3,7 +3,7 @@
   "dependencies": {
     "dayjs": "^1.11.21",
     "fast-xml-parser": "^5.11.1",
-    "zod": "^4.4.3"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@release-it/conventional-changelog": "^12.0.0",
